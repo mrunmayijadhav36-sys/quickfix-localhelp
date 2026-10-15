@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QuickFix - Community Support</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f4f8f6;
+            color: #16352d;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            background: #022c22;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #6ee7b7;
+        }
+
+        .back-btn {
+            background: white;
+            color: #064e3b;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #d1fae5;
+            transform: translateY(-2px);
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            background: linear-gradient(135deg, #064e3b, #022c22);
+            color: white;
+            text-align: center;
+            padding: 55px 20px;
+        }
+
+        .hero-icon {
+            font-size: 55px;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.7;
+            color: #d1fae5;
+            font-size: 16px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: 92%;
+            max-width: 1050px;
+            margin: 40px auto;
+        }
+
+        .info-box {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .info-box h2 {
+            color: #064e3b;
+            margin-bottom: 12px;
+        }
+
+        .info-box p {
+            color: #5f716b;
+            line-height: 1.7;
+        }
+
+        /* ================= PAYMENT CARD ================= */
+
+        .payment-wrapper {
+            background: white;
+            border-radius: 22px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.09);
+            padding: 35px;
+        }
+
+        .section-title {
+            color: #064e3b;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        /* ================= AMOUNT ================= */
+
+        .amount-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .amount-btn {
+            padding: 14px;
+            border: 2px solid #d8e7e1;
+            background: #fff;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: #064e3b;
+            transition: 0.25s;
+        }
+
+        .amount-btn:hover {
+            border-color: #059669;
+            background: #ecfdf5;
+        }
+
+        .amount-btn.active {
+            background: #064e3b;
+            color: white;
+            border-color: #064e3b;
+        }
+
+        .custom-amount {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #d8e7e1;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+            margin-bottom: 25px;
+        }
+
+        .custom-amount:focus {
+            border-color: #059669;
+        }
+
+        /* ================= SUPPORTER ================= */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #24443b;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 13px;
+            border: 2px solid #d8e7e1;
+            border-radius: 11px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #059669;
+        }
+
+        /* ================= PAYMENT METHODS ================= */
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+
+        .method {
+            border: 2px solid #d8e7e1;
+            border-radius: 15px;
+            padding: 18px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.25s;
+            background: white;
+        }
+
+        .method:hover {
+            border-color: #059669;
+            transform: translateY(-2px);
+        }
+
+        .method.active {
+            border-color: #064e3b;
+            background: #ecfdf5;
+        }
+
+        .method-icon {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .method-title {
+            font-weight: bold;
+            color: #064e3b;
+        }
+
+        .method-small {
+            font-size: 12px;
+            color: #72817c;
+            margin-top: 5px;
+        }
+
+        /* ================= PAYMENT PANEL ================= */
+
+        .payment-panel {
+            display: none;
+            background: #f7fbf9;
+            border: 1px solid #dcebe5;
+            border-radius: 17px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .payment-panel.active {
+            display: block;
+        }
+
+        .payment-panel h3 {
+            color: #064e3b;
+            margin-bottom: 15px;
+        }
+
+        /* ================= QR ================= */
+
+        .qr-area {
+            text-align: center;
+        }
+
+        .demo-qr {
+            width: 190px;
+            height: 190px;
+            margin: 20px auto;
+            background:
+                linear-gradient(90deg, #111 10px, transparent 10px) 0 0 / 30px 30px,
+                linear-gradient(#111 10px, transparent 10px) 0 0 / 30px 30px,
+                linear-gradient(45deg, transparent 40%, #111 41%, #111 59%, transparent 60%);
+            border: 12px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        .qr-center {
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            background: #064e3b;
+            color: white;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 10px;
+        }
+
+        .demo-label {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .upi-id {
+            background: white;
+            border: 1px dashed #a7bcb4;
+            padding: 13px;
+            border-radius: 10px;
+            margin-top: 12px;
+            font-weight: bold;
+            color: #064e3b;
+        }
+
+        /* ================= CARD ================= */
+
+        .card-preview {
+            background: linear-gradient(135deg, #064e3b, #022c22);
+            color: white;
+            border-radius: 17px;
+            padding: 22px;
+            max-width: 380px;
+            height: 205px;
+            margin: 0 auto 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.18);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chip {
+            width: 42px;
+            height: 30px;
+            background: #d1fae5;
+            border-radius: 6px;
+        }
+
+        .card-number-preview {
+            font-size: 19px;
+            letter-spacing: 3px;
+            margin-top: 35px;
+        }
+
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+
+        .card-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* ================= BANK ================= */
+
+        .bank-note {
+            background: #ecfdf5;
+            padding: 15px;
+            border-radius: 12px;
+            color: #065f46;
+            margin-bottom: 18px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        /* ================= SUMMARY ================= */
+
+        .summary {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 22px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .summary-row:last-child {
+            margin-bottom: 0;
+            font-weight: bold;
+            color: #064e3b;
+            font-size: 18px;
+        }
+
+        /* ================= PAY BUTTON ================= */
+
+        .pay-btn {
+            width: 100%;
+            border: none;
+            background: #064e3b;
+            color: white;
+            padding: 16px;
+            border-radius: 13px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .pay-btn:hover {
+            background: #022c22;
+            transform: translateY(-2px);
+        }
+
+        .security-note {
+            text-align: center;
+            color: #71817b;
+            font-size: 13px;
+            margin-top: 14px;
+        }
+
+        /* ================= SUCCESS ================= */
+
+        .success-box {
+            display: none;
+            text-align: center;
+            padding: 40px 25px;
+            background: #ecfdf5;
+            border: 2px solid #86efac;
+            border-radius: 20px;
+            margin-top: 25px;
+        }
+
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .success-box h2 {
+            color: #065f46;
+            margin-bottom: 10px;
+        }
+
+        .success-box p {
+            color: #46635a;
+            line-height: 1.6;
+        }
+
+        .receipt {
+            background: white;
+            border-radius: 13px;
+            padding: 18px;
+            margin: 20px auto;
+            max-width: 450px;
+            text-align: left;
+        }
+
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 7px 0;
+            border-bottom: 1px solid #edf2ef;
+        }
+
+        .receipt-row:last-child {
+            border-bottom: none;
+        }
+
+        .home-button {
+            border: none;
+            background: #064e3b;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #022c22;
+            color: #d1fae5;
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 50px;
+            line-height: 1.7;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 15px 4%;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .hero h1 {
+                font-size: 29px;
+            }
+
+            .amount-grid,
+            .payment-methods {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .payment-wrapper {
+                padding: 22px;
+            }
+
+            .card-form {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: auto;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .amount-grid,
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 40px 18px;
+            }
+
+            .payment-wrapper {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        QUICK<span>FIX</span>
+    </div>
+
+    <button class="back-btn" onclick="goHome()">
+        ← Back to Home
+    </button>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-icon">🤝</div>
+
+    <h1>Help Beyond QuickFix</h1>
+
+    <p>
+        Your support can help us build a stronger and more caring
+        local community where essential assistance is accessible to everyone.
+    </p>
+
+</section>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+    <div class="info-box">
+
+        <h2>❤️ Support the QuickFix Community Initiative</h2>
+
+        <p>
+            QuickFix is designed to connect people with trusted local help.
+            Our community initiative is an extension of that idea —
+            helping make essential assistance more accessible to people
+            and families who may need additional support.
+        </p>
+
+    </div>
+
+
+    <div class="payment-wrapper">
+
+        <h2 class="section-title">
+            Choose Your Contribution
+        </h2>
+
+
+        <!-- ================= AMOUNT ================= -->
+
+        <div class="amount-grid">
+
+            <button class="amount-btn" onclick="selectAmount(100, this)">
+                ₹100
+            </button>
+
+            <button class="amount-btn" onclick="selectAmount(250, this)">
+                ₹250
+            </button>
+
+            <button class="amount-btn active" onclick="selectAmount(500, this)">
+                ₹500
+            </button>
+
+            <button class="amount-btn" onclick="selectAmount(1000, this)">
+                ₹1,000
+            </button>
+
+            <button class="amount-btn" onclick="selectAmount(2000, this)">
+                ₹2,000
+            </button>
+
+            <button class="amount-btn" onclick="selectAmount(5000, this)">
+                ₹5,000
+            </button>
+
+        </div>
+
+
+        <input
+            type="number"
+            id="customAmount"
+            class="custom-amount"
+            placeholder="Or enter a custom amount (₹)"
+            min="1"
+            oninput="customAmountChanged()"
+        >
+
+
+        <!-- ================= SUPPORTER DETAILS ================= -->
+
+        <h2 class="section-title">
+            Supporter Details
+        </h2>
+
+        <div class="form-group">
+
+            <label for="supporterName">
+                Your Name
+            </label>
+
+            <input
+                type="text"
+                id="supporterName"
+                placeholder="Enter your name"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="supporterMessage">
+                Message (Optional)
+            </label>
+
+            <input
+                type="text"
+                id="supporterMessage"
+                placeholder="Write a short message..."
+            >
+
+        </div>
+
+
+        <!-- ================= PAYMENT METHOD ================= -->
+
+        <h2 class="section-title">
+            Choose Payment Method
+        </h2>
+
+        <div class="payment-methods">
+
+            <div
+                class="method active"
+                onclick="selectPaymentMethod('upi', this)"
+            >
+
+                <div class="method-icon">📱</div>
+
+                <div class="method-title">
+                    UPI / QR
+                </div>
+
+                <div class="method-small">
+                    Scan & Pay
+                </div>
+
+            </div>
+
+
+            <div
+                class="method"
+                onclick="selectPaymentMethod('card', this)"
+            >
+
+                <div class="method-icon">💳</div>
+
+                <div class="method-title">
+                    Card
+                </div>
+
+                <div class="method-small">
+                    Debit / Credit
+                </div>
+
+            </div>
+
+
+            <div
+                class="method"
+                onclick="selectPaymentMethod('netbanking', this)"
+            >
+
+                <div class="method-icon">🏦</div>
+
+                <div class="method-title">
+                    Net Banking
+                </div>
+
+                <div class="method-small">
+                    Select Bank
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= UPI PANEL ================= -->
+
+        <div id="upiPanel" class="payment-panel active">
+
+            <h3>📱 Pay using UPI</h3>
+
+            <div class="qr-area">
+
+                <span class="demo-label">
+                    DEMO QR — REAL PAYMENT NOT CONNECTED
+                </span>
+
+                <div class="demo-qr">
+
+                    <div class="qr-center">
+                        QUICKFIX
+                    </div>
+
+                </div>
+
+                <p>
+                    In the real QuickFix version, the payment gateway
+                    will generate a live QR code for the selected amount.
+                </p>
+
+                <div class="upi-id">
+                    Demo UPI: quickfix-support@demo
+                </div>
+
+                <br>
+
+                <div class="form-group">
+
+                    <label for="upiId">
+                        Your UPI ID (Optional)
+                    </label>
+
+                    <input
+                        type="text"
+                        id="upiId"
+                        placeholder="example@upi"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= CARD PANEL ================= -->
+
+        <div id="cardPanel" class="payment-panel">
+
+            <h3>💳 Debit / Credit Card</h3>
+
+            <div class="card-preview">
+
+                <div class="card-top">
+
+                    <div>
+                        QUICKFIX
+                    </div>
+
+                    <div class="chip"></div>
+
+                </div>
+
+                <div class="card-number-preview">
+                    •••• •••• •••• ••••
+                </div>
+
+                <div class="card-bottom">
+
+                    <span>
+                        CARD HOLDER
+                    </span>
+
+                    <span>
+                        MM/YY
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="card-form">
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Card Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cardNumber"
+                        maxlength="19"
+                        placeholder="1234 5678 9012 3456"
+                        oninput="formatCardNumber(this)"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Card Holder Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cardName"
+                        placeholder="Name on card"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Expiry
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cardExpiry"
+                        maxlength="5"
+                        placeholder="MM/YY"
+                        oninput="formatExpiry(this)"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        CVV
+                    </label>
+
+                    <input
+                        type="password"
+                        id="cardCvv"
+                        maxlength="3"
+                        placeholder="•••"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= NET BANKING ================= -->
+
+        <div id="netbankingPanel" class="payment-panel">
+
+            <h3>🏦 Net Banking</h3>
+
+            <div class="bank-note">
+
+                🔒 In the real version, you will be redirected to
+                your bank's secure payment page through the payment gateway.
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="bank">
+                    Select Your Bank
+                </label>
+
+                <select id="bank">
+
+                    <option value="">
+                        -- Select Bank --
+                    </option>
+
+                    <option>
+                        State Bank of India
+                    </option>
+
+                    <option>
+                        HDFC Bank
+                    </option>
+
+                    <option>
+                        ICICI Bank
+                    </option>
+
+                    <option>
+                        Axis Bank
+                    </option>
+
+                    <option>
+                        Bank of Maharashtra
+                    </option>
+
+                    <option>
+                        Kotak Mahindra Bank
+                    </option>
+
+                    <option>
+                        Punjab National Bank
+                    </option>
+
+                    <option>
+                        Other Bank
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= SUMMARY ================= -->
+
+        <div class="summary">
+
+            <div class="summary-row">
+
+                <span>
+                    Contribution
+                </span>
+
+                <span id="summaryAmount">
+                    ₹500
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Payment Method
+                </span>
+
+                <span id="summaryMethod">
+                    UPI / QR
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Total
+                </span>
+
+                <span id="totalAmount">
+                    ₹500
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= DEMO NOTICE ================= -->
+
+        <div class="bank-note">
+
+            ⚠️ <strong>College Project Demo:</strong>
+            This payment screen demonstrates how QuickFix can support
+            UPI/QR, Card and Net Banking payments.
+            No real money will be charged from this page.
+
+        </div>
+
+
+        <!-- ================= PAY ================= -->
+
+        <button
+            class="pay-btn"
+            onclick="processPayment()"
+        >
+            ❤️ Continue to Payment
+        </button>
+
+
+        <div class="security-note">
+            🔒 Secure payment interface • QuickFix Community Initiative
+        </div>
+
+
+        <!-- ================= SUCCESS ================= -->
+
+        <div
+            class="success-box"
+            id="successBox"
+        >
+
+            <div class="success-icon">
+                🎉
+            </div>
+
+            <h2>
+                Demo Payment Successful!
+            </h2>
+
+            <p>
+                Thank you for supporting the QuickFix Community Initiative.
+                No real money was charged.
+            </p>
+
+
+            <div class="receipt">
+
+                <div class="receipt-row">
+
+                    <span>
+                        Supporter
+                    </span>
+
+                    <strong id="receiptName">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span>
+                        Amount
+                    </span>
+
+                    <strong id="receiptAmount">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span>
+                        Payment Method
+                    </span>
+
+                    <strong id="receiptMethod">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span>
+                        Status
+                    </span>
+
+                    <strong>
+                        Demo Payment
+                    </strong>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span>
+                        Date
+                    </span>
+
+                    <strong id="receiptDate">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="home-button"
+                onclick="goHome()"
+            >
+                ← Return to QuickFix
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <strong>QUICKFIX</strong><br>
+
+    Help Beyond QuickFix • Community Support Initiative
+
+    <br><br>
+
+    © 2026 QuickFix | Pranali Bhoyar and Mrunmayi Jadhav
+
+</footer>
+
+
+<script>
+
+    /* =========================================
+       GLOBAL VARIABLES
+    ========================================= */
+
+    let selectedAmount = 500;
+
+    let selectedPaymentMethod = "upi";
+
+
+    /* =========================================
+       GO HOME
+    ========================================= */
+
+    function goHome() {
+
+        window.location.href = "home.html";
+
+    }
+
+
+    /* =========================================
+       SELECT AMOUNT
+    ========================================= */
+
+    function selectAmount(amount, button) {
+
+        selectedAmount = amount;
+
+        document.getElementById("customAmount").value = "";
+
+        const buttons = document.querySelectorAll(".amount-btn");
+
+        buttons.forEach(function(btn) {
+
+            btn.classList.remove("active");
+
+        });
+
+        button.classList.add("active");
+
+        updateSummary();
+
+    }
+
+
+    /* =========================================
+       CUSTOM AMOUNT
+    ========================================= */
+
+    function customAmountChanged() {
+
+        const customAmount =
+            Number(document.getElementById("customAmount").value);
+
+        if (customAmount > 0) {
+
+            selectedAmount = customAmount;
+
+            const buttons =
+                document.querySelectorAll(".amount-btn");
+
+            buttons.forEach(function(btn) {
+
+                btn.classList.remove("active");
+
+            });
+
+            updateSummary();
+
+        }
+
+    }
+
+
+    /* =========================================
+       SELECT PAYMENT METHOD
+    ========================================= */
+
+    function selectPaymentMethod(method, element) {
+
+        selectedPaymentMethod = method;
+
+
+        const methods =
+            document.querySelectorAll(".method");
+
+        methods.forEach(function(item) {
+
+            item.classList.remove("active");
+
+        });
+
+        element.classList.add("active");
+
+
+        const panels =
+            document.querySelectorAll(".payment-panel");
+
+        panels.forEach(function(panel) {
+
+            panel.classList.remove("active");
+
+        });
+
+
+        if (method === "upi") {
+
+            document
+                .getElementById("upiPanel")
+                .classList.add("active");
+
+        }
+
+
+        if (method === "card") {
+
+            document
+                .getElementById("cardPanel")
+                .classList.add("active");
+
+        }
+
+
+        if (method === "netbanking") {
+
+            document
+                .getElementById("netbankingPanel")
+                .classList.add("active");
+
+        }
+
+
+        updateSummary();
+
+    }
+
+
+    /* =========================================
+       UPDATE SUMMARY
+    ========================================= */
+
+    function updateSummary() {
+
+        const formattedAmount =
+            "₹" + Number(selectedAmount).toLocaleString("en-IN");
+
+
+        document.getElementById("summaryAmount").textContent =
+            formattedAmount;
+
+
+        document.getElementById("totalAmount").textContent =
+            formattedAmount;
+
+
+        let methodName = "UPI / QR";
+
+
+        if (selectedPaymentMethod === "card") {
+
+            methodName = "Debit / Credit Card";
+
+        }
+
+
+        if (selectedPaymentMethod === "netbanking") {
+
+            methodName = "Net Banking";
+
+        }
+
+
+        document.getElementById("summaryMethod").textContent =
+            methodName;
+
+    }
+
+
+    /* =========================================
+       CARD NUMBER FORMAT
+    ========================================= */
+
+    function formatCardNumber(input) {
+
+        let value =
+            input.value.replace(/\D/g, "");
+
+        value =
+            value.substring(0, 16);
+
+        let formatted = "";
+
+        for (let i = 0; i < value.length; i++) {
+
+            if (i > 0 && i % 4 === 0) {
+
+                formatted += " ";
+
+            }
+
+            formatted += value[i];
+
+        }
+
+        input.value = formatted;
+
+    }
+
+
+    /* =========================================
+       EXPIRY FORMAT
+    ========================================= */
+
+    function formatExpiry(input) {
+
+        let value =
+            input.value.replace(/\D/g, "");
+
+        value =
+            value.substring(0, 4);
+
+        if (value.length >= 3) {
+
+            value =
+                value.substring(0, 2)
+                + "/"
+                + value.substring(2);
+
+        }
+
+        input.value = value;
+
+    }
+
+
+    /* =========================================
+       PAYMENT VALIDATION
+    ========================================= */
+
+    function validatePaymentMethod() {
+
+
+        if (selectedPaymentMethod === "upi") {
+
+            return true;
+
+        }
+
+
+        if (selectedPaymentMethod === "card") {
+
+            const cardNumber =
+                document
+                .getElementById("cardNumber")
+                .value
+                .replace(/\s/g, "");
+
+            const cardName =
+                document
+                .getElementById("cardName")
+                .value
+                .trim();
+
+            const expiry =
+                document
+                .getElementById("cardExpiry")
+                .value
+                .trim();
+
+            const cvv =
+                document
+                .getElementById("cardCvv")
+                .value
+                .trim();
+
+
+            if (cardNumber.length !== 16) {
+
+                alert(
+                    "Please enter a demo 16-digit card number."
+                );
+
+                return false;
+
+            }
+
+
+            if (cardName === "") {
+
+                alert(
+                    "Please enter the card holder name."
+                );
+
+                return false;
+
+            }
+
+
+            if (!/^\d{2}\/\d{2}$/.test(expiry)) {
+
+                alert(
+                    "Please enter expiry in MM/YY format."
+                );
+
+                return false;
+
+            }
+
+
+            if (!/^\d{3}$/.test(cvv)) {
+
+                alert(
+                    "Please enter a 3-digit CVV."
+                );
+
+                return false;
+
+            }
+
+
+            return true;
+
+        }
+
+
+        if (selectedPaymentMethod === "netbanking") {
+
+            const bank =
+                document.getElementById("bank").value;
+
+
+            if (bank === "") {
+
+                alert(
+                    "Please select a bank."
+                );
+
+                return false;
+
+            }
+
+
+            return true;
+
+        }
+
+
+        return false;
+
+    }
+
+
+    /* =========================================
+       PROCESS DEMO PAYMENT
+    ========================================= */
+
+    function processPayment() {
+
+
+        const name =
+            document
+            .getElementById("supporterName")
+            .value
+            .trim();
+
+
+        const message =
+            document
+            .getElementById("supporterMessage")
+            .value
+            .trim();
+
+
+        const customAmount =
+            Number(
+                document
+                .getElementById("customAmount")
+                .value
+            );
+
+
+        if (customAmount > 0) {
+
+            selectedAmount = customAmount;
+
+        }
+
+
+        if (!selectedAmount || selectedAmount <= 0) {
+
+            alert(
+                "Please select or enter a valid contribution amount."
+            );
+
+            return;
+
+        }
+
+
+        if (name === "") {
+
+            alert(
+                "Please enter your name."
+            );
+
+            return;
+
+        }
+
+
+        if (!validatePaymentMethod()) {
+
+            return;
+
+        }
+
+
+        let methodName = "UPI / QR";
+
+
+        if (selectedPaymentMethod === "card") {
+
+            methodName =
+                "Debit / Credit Card";
+
+        }
+
+
+        if (selectedPaymentMethod === "netbanking") {
+
+            methodName =
+                "Net Banking";
+
+        }
+
+
+        const paymentRecord = {
+
+            name: name,
+
+            amount: selectedAmount,
+
+            message: message,
+
+            paymentMethod: methodName,
+
+            paymentStatus: "demo",
+
+            date: new Date().toLocaleString()
+
+        };
+
+
+        /* =========================================
+           SAVE DEMO SUPPORT DATA
+        ========================================= */
+
+        let supports = [];
+
+
+        try {
+
+            supports =
+                JSON.parse(
+                    localStorage.getItem(
+                        "quickfixSupports"
+                    )
+                ) || [];
+
+        } catch (error) {
+
+            supports = [];
+
+        }
+
+
+        supports.push(paymentRecord);
+
+
+        localStorage.setItem(
+            "quickfixSupports",
+            JSON.stringify(supports)
+        );
+
+
+        /* =========================================
+           SHOW RECEIPT
+        ========================================= */
+
+        document.getElementById("receiptName").textContent =
+            name;
+
+
+        document.getElementById("receiptAmount").textContent =
+            "₹" +
+            Number(selectedAmount).toLocaleString("en-IN");
+
+
+        document.getElementById("receiptMethod").textContent =
+            methodName;
+
+
+        document.getElementById("receiptDate").textContent =
+            new Date().toLocaleString();
+
+
+        document.getElementById("successBox").style.display =
+            "block";
+
+
+        /* Scroll to success message */
+
+        document
+            .getElementById("successBox")
+            .scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+    }
+
+
+    /* =========================================
+       INITIAL SUMMARY
+    ========================================= */
+
+    updateSummary();
+
+</script>
+
+</body>
+</html>

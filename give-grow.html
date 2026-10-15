@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QuickFix - Give & Grow</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #061b16;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            background: #022c22;
+            padding: 18px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #f5a623;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #ffffff;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #d2e2dd;
+            padding: 9px 11px;
+            border-radius: 8px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(245,166,35,0.10);
+            color: #ffffff;
+        }
+
+        .nav-links .active {
+            background: rgba(245,166,35,0.13);
+            color: #f5a623;
+        }
+
+        /* ================= LANGUAGE SELECTOR ================= */
+
+        .language-select {
+            background: #0a261f;
+            color: #ffffff;
+            border: 1px solid rgba(245,166,35,0.35);
+            border-radius: 9px;
+            padding: 9px 10px;
+            font-size: 13px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .language-select:focus {
+            border-color: #f5a623;
+        }
+
+        .language-select option {
+            background: #0a261f;
+            color: #ffffff;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 70px 8%;
+
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(245,166,35,0.13),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 10% 80%,
+                    rgba(16,185,129,0.08),
+                    transparent 28%
+                ),
+
+                #061b16;
+        }
+
+        .hero-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: rgba(245,166,35,0.10);
+            border: 1px solid rgba(245,166,35,0.30);
+            color: #f5a623;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 70px);
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #f5a623;
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: auto;
+            color: #afc4bd;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .hero-note {
+            margin-top: 22px;
+            color: #d6e1dd;
+            font-size: 14px;
+        }
+
+        /* ================= FEATURES ================= */
+
+        .features-section {
+            padding: 70px 8% 90px;
+            background: #022c22;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            max-width: 680px;
+            margin: auto;
+            color: #9db5ad;
+            line-height: 1.7;
+        }
+
+        .feature-grid {
+            max-width: 1150px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: #0a261f;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 22px;
+
+            padding: 32px;
+
+            min-height: 350px;
+
+            display: flex;
+            flex-direction: column;
+
+            transition: 0.3s;
+
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+
+            border-color: rgba(245,166,35,0.45);
+
+            box-shadow:
+                0 20px 45px rgba(0,0,0,0.25);
+        }
+
+        .icon {
+            width: 68px;
+            height: 68px;
+
+            border-radius: 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 32px;
+
+            background: rgba(245,166,35,0.11);
+
+            margin-bottom: 25px;
+        }
+
+        .feature-card h3 {
+            font-size: 23px;
+            margin-bottom: 14px;
+        }
+
+        .feature-card p {
+            color: #a9beb7;
+
+            line-height: 1.7;
+
+            font-size: 14px;
+
+            flex-grow: 1;
+        }
+
+        .feature-btn {
+            margin-top: 25px;
+
+            width: 100%;
+
+            padding: 13px 16px;
+
+            border-radius: 10px;
+
+            background: transparent;
+
+            color: #f5a623;
+
+            border: 1px solid rgba(245,166,35,0.35);
+
+            cursor: pointer;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .feature-btn:hover {
+            background: #f5a623;
+
+            color: #17210e;
+        }
+
+        /* ================= INFO STRIP ================= */
+
+        .info-strip {
+            padding: 55px 8%;
+
+            background: #061b16;
+
+            text-align: center;
+        }
+
+        .info-box {
+            max-width: 850px;
+
+            margin: auto;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            border: 1px solid rgba(245,166,35,0.15);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(245,166,35,0.06),
+                    rgba(16,185,129,0.04)
+                );
+        }
+
+        .info-box h3 {
+            font-size: 25px;
+
+            margin-bottom: 10px;
+        }
+
+        .info-box h3 span {
+            color: #f5a623;
+        }
+
+        .info-box p {
+            color: #a9beb7;
+
+            line-height: 1.7;
+
+            font-size: 14px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #011c16;
+
+            border-top:
+                1px solid rgba(255,255,255,0.06);
+
+            text-align: center;
+
+            padding: 28px 15px;
+
+            color: #829b94;
+
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: #f5a623;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1100px) {
+
+            nav {
+                flex-wrap: wrap;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+        }
+
+        @media (max-width: 950px) {
+
+            nav {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+
+                max-width: 600px;
+            }
+
+            .hero {
+                min-height: auto;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .hero {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+
+            .features-section,
+            .info-strip {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+            .language-select {
+                margin-top: 5px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <nav>
+
+        <div class="logo">
+            Quick<span>Fix</span>
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="home.html" data-i18n="home">
+                Home
+            </a>
+
+            <a href="quick-match.html" data-i18n="quickMatch">
+                Quick Match
+            </a>
+
+            <a href="my-fixes.html" data-i18n="myFixes">
+                My Fixes
+            </a>
+
+            <a href="helper-dashboard.html" data-i18n="helperDashboard">
+                Helper Dashboard
+            </a>
+
+            <a href="snap-fix.html" data-i18n="snapFix">
+                Snap & Fix
+            </a>
+
+            <a href="services.html" data-i18n="services">
+                Services
+            </a>
+
+            <a href="give-grow.html"
+               class="active"
+               data-i18n="giveGrow">
+                Give & Grow
+            </a>
+
+            <a href="index.html" data-i18n="logout">
+                Logout
+            </a>
+
+            <!-- LANGUAGE -->
+
+            <select
+                id="languageSelect"
+                class="language-select"
+                onchange="changeLanguage(this.value)">
+
+                <option value="en">English</option>
+                <option value="hi">हिंदी</option>
+                <option value="mr">मराठी</option>
+
+            </select>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge" data-i18n="communityBadge">
+                🌱 QUICKFIX COMMUNITY
+            </div>
+
+
+            <h1>
+
+                <span data-i18n="giveHelp">
+                    Give Help.
+                </span>
+
+                <br>
+
+                <span data-i18n="growTogether">
+                    Grow Together.
+                </span>
+
+            </h1>
+
+
+            <p data-i18n="heroText">
+
+                QuickFix is not only about fixing homes.
+                It's about making essential help accessible
+                to everyone.
+
+                Through Give & Grow, people, helpers and NGOs
+                can come together to create real community impact.
+
+            </p>
+
+
+            <div class="hero-note" data-i18n="heroNote">
+
+                💚 Small acts of help can create a big difference.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= THREE FEATURES ================= -->
+
+    <section class="features-section">
+
+
+        <div class="section-title">
+
+            <h2 data-i18n="impactTitle">
+                How You Can Make an Impact
+            </h2>
+
+            <p data-i18n="impactSubtitle">
+                Choose how you want to contribute to
+                the QuickFix community.
+            </p>
+
+        </div>
+
+
+
+        <div class="feature-grid">
+
+
+            <!-- ================= SUPPORT A REPAIR ================= -->
+
+            <div
+                class="feature-card"
+                onclick="openSupportRepair()">
+
+                <div class="icon">
+                    🛠️
+                </div>
+
+
+                <h3 data-i18n="supportTitle">
+                    Support a Repair
+                </h3>
+
+
+                <p data-i18n="supportText">
+
+                    Help someone who cannot afford an
+                    essential household repair.
+
+                    NGOs and community supporters can
+                    sponsor plumbing, electrical,
+                    carpenter and other necessary repairs.
+
+                </p>
+
+
+                <button
+                    class="feature-btn"
+                    data-i18n="supportButton">
+
+                    Support a Repair →
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ================= GIVE EXCHANGE DONATE ================= -->
+
+            <div
+                class="feature-card"
+                onclick="openGiveExchange()">
+
+                <div class="icon">
+                    🎁
+                </div>
+
+
+                <h3 data-i18n="exchangeTitle">
+                    Give, Exchange or Donate
+                </h3>
+
+
+                <p data-i18n="exchangeText">
+
+                    Give useful items a second life.
+
+                    Users can give away things they no
+                    longer need, exchange them with others,
+                    or donate them to someone who needs them.
+
+                </p>
+
+
+                <button
+                    class="feature-btn"
+                    data-i18n="exchangeButton">
+
+                    Explore Community →
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ================= COMMUNITY IMPACT ================= -->
+
+            <div
+                class="feature-card"
+                onclick="openImpact()">
+
+                <div class="icon">
+                    📊
+                </div>
+
+
+                <h3 data-i18n="communityTitle">
+                    Community Impact
+                </h3>
+
+
+                <p data-i18n="communityText">
+
+                    See how the QuickFix community is
+                    making a difference through sponsored
+                    repairs, donations, exchanges and
+                    community support.
+
+                </p>
+
+
+                <button
+                    class="feature-btn"
+                    data-i18n="communityButton">
+
+                    View Impact →
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= INFO ================= -->
+
+    <section class="info-strip">
+
+        <div class="info-box">
+
+            <h3>
+
+                <span data-i18n="togetherText">
+                    Together, we can make help go further.
+                </span>
+
+            </h3>
+
+
+            <p data-i18n="infoText">
+
+                Give & Grow connects the QuickFix community
+                beyond regular service bookings — helping
+                people support repairs, share useful items
+                and create measurable community impact.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        © 2026 QuickFix |
+
+        <strong>
+            Pranali Bhoyar and Mrunmayi Jadhav
+        </strong>
+
+    </footer>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        /* ================= TRANSLATIONS ================= */
+
+        const translations = {
+
+            en: {
+
+                home: "Home",
+                quickMatch: "Quick Match",
+                myFixes: "My Fixes",
+                helperDashboard: "Helper Dashboard",
+                snapFix: "Snap & Fix",
+                services: "Services",
+                giveGrow: "Give & Grow",
+                logout: "Logout",
+
+                communityBadge: "🌱 QUICKFIX COMMUNITY",
+
+                giveHelp: "Give Help.",
+                growTogether: "Grow Together.",
+
+                heroText:
+                    "QuickFix is not only about fixing homes. It's about making essential help accessible to everyone. Through Give & Grow, people, helpers and NGOs can come together to create real community impact.",
+
+                heroNote:
+                    "💚 Small acts of help can create a big difference.",
+
+                impactTitle:
+                    "How You Can Make an Impact",
+
+                impactSubtitle:
+                    "Choose how you want to contribute to the QuickFix community.",
+
+                supportTitle:
+                    "Support a Repair",
+
+                supportText:
+                    "Help someone who cannot afford an essential household repair. NGOs and community supporters can sponsor plumbing, electrical, carpenter and other necessary repairs.",
+
+                supportButton:
+                    "Support a Repair →",
+
+                exchangeTitle:
+                    "Give, Exchange or Donate",
+
+                exchangeText:
+                    "Give useful items a second life. Users can give away things they no longer need, exchange them with others, or donate them to someone who needs them.",
+
+                exchangeButton:
+                    "Explore Community →",
+
+                communityTitle:
+                    "Community Impact",
+
+                communityText:
+                    "See how the QuickFix community is making a difference through sponsored repairs, donations, exchanges and community support.",
+
+                communityButton:
+                    "View Impact →",
+
+                togetherText:
+                    "Together, we can make help go further.",
+
+                infoText:
+                    "Give & Grow connects the QuickFix community beyond regular service bookings — helping people support repairs, share useful items and create measurable community impact."
+
+            },
+
+
+            hi: {
+
+                home: "होम",
+                quickMatch: "क्विक मैच",
+                myFixes: "मेरे फिक्स",
+                helperDashboard: "हेल्पर डैशबोर्ड",
+                snapFix: "स्नैप एंड फिक्स",
+                services: "सेवाएँ",
+                giveGrow: "गिव एंड ग्रो",
+                logout: "लॉगआउट",
+
+                communityBadge: "🌱 क्विकफिक्स कम्युनिटी",
+
+                giveHelp: "मदद करें।",
+                growTogether: "साथ मिलकर आगे बढ़ें।",
+
+                heroText:
+                    "QuickFix केवल घर की समस्याएँ ठीक करने के बारे में नहीं है। यह सभी के लिए आवश्यक सहायता को सुलभ बनाने के बारे में है। Give & Grow के माध्यम से लोग, हेल्पर और NGO मिलकर समुदाय में वास्तविक बदलाव ला सकते हैं।",
+
+                heroNote:
+                    "💚 मदद का छोटा सा प्रयास भी बड़ा बदलाव ला सकता है।",
+
+                impactTitle:
+                    "आप कैसे योगदान दे सकते हैं",
+
+                impactSubtitle:
+                    "चुनें कि आप QuickFix समुदाय में कैसे योगदान देना चाहते हैं।",
+
+                supportTitle:
+                    "किसी मरम्मत में सहायता करें",
+
+                supportText:
+                    "ऐसे व्यक्ति की मदद करें जो आवश्यक घरेलू मरम्मत का खर्च नहीं उठा सकता। NGO और समुदाय के सदस्य प्लंबिंग, इलेक्ट्रिकल, कारपेंटर और अन्य आवश्यक मरम्मत को प्रायोजित कर सकते हैं।",
+
+                supportButton:
+                    "मरम्मत में सहायता करें →",
+
+                exchangeTitle:
+                    "दें, बदलें या दान करें",
+
+                exchangeText:
+                    "उपयोगी वस्तुओं को दूसरा जीवन दें। उपयोगकर्ता ऐसी चीज़ें दे सकते हैं जिनकी उन्हें अब आवश्यकता नहीं है, दूसरों के साथ बदल सकते हैं या जरूरतमंद व्यक्ति को दान कर सकते हैं।",
+
+                exchangeButton:
+                    "कम्युनिटी देखें →",
+
+                communityTitle:
+                    "कम्युनिटी प्रभाव",
+
+                communityText:
+                    "देखें कि QuickFix समुदाय प्रायोजित मरम्मत, दान, वस्तुओं के आदान-प्रदान और सामुदायिक सहायता के माध्यम से कैसे बदलाव ला रहा है।",
+
+                communityButton:
+                    "प्रभाव देखें →",
+
+                togetherText:
+                    "मिलकर हम मदद को और आगे पहुँचा सकते हैं।",
+
+                infoText:
+                    "Give & Grow नियमित सेवा बुकिंग से आगे QuickFix समुदाय को जोड़ता है — लोगों को मरम्मत में सहायता करने, उपयोगी वस्तुएँ साझा करने और समुदाय पर वास्तविक प्रभाव बनाने में मदद करता है।"
+
+            },
+
+
+            mr: {
+
+                home: "होम",
+                quickMatch: "क्विक मॅच",
+                myFixes: "माझे फिक्स",
+                helperDashboard: "हेल्पर डॅशबोर्ड",
+                snapFix: "स्नॅप अँड फिक्स",
+                services: "सेवा",
+                giveGrow: "गिव अँड ग्रो",
+                logout: "लॉगआउट",
+
+                communityBadge: "🌱 क्विकफिक्स कम्युनिटी",
+
+                giveHelp: "मदत करा.",
+                growTogether: "एकत्र प्रगती करूया.",
+
+                heroText:
+                    "QuickFix हे फक्त घरातील समस्या सोडवण्याबद्दल नाही. प्रत्येकासाठी आवश्यक मदत उपलब्ध करून देणे हा यामागचा उद्देश आहे. Give & Grow च्या माध्यमातून लोक, हेल्पर्स आणि NGO एकत्र येऊन समाजात सकारात्मक बदल घडवू शकतात.",
+
+                heroNote:
+                    "💚 मदतीचा छोटासा प्रयत्नही मोठा बदल घडवू शकतो.",
+
+                impactTitle:
+                    "तुम्ही कसा हातभार लावू शकता",
+
+                impactSubtitle:
+                    "QuickFix कम्युनिटीमध्ये तुम्हाला कशा प्रकारे योगदान द्यायचे आहे ते निवडा.",
+
+                supportTitle:
+                    "दुरुस्तीला मदत करा",
+
+                supportText:
+                    "ज्यांना आवश्यक घरगुती दुरुस्तीचा खर्च परवडत नाही अशा व्यक्तीला मदत करा. NGO आणि कम्युनिटी सदस्य प्लंबिंग, इलेक्ट्रिकल, कारपेंटर आणि इतर आवश्यक दुरुस्ती प्रायोजित करू शकतात.",
+
+                supportButton:
+                    "दुरुस्तीला मदत करा →",
+
+                exchangeTitle:
+                    "द्या, अदलाबदल करा किंवा दान करा",
+
+                exchangeText:
+                    "उपयोगी वस्तूंना दुसरे आयुष्य द्या. वापरकर्ते गरज नसलेल्या वस्तू इतरांना देऊ शकतात, अदलाबदल करू शकतात किंवा गरजू व्यक्तीला दान करू शकतात.",
+
+                exchangeButton:
+                    "कम्युनिटी पहा →",
+
+                communityTitle:
+                    "कम्युनिटीचा प्रभाव",
+
+                communityText:
+                    "प्रायोजित दुरुस्ती, दान, वस्तूंची अदलाबदल आणि कम्युनिटी मदतीद्वारे QuickFix समुदाय कसा सकारात्मक बदल घडवत आहे ते पहा.",
+
+                communityButton:
+                    "प्रभाव पहा →",
+
+                togetherText:
+                    "एकत्रितपणे आपण मदत अधिक दूरपर्यंत पोहोचवू शकतो.",
+
+                infoText:
+                    "Give & Grow नियमित सेवा बुकिंगच्या पलीकडे QuickFix समुदायाला जोडते — लोकांना दुरुस्तीमध्ये मदत करण्यासाठी, उपयोगी वस्तू शेअर करण्यासाठी आणि समाजावर मोजता येणारा सकारात्मक प्रभाव निर्माण करण्यासाठी मदत करते."
+
+            }
+
+        };
+
+
+        /* ================= LANGUAGE ================= */
+
+        let currentLanguage =
+            localStorage.getItem("quickfixLanguage") || "en";
+
+
+        function applyLanguage() {
+
+            const language =
+                translations[currentLanguage] || translations.en;
+
+            document.documentElement.lang =
+                currentLanguage;
+
+
+            document
+                .querySelectorAll("[data-i18n]")
+                .forEach(element => {
+
+                    const key =
+                        element.getAttribute("data-i18n");
+
+                    if (language[key]) {
+
+                        element.textContent =
+                            language[key];
+
+                    }
+
+                });
+
+
+            const selector =
+                document.getElementById("languageSelect");
+
+            if (selector) {
+
+                selector.value =
+                    currentLanguage;
+
+            }
+
+        }
+
+
+        function changeLanguage(language) {
+
+            currentLanguage =
+                language;
+
+            localStorage.setItem(
+                "quickfixLanguage",
+                language
+            );
+
+            applyLanguage();
+
+        }
+
+
+        /* ================= NAVIGATION ================= */
+
+        function openSupportRepair() {
+
+            window.location.href =
+                "support-repair.html";
+
+        }
+
+
+        function openGiveExchange() {
+
+            window.location.href =
+                "give-exchange-donate.html";
+
+        }
+
+
+        function openImpact() {
+
+            window.location.href =
+                "community-impact.html";
+
+        }
+
+
+        /* ================= INITIAL LOAD ================= */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                applyLanguage();
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

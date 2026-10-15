@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QuickFix | Services</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #061a14;
+    color: #f7f4eb;
+    min-height: 100vh;
+}
+
+/* HEADER */
+
+header {
+    background: rgba(6, 26, 20, 0.97);
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.20);
+}
+
+.brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 29px;
+    font-weight: 950;
+    letter-spacing: -1px;
+    color: #f7f4eb;
+}
+
+.logo span {
+    color: #e49a2f;
+}
+
+.tagline {
+    color: #8fa59b;
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.navigation {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation button,
+.language-select {
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 10px 14px;
+    border-radius: 24px;
+    background: #0b281e;
+    color: #dce5df;
+    cursor: pointer;
+    font-weight: 750;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.navigation button:hover {
+    background: #e49a2f;
+    color: #10291f;
+    border-color: #e49a2f;
+    transform: translateY(-2px);
+}
+
+.navigation .active {
+    background: #e49a2f;
+    color: #10291f;
+    border-color: #e49a2f;
+}
+
+.logout-button {
+    background: #7d3028 !important;
+    color: #fff !important;
+}
+
+.logout-button:hover {
+    background: #a93d32 !important;
+    color: white !important;
+}
+
+.language-select {
+    outline: none;
+}
+
+.language-select option {
+    background: #09251c;
+    color: #fff;
+}
+
+/* MAIN */
+
+.container {
+    max-width: 1250px;
+    margin: auto;
+    padding: 70px 25px 90px;
+}
+
+/* HEADING */
+
+.page-heading {
+    display: grid;
+    grid-template-columns: 1fr 0.75fr;
+    gap: 55px;
+    align-items: end;
+    margin-bottom: 55px;
+    padding: 20px 0;
+}
+
+.heading-left {
+    position: relative;
+}
+
+.heading-label {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 25px;
+    background: rgba(228,154,47,0.10);
+    border: 1px solid rgba(228,154,47,0.28);
+    color: #e49a2f;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.7px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.page-heading h1 {
+    font-size: clamp(45px, 6vw, 75px);
+    line-height: 0.92;
+    letter-spacing: -4px;
+    font-weight: 950;
+    margin-bottom: 22px;
+}
+
+.page-heading h1 span {
+    color: #e49a2f;
+}
+
+.subtitle {
+    color: #aebdb5;
+    font-size: 17px;
+    line-height: 1.75;
+    max-width: 620px;
+}
+
+.heading-right {
+    background: linear-gradient(145deg,#0e3628,#092219);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 28px;
+    padding: 27px;
+    position: relative;
+    overflow: hidden;
+}
+
+.heading-right::before {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgba(228,154,47,0.10);
+    right: -60px;
+    top: -60px;
+}
+
+.heading-right strong {
+    display: block;
+    color: #e49a2f;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.heading-right p {
+    color: #c1cdc7;
+    line-height: 1.65;
+    font-size: 14px;
+    position: relative;
+}
+
+/* SERVICES */
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.service-card {
+    background: linear-gradient(145deg,#0d2f23,#092118);
+    border-radius: 27px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.22);
+    transition: 0.35s;
+    position: relative;
+}
+
+.service-card:hover {
+    transform: translateY(-9px);
+    border-color: rgba(228,154,47,0.45);
+    box-shadow: 0 25px 55px rgba(0,0,0,0.35);
+}
+
+.service-image {
+    position: relative;
+    height: 205px;
+    overflow: hidden;
+}
+
+.service-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(6,26,20,0.75),
+        transparent 55%
+    );
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.service-card:hover .service-image img {
+    transform: scale(1.07);
+}
+
+.service-icon {
+    position: absolute;
+    bottom: 14px;
+    left: 18px;
+    width: 53px;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #061a14;
+    border: 2px solid #e49a2f;
+    border-radius: 17px;
+    font-size: 24px;
+    z-index: 3;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.service-content {
+    padding: 24px;
+}
+
+.service-content h2 {
+    font-size: 23px;
+    margin-bottom: 10px;
+    color: #f7f4eb;
+}
+
+.service-content p {
+    color: #9fb1a8;
+    line-height: 1.65;
+    min-height: 50px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.service-button {
+    width: 100%;
+    background: #e49a2f;
+    color: #10291f;
+    border: none;
+    padding: 13px 20px;
+    border-radius: 13px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 900;
+    transition: 0.3s;
+}
+
+.service-button:hover {
+    background: #f3b34f;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(228,154,47,0.20);
+}
+
+/* HELP BOX */
+
+.info-box {
+    margin-top: 55px;
+    padding: 42px;
+    border-radius: 30px;
+    background: linear-gradient(135deg,#0e3829,#092219);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.info-box::after {
+    content: "?";
+    position: absolute;
+    right: 35px;
+    bottom: -35px;
+    font-size: 150px;
+    font-weight: 950;
+    color: rgba(228,154,47,0.06);
+}
+
+.info-content {
+    position: relative;
+    z-index: 2;
+}
+
+.info-box h2 {
+    color: #e49a2f;
+    margin-bottom: 12px;
+    font-size: 29px;
+}
+
+.info-box p {
+    max-width: 720px;
+    color: #b7c5be;
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+.quick-match-help {
+    background: transparent;
+    color: #e49a2f;
+    border: 1px solid #e49a2f;
+    padding: 13px 20px;
+    border-radius: 25px;
+    font-weight: 850;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+    z-index: 2;
+}
+
+.quick-match-help:hover {
+    background: #e49a2f;
+    color: #10291f;
+}
+
+/* FOOTER */
+
+footer {
+    background: #03110d;
+    text-align: center;
+    padding: 28px;
+    color: #81948a;
+    font-size: 13px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+footer strong {
+    color: #e49a2f;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1050px) {
+
+    .navigation {
+        gap: 5px;
+    }
+
+    .navigation button,
+    .language-select {
+        padding: 9px 11px;
+        font-size: 12px;
+    }
+
+    .page-heading {
+        grid-template-columns: 1fr;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px) {
+
+    header {
+        justify-content: center;
+        padding: 17px 5%;
+    }
+
+    .brand {
+        text-align: center;
+    }
+
+    .navigation {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .navigation button,
+    .language-select {
+        padding: 9px 10px;
+    }
+
+    .container {
+        padding: 50px 18px 65px;
+    }
+
+    .page-heading h1 {
+        font-size: 43px;
+        letter-spacing: -2px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-box {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px;
+    }
+
+    .quick-match-help {
+        width: 100%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="brand">
+
+        <div class="logo">
+            Quick<span>Fix</span>
+        </div>
+
+        <div class="tagline" id="tagline">
+            Your Local Help, Anytime
+        </div>
+
+    </div>
+
+    <div class="navigation">
+
+        <button onclick="goHome()" id="homeButton">
+            Home
+        </button>
+
+        <button onclick="openQuickMatch()" id="quickMatchButton">
+            Quick Match
+        </button>
+
+        <button onclick="openMyFixes()" id="myFixesButton">
+            My Fixes
+        </button>
+
+        <button onclick="openHelperDashboard()" id="helperDashboardButton">
+            Helper Dashboard
+        </button>
+
+        <button onclick="openSnapFix()" id="snapFixButton">
+            Snap & Fix
+        </button>
+
+        <button onclick="openServices()" id="servicesButton" class="active">
+            Services
+        </button>
+
+        <!-- LANGUAGE -->
+
+        <select
+            id="languageSelect"
+            class="language-select"
+            onchange="changeLanguage(this.value)"
+        >
+            <option value="en">🌐 English</option>
+            <option value="hi">🌐 हिंदी</option>
+            <option value="mr">🌐 मराठी</option>
+        </select>
+
+        <button onclick="logout()" id="logoutButton" class="logout-button">
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <section class="page-heading">
+
+        <div class="heading-left">
+
+            <div class="heading-label" id="headingLabel">
+                QuickFix Services
+            </div>
+
+            <h1 id="mainHeading">
+                Find the right
+                <span>help.</span>
+            </h1>
+
+            <p class="subtitle" id="pageSubtitle">
+                Choose the service you need and find trusted local helpers.
+            </p>
+
+        </div>
+
+        <div class="heading-right">
+
+            <strong id="browseTitle">
+                01 — Browse & Choose
+            </strong>
+
+            <p id="browseText">
+                Pick a service that matches your problem.
+                QuickFix will show you professionals available
+                for that type of work.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <div class="services-grid">
+
+        <!-- ELECTRICIAN -->
+
+        <div class="service-card">
+
+            <div class="service-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=900&q=85"
+                    alt="Electrician"
+                >
+
+                <div class="service-icon">⚡</div>
+
+            </div>
+
+            <div class="service-content">
+
+                <h2 id="electricianTitle">Electrician</h2>
+
+                <p id="electricianText">
+                    Electrical repairs, wiring, switches, fans and lights.
+                </p>
+
+                <button
+                    class="service-button"
+                    id="electricianButton"
+                    onclick="selectService('Electrician')"
+                >
+                    Find Electricians
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PLUMBER -->
+
+        <div class="service-card">
+
+            <div class="service-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=900&q=85"
+                    alt="Plumber"
+                >
+
+                <div class="service-icon">🔧</div>
+
+            </div>
+
+            <div class="service-content">
+
+                <h2 id="plumberTitle">Plumber</h2>
+
+                <p id="plumberText">
+                    Tap, pipe, leakage, bathroom and plumbing repairs.
+                </p>
+
+                <button
+                    class="service-button"
+                    id="plumberButton"
+                    onclick="selectService('Plumber')"
+                >
+                    Find Plumbers
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- TUTOR -->
+
+        <div class="service-card">
+
+            <div class="service-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=85"
+                    alt="Tutor"
+                >
+
+                <div class="service-icon">📚</div>
+
+            </div>
+
+            <div class="service-content">
+
+                <h2 id="tutorTitle">Tutor</h2>
+
+                <p id="tutorText">
+                    School subjects, homework, Maths, Science and exam preparation.
+                </p>
+
+                <button
+                    class="service-button"
+                    id="tutorButton"
+                    onclick="selectService('Tutor')"
+                >
+                    Find Tutors
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- CARPENTER -->
+
+        <div class="service-card">
+
+            <div class="service-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=900&q=85"
+                    alt="Carpenter"
+                >
+
+                <div class="service-icon">🪚</div>
+
+            </div>
+
+            <div class="service-content">
+
+                <h2 id="carpenterTitle">Carpenter</h2>
+
+                <p id="carpenterText">
+                    Furniture repair, doors, cupboards and woodwork.
+                </p>
+
+                <button
+                    class="service-button"
+                    id="carpenterButton"
+                    onclick="selectService('Carpenter')"
+                >
+                    Find Carpenters
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- CLEANER -->
+
+        <div class="service-card">
+
+            <div class="service-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=85"
+                    alt="Cleaner"
+                >
+
+                <div class="service-icon">🧹</div>
+
+            </div>
+
+            <div class="service-content">
+
+                <h2 id="cleanerTitle">Cleaner</h2>
+
+                <p id="cleanerText">
+                    Home cleaning, room cleaning, kitchen and bathroom cleaning.
+                </p>
+
+                <button
+                    class="service-button"
+                    id="cleanerButton"
+                    onclick="selectService('Cleaner')"
+                >
+                    Find Cleaners
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- MOVING HELP -->
+
+        <div class="service-card">
+
+            <div class="service-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1600518464441-9154a4dea21b?auto=format&fit=crop&w=900&q=85"
+                    alt="Moving Help"
+                >
+
+                <div class="service-icon">📦</div>
+
+            </div>
+
+            <div class="service-content">
+
+                <h2 id="movingTitle">Moving Help</h2>
+
+                <p id="movingText">
+                    Packing, loading, unloading and house shifting assistance.
+                </p>
+
+                <button
+                    class="service-button"
+                    id="movingButton"
+                    onclick="selectService('Moving Help')"
+                >
+                    Find Moving Help
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- COOK -->
+
+        <div class="service-card">
+
+            <div class="service-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=85"
+                    alt="Cook"
+                >
+
+                <div class="service-icon">🍳</div>
+
+            </div>
+
+            <div class="service-content">
+
+                <h2 id="cookTitle">Cook</h2>
+
+                <p id="cookText">
+                    Home cooking, meal preparation and everyday kitchen assistance.
+                </p>
+
+                <button
+                    class="service-button"
+                    id="cookButton"
+                    onclick="selectService('Cook')"
+                >
+                    Find Cooks
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- HOUSEKEEPING -->
+
+        <div class="service-card">
+
+            <div class="service-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=85"
+                    alt="Housekeeping"
+                >
+
+                <div class="service-icon">🏠</div>
+
+            </div>
+
+            <div class="service-content">
+
+                <h2 id="housekeepingTitle">Housekeeping</h2>
+
+                <p id="housekeepingText">
+                    Regular household assistance including sweeping, mopping,
+                    dishes and organizing.
+                </p>
+
+                <button
+                    class="service-button"
+                    id="housekeepingButton"
+                    onclick="selectService('Housekeeping')"
+                >
+                    Find Housekeepers
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- GARDENER -->
+
+        <div class="service-card">
+
+            <div class="service-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1599685315640-4d7d1e5c4f5b?auto=format&fit=crop&w=900&q=85"
+                    alt="Gardener"
+                >
+
+                <div class="service-icon">🌱</div>
+
+            </div>
+
+            <div class="service-content">
+
+                <h2 id="gardenerTitle">Gardener</h2>
+
+                <p id="gardenerText">
+                    Garden maintenance, plants, trimming, watering and outdoor care.
+                </p>
+
+                <button
+                    class="service-button"
+                    id="gardenerButton"
+                    onclick="selectService('Gardener')"
+                >
+                    Find Gardeners
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="info-box">
+
+        <div class="info-content">
+
+            <h2 id="infoTitle">
+                Need Help Choosing?
+            </h2>
+
+            <p id="infoText">
+                Not sure which service you need?
+                Try Quick Match and describe your problem.
+                QuickFix will help you find the right type of service.
+            </p>
+
+        </div>
+
+        <button
+            class="quick-match-help"
+            id="quickMatchHelpButton"
+            onclick="openQuickMatch()"
+        >
+            Try Quick Match →
+        </button>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <p id="footerText">
+        © 2026 QuickFix |
+        <strong>Pranali Bhoyar and Mrunmayi Jadhav</strong>
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   SERVICE SELECTION
+========================================================= */
+
+function selectService(service) {
+
+    localStorage.setItem("selectedService", service);
+
+    window.location.href = "service-profiles.html";
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goHome() {
+    window.location.href = "home.html";
+}
+
+function openQuickMatch() {
+    window.location.href = "QuickMatch.html";
+}
+
+function openSnapFix() {
+    window.location.href = "SnapFix.html";
+}
+
+function openServices() {
+    window.location.href = "services.html";
+}
+
+function openMyFixes() {
+    window.location.href = "my-fixes.html";
+}
+
+function openHelperDashboard() {
+    window.location.href = "helper-dashboard.html";
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout() {
+
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("quickfixCurrentUser");
+    localStorage.removeItem("user");
+
+    window.location.replace("index.html");
+}
+
+
+/* =========================================================
+   TRANSLATIONS
+========================================================= */
+
+const translations = {
+
+    en: {
+
+        tagline: "Your Local Help, Anytime",
+
+        home: "Home",
+        quickMatch: "Quick Match",
+        myFixes: "My Fixes",
+        helperDashboard: "Helper Dashboard",
+        snapFix: "Snap & Fix",
+        services: "Services",
+        logout: "Logout",
+
+        headingLabel: "QuickFix Services",
+
+        headingStart: "Find the right",
+        headingEnd: "help.",
+
+        subtitle:
+        "Choose the service you need and find trusted local helpers.",
+
+        browseTitle:
+        "01 — Browse & Choose",
+
+        browseText:
+        "Pick a service that matches your problem. QuickFix will show you professionals available for that type of work.",
+
+        electrician: "Electrician",
+
+        electricianText:
+        "Electrical repairs, wiring, switches, fans and lights.",
+
+        electricianButton:
+        "Find Electricians",
+
+        plumber: "Plumber",
+
+        plumberText:
+        "Tap, pipe, leakage, bathroom and plumbing repairs.",
+
+        plumberButton:
+        "Find Plumbers",
+
+        tutor: "Tutor",
+
+        tutorText:
+        "School subjects, homework, Maths, Science and exam preparation.",
+
+        tutorButton:
+        "Find Tutors",
+
+        carpenter: "Carpenter",
+
+        carpenterText:
+        "Furniture repair, doors, cupboards and woodwork.",
+
+        carpenterButton:
+        "Find Carpenters",
+
+        cleaner: "Cleaner",
+
+        cleanerText:
+        "Home cleaning, room cleaning, kitchen and bathroom cleaning.",
+
+        cleanerButton:
+        "Find Cleaners",
+
+        moving: "Moving Help",
+
+        movingText:
+        "Packing, loading, unloading and house shifting assistance.",
+
+        movingButton:
+        "Find Moving Help",
+
+        cook: "Cook",
+
+        cookText:
+        "Home cooking, meal preparation and everyday kitchen assistance.",
+
+        cookButton:
+        "Find Cooks",
+
+        housekeeping: "Housekeeping",
+
+        housekeepingText:
+        "Regular household assistance including sweeping, mopping, dishes and organizing.",
+
+        housekeepingButton:
+        "Find Housekeepers",
+
+        gardener: "Gardener",
+
+        gardenerText:
+        "Garden maintenance, plants, trimming, watering and outdoor care.",
+
+        gardenerButton:
+        "Find Gardeners",
+
+        infoTitle:
+        "Need Help Choosing?",
+
+        infoText:
+        "Not sure which service you need? Try Quick Match and describe your problem. QuickFix will help you find the right type of service.",
+
+        quickMatchHelp:
+        "Try Quick Match →"
+    },
+
+
+    hi: {
+
+        tagline: "आपकी स्थानीय मदद, कभी भी",
+
+        home: "होम",
+        quickMatch: "क्विक मैच",
+        myFixes: "मेरी रिक्वेस्ट",
+        helperDashboard: "हेल्पर डैशबोर्ड",
+        snapFix: "स्नैप एंड फिक्स",
+        services: "सेवाएँ",
+        logout: "लॉग आउट",
+
+        headingLabel: "QuickFix सेवाएँ",
+
+        headingStart: "सही",
+        headingEnd: "मदद खोजें।",
+
+        subtitle:
+        "अपनी जरूरत की सेवा चुनें और भरोसेमंद स्थानीय मदद पाएं।",
+
+        browseTitle:
+        "01 — सेवा चुनें",
+
+        browseText:
+        "अपनी समस्या से जुड़ी सेवा चुनें। QuickFix आपको उस काम के लिए उपलब्ध पेशेवर दिखाएगा।",
+
+        electrician: "इलेक्ट्रीशियन",
+
+        electricianText:
+        "बिजली की मरम्मत, वायरिंग, स्विच, पंखे और लाइट की सेवाएँ।",
+
+        electricianButton:
+        "इलेक्ट्रीशियन खोजें",
+
+        plumber: "प्लंबर",
+
+        plumberText:
+        "नल, पाइप, पानी का रिसाव, बाथरूम और प्लंबिंग की मरम्मत।",
+
+        plumberButton:
+        "प्लंबर खोजें",
+
+        tutor: "शिक्षक",
+
+        tutorText:
+        "स्कूल के विषय, गृहकार्य, गणित, विज्ञान और परीक्षा की तैयारी।",
+
+        tutorButton:
+        "शिक्षक खोजें",
+
+        carpenter: "बढ़ई",
+
+        carpenterText:
+        "फर्नीचर की मरम्मत, दरवाजे, अलमारी और लकड़ी का काम।",
+
+        carpenterButton:
+        "बढ़ई खोजें",
+
+        cleaner: "सफाई कर्मचारी",
+
+        cleanerText:
+        "घर, कमरे, रसोई और बाथरूम की सफाई की सेवाएँ।",
+
+        cleanerButton:
+        "सफाई कर्मचारी खोजें",
+
+        moving: "सामान स्थानांतरण सहायता",
+
+        movingText:
+        "पैकिंग, सामान उठाने, उतारने और घर बदलने में सहायता।",
+
+        movingButton:
+        "स्थानांतरण सहायता खोजें",
+
+        cook: "रसोइया",
+
+        cookText:
+        "घर का खाना, भोजन तैयार करना और रोज़मर्रा की रसोई में सहायता।",
+
+        cookButton:
+        "रसोइये खोजें",
+
+        housekeeping: "हाउसकीपिंग",
+
+        housekeepingText:
+        "झाड़ू, पोछा, बर्तन और घर व्यवस्थित करने जैसी नियमित घरेलू सहायता।",
+
+        housekeepingButton:
+        "हाउसकीपर खोजें",
+
+        gardener: "माली",
+
+        gardenerText:
+        "बगीचे की देखभाल, पौधों की छंटाई, पानी देना और बाहरी देखभाल।",
+
+        gardenerButton:
+        "माली खोजें",
+
+        infoTitle:
+        "सेवा चुनने में मदद चाहिए?",
+
+        infoText:
+        "आपको कौन सी सेवा चाहिए, यह पता नहीं है? क्विक मैच आज़माएं और अपनी समस्या बताएं। QuickFix आपको सही सेवा खोजने में मदद करेगा।",
+
+        quickMatchHelp:
+        "क्विक मैच आज़माएं →"
+    },
+
+
+    mr: {
+
+        tagline: "तुमची स्थानिक मदत, कधीही",
+
+        home: "होम",
+        quickMatch: "क्विक मॅच",
+        myFixes: "माझ्या रिक्वेस्ट",
+        helperDashboard: "हेल्पर डॅशबोर्ड",
+        snapFix: "स्नॅप अँड फिक्स",
+        services: "सेवा",
+        logout: "लॉग आउट",
+
+        headingLabel: "QuickFix सेवा",
+
+        headingStart: "योग्य",
+        headingEnd: "मदत शोधा.",
+
+        subtitle:
+        "तुम्हाला आवश्यक असलेली सेवा निवडा आणि विश्वासार्ह स्थानिक मदत मिळवा.",
+
+        browseTitle:
+        "01 — सेवा निवडा",
+
+        browseText:
+        "तुमच्या समस्येशी संबंधित सेवा निवडा. QuickFix तुम्हाला त्या कामासाठी उपलब्ध व्यावसायिक दाखवेल.",
+
+        electrician: "इलेक्ट्रिशियन",
+
+        electricianText:
+        "वीज दुरुस्ती, वायरिंग, स्विच, पंखे आणि लाईटची कामे.",
+
+        electricianButton:
+        "इलेक्ट्रिशियन शोधा",
+
+        plumber: "प्लंबर",
+
+        plumberText:
+        "नळ, पाईप, गळती, बाथरूम आणि प्लंबिंगची दुरुस्ती.",
+
+        plumberButton:
+        "प्लंबर शोधा",
+
+        tutor: "शिक्षक",
+
+        tutorText:
+        "शालेय विषय, गृहपाठ, गणित, विज्ञान आणि परीक्षेची तयारी.",
+
+        tutorButton:
+        "शिक्षक शोधा",
+
+        carpenter: "सुतार",
+
+        carpenterText:
+        "फर्निचर दुरुस्ती, दरवाजे, कपाटे आणि लाकडी काम.",
+
+        carpenterButton:
+        "सुतार शोधा",
+
+        cleaner: "सफाई कर्मचारी",
+
+        cleanerText:
+        "घर, खोली, स्वयंपाकघर आणि बाथरूम साफसफाईची सेवा.",
+
+        cleanerButton:
+        "सफाई कर्मचारी शोधा",
+
+        moving: "घर बदलण्याची मदत",
+
+        movingText:
+        "पॅकिंग, सामान चढवणे, उतरवणे आणि घर बदलण्यासाठी मदत.",
+
+        movingButton:
+        "घर बदलण्याची मदत शोधा",
+
+        cook: "स्वयंपाकी",
+
+        cookText:
+        "घरगुती स्वयंपाक, जेवणाची तयारी आणि रोजच्या स्वयंपाकघरातील मदत.",
+
+        cookButton:
+        "स्वयंपाकी शोधा",
+
+        housekeeping: "हाउसकीपिंग",
+
+        housekeepingText:
+        "झाडू, पोछा, भांडी आणि घर व्यवस्थित ठेवण्यासाठी नियमित घरगुती मदत.",
+
+        housekeepingButton:
+        "हाउसकीपर शोधा",
+
+        gardener: "माळी",
+
+        gardenerText:
+        "बागेची देखभाल, रोपांची छाटणी, पाणी देणे आणि बाहेरील परिसराची काळजी.",
+
+        gardenerButton:
+        "माळी शोधा",
+
+        infoTitle:
+        "सेवा निवडण्यासाठी मदत हवी आहे?",
+
+        infoText:
+        "तुम्हाला कोणती सेवा हवी आहे हे माहित नाही? क्विक मॅच वापरा आणि तुमची समस्या सांगा. QuickFix तुम्हाला योग्य सेवा शोधण्यात मदत करेल.",
+
+        quickMatchHelp:
+        "क्विक मॅच वापरा →"
+    }
+
+};
+
+
+/* =========================================================
+   CHANGE LANGUAGE
+========================================================= */
+
+function changeLanguage(language) {
+
+    if (!translations[language]) {
+        language = "en";
+    }
+
+    /*
+       IMPORTANT:
+       Home uses quickfixLanguage.
+       Every normal page will use the same key.
+    */
+
+    localStorage.setItem(
+        "quickfixLanguage",
+        language
+    );
+
+    applyLanguage();
+}
+
+
+/* =========================================================
+   APPLY LANGUAGE
+========================================================= */
+
+function applyLanguage() {
+
+    let languageCode =
+        localStorage.getItem("quickfixLanguage") || "en";
+
+    if (!translations[languageCode]) {
+        languageCode = "en";
+    }
+
+    const language =
+        translations[languageCode];
+
+
+    document.documentElement.lang =
+        languageCode;
+
+
+    const selector =
+        document.getElementById("languageSelect");
+
+    if (selector) {
+        selector.value = languageCode;
+    }
+
+
+    document.getElementById("tagline").textContent =
+        language.tagline;
+
+    document.getElementById("homeButton").textContent =
+        language.home;
+
+    document.getElementById("quickMatchButton").textContent =
+        language.quickMatch;
+
+    document.getElementById("myFixesButton").textContent =
+        language.myFixes;
+
+    document.getElementById("helperDashboardButton").textContent =
+        language.helperDashboard;
+
+    document.getElementById("snapFixButton").textContent =
+        language.snapFix;
+
+    document.getElementById("servicesButton").textContent =
+        language.services;
+
+    document.getElementById("logoutButton").textContent =
+        language.logout;
+
+
+    document.getElementById("headingLabel").textContent =
+        language.headingLabel;
+
+
+    document.getElementById("mainHeading").innerHTML =
+        language.headingStart +
+        " <span>" +
+        language.headingEnd +
+        "</span>";
+
+
+    document.getElementById("pageSubtitle").textContent =
+        language.subtitle;
+
+
+    document.getElementById("browseTitle").textContent =
+        language.browseTitle;
+
+    document.getElementById("browseText").textContent =
+        language.browseText;
+
+
+    /* ELECTRICIAN */
+
+    document.getElementById("electricianTitle").textContent =
+        language.electrician;
+
+    document.getElementById("electricianText").textContent =
+        language.electricianText;
+
+    document.getElementById("electricianButton").textContent =
+        language.electricianButton;
+
+
+    /* PLUMBER */
+
+    document.getElementById("plumberTitle").textContent =
+        language.plumber;
+
+    document.getElementById("plumberText").textContent =
+        language.plumberText;
+
+    document.getElementById("plumberButton").textContent =
+        language.plumberButton;
+
+
+    /* TUTOR */
+
+    document.getElementById("tutorTitle").textContent =
+        language.tutor;
+
+    document.getElementById("tutorText").textContent =
+        language.tutorText;
+
+    document.getElementById("tutorButton").textContent =
+        language.tutorButton;
+
+
+    /* CARPENTER */
+
+    document.getElementById("carpenterTitle").textContent =
+        language.carpenter;
+
+    document.getElementById("carpenterText").textContent =
+        language.carpenterText;
+
+    document.getElementById("carpenterButton").textContent =
+        language.carpenterButton;
+
+
+    /* CLEANER */
+
+    document.getElementById("cleanerTitle").textContent =
+        language.cleaner;
+
+    document.getElementById("cleanerText").textContent =
+        language.cleanerText;
+
+    document.getElementById("cleanerButton").textContent =
+        language.cleanerButton;
+
+
+    /* MOVING */
+
+    document.getElementById("movingTitle").textContent =
+        language.moving;
+
+    document.getElementById("movingText").textContent =
+        language.movingText;
+
+    document.getElementById("movingButton").textContent =
+        language.movingButton;
+
+
+    /* COOK */
+
+    document.getElementById("cookTitle").textContent =
+        language.cook;
+
+    document.getElementById("cookText").textContent =
+        language.cookText;
+
+    document.getElementById("cookButton").textContent =
+        language.cookButton;
+
+
+    /* HOUSEKEEPING */
+
+    document.getElementById("housekeepingTitle").textContent =
+        language.housekeeping;
+
+    document.getElementById("housekeepingText").textContent =
+        language.housekeepingText;
+
+    document.getElementById("housekeepingButton").textContent =
+        language.housekeepingButton;
+
+
+    /* GARDENER */
+
+    document.getElementById("gardenerTitle").textContent =
+        language.gardener;
+
+    document.getElementById("gardenerText").textContent =
+        language.gardenerText;
+
+    document.getElementById("gardenerButton").textContent =
+        language.gardenerButton;
+
+
+    /* HELP BOX */
+
+    document.getElementById("infoTitle").textContent =
+        language.infoTitle;
+
+    document.getElementById("infoText").textContent =
+        language.infoText;
+
+    document.getElementById("quickMatchHelpButton").textContent =
+        language.quickMatchHelp;
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        applyLanguage();
+
+    }
+);
+
+</script>
+
+</body>
+</html>

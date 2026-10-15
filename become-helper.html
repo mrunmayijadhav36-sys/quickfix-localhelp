@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Become a Helper - QuickFix</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(228, 154, 47, 0.08), transparent 30%),
+                linear-gradient(135deg, #061a14, #09251c, #061a14);
+            min-height: 100vh;
+            color: #f7f4eb;
+        }
+
+        /* ================= HEADER ================= */
+
+        .page-header {
+            background: rgba(3, 17, 13, 0.96);
+            color: #f7f4eb;
+            padding: 18px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
+            border-bottom: 1px solid rgba(228, 154, 47, 0.15);
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 3px;
+            color: #e49a2f;
+            font-weight: 800;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .language-select {
+            background: #061a14;
+            color: #f7f4eb;
+            border: 1px solid rgba(228, 154, 47, 0.35);
+            border-radius: 9px;
+            padding: 9px 11px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .language-select:focus {
+            outline: none;
+            border-color: #e49a2f;
+        }
+
+        .language-select option {
+            background: #09251c;
+            color: #f7f4eb;
+        }
+
+        .page-header button {
+            background: #e49a2f;
+            color: #10291f;
+            border: none;
+            padding: 11px 22px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .page-header button:hover {
+            background: #f5b64e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(228, 154, 47, 0.2);
+        }
+
+        /* ================= MAIN FORM CARD ================= */
+
+        .container {
+            max-width: 760px;
+            margin: 45px auto;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(12, 58, 43, 0.98),
+                    rgba(9, 35, 26, 0.98)
+                );
+            padding: 42px;
+            border-radius: 24px;
+            border: 1px solid rgba(228, 154, 47, 0.16);
+            box-shadow:
+                0 20px 55px rgba(0, 0, 0, 0.38),
+                inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        .container h2 {
+            text-align: center;
+            color: #e49a2f;
+            margin: 0 0 10px;
+            font-size: 32px;
+            font-weight: 800;
+        }
+
+        .intro {
+            text-align: center;
+            color: #aebdb5;
+            margin: 0 auto 35px;
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 560px;
+        }
+
+        /* ================= FORM ================= */
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 9px;
+            font-weight: bold;
+            color: #f7f4eb;
+            font-size: 15px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid rgba(174, 189, 181, 0.25);
+            border-radius: 11px;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+            color: #f7f4eb;
+            background: #09251c;
+            transition: 0.25s;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #81948b;
+        }
+
+        input:hover,
+        select:hover,
+        textarea:hover {
+            border-color: rgba(228, 154, 47, 0.4);
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #e49a2f;
+            background: #0b2d21;
+            box-shadow: 0 0 0 3px rgba(228, 154, 47, 0.12);
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        select option {
+            background: #09251c;
+            color: #f7f4eb;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.5;
+        }
+
+        /* ================= FILE INPUT ================= */
+
+        input[type="file"] {
+            padding: 10px;
+            background: #09251c;
+            cursor: pointer;
+        }
+
+        input[type="file"]::file-selector-button {
+            background: #e49a2f;
+            color: #10291f;
+            border: none;
+            padding: 9px 14px;
+            border-radius: 7px;
+            margin-right: 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        input[type="file"]::file-selector-button:hover {
+            background: #f5b64e;
+        }
+
+        /* ================= PHOTO PREVIEW ================= */
+
+        .photo-preview {
+            margin-top: 18px;
+            text-align: center;
+            min-height: 10px;
+        }
+
+        .photo-preview img {
+            width: 125px;
+            height: 125px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: none;
+            margin: auto;
+            border: 4px solid #e49a2f;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+        }
+
+        /* ================= SUBMIT BUTTON ================= */
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #e49a2f;
+            color: #10291f;
+            border: none;
+            border-radius: 11px;
+            font-size: 17px;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(228, 154, 47, 0.18);
+        }
+
+        .submit-btn:hover {
+            background: #f5b64e;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(228, 154, 47, 0.25);
+        }
+
+        .submit-btn:disabled {
+            background: #80652f;
+            color: #d8d0c0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* ================= MESSAGES ================= */
+
+        .message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 11px;
+            text-align: center;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .success-message {
+            background: rgba(34, 197, 94, 0.12);
+            color: #b8f3c9;
+            border: 1px solid rgba(74, 222, 128, 0.35);
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.12);
+            color: #fecaca;
+            border: 1px solid rgba(248, 113, 113, 0.35);
+        }
+
+        /* ================= BACK BUTTON ================= */
+
+        .back-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 13px;
+            margin-top: 13px;
+            background: #0b2d21;
+            color: #e49a2f;
+            border: 1px solid rgba(228, 154, 47, 0.25);
+            text-decoration: none;
+            border-radius: 11px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #104534;
+            border-color: #e49a2f;
+            transform: translateY(-2px);
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            padding: 22px;
+            background: #03110d;
+            color: #aebdb5;
+            font-size: 14px;
+            border-top: 1px solid rgba(228, 154, 47, 0.1);
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 750px) {
+
+            .page-header {
+                padding: 17px 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-header h1 {
+                font-size: 23px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .header-right {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .page-header button {
+                padding: 9px 15px;
+            }
+
+            .container {
+                width: calc(100% - 28px);
+                margin: 25px auto;
+                padding: 28px 20px;
+                border-radius: 19px;
+            }
+
+            .container h2 {
+                font-size: 26px;
+            }
+
+            .intro {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+<header class="page-header">
+
+    <h1>QUICKFIX</h1>
+
+    <div class="header-right">
+
+        <select
+            id="languageSelect"
+            class="language-select"
+            onchange="changeLanguage(this.value)"
+            aria-label="Language"
+        >
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+            <option value="mr">मराठी</option>
+        </select>
+
+        <button onclick="logout()" data-i18n="logout">
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<div class="container">
+
+    <h2 data-i18n="title">
+        🤝 Become a Helper
+    </h2>
+
+    <p class="intro" data-i18n="intro">
+        Join QuickFix and help people in your local area.
+    </p>
+
+    <form id="helperForm">
+
+        <div class="form-group">
+
+            <label for="name" data-i18n="fullName">
+                👤 Full Name
+            </label>
+
+            <input
+                type="text"
+                id="name"
+                data-i18n-placeholder="namePlaceholder"
+                placeholder="Enter your full name"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="contact" data-i18n="contact">
+                📞 Contact Number
+            </label>
+
+            <input
+                type="tel"
+                id="contact"
+                data-i18n-placeholder="contactPlaceholder"
+                placeholder="Enter your contact number"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="service" data-i18n="service">
+                🛠️ Service You Provide
+            </label>
+
+            <select id="service" required>
+
+                <option value="" data-i18n="selectService">
+                    Select a service
+                </option>
+
+                <option value="Electrician" data-i18n="electrician">
+                    Electrician
+                </option>
+
+                <option value="Plumber" data-i18n="plumber">
+                    Plumber
+                </option>
+
+                <option value="Tutor" data-i18n="tutor">
+                    Tutor
+                </option>
+
+                <option value="Carpenter" data-i18n="carpenter">
+                    Carpenter
+                </option>
+
+                <option value="Cleaner" data-i18n="cleaner">
+                    Cleaner
+                </option>
+
+                <option value="Moving Help" data-i18n="movingHelp">
+                    Moving Help
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="location" data-i18n="location">
+                📍 Location
+            </label>
+
+            <input
+                type="text"
+                id="location"
+                data-i18n-placeholder="locationPlaceholder"
+                placeholder="Enter your city or area"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="experience" data-i18n="experience">
+                💼 Experience
+            </label>
+
+            <input
+                type="text"
+                id="experience"
+                data-i18n-placeholder="experiencePlaceholder"
+                placeholder="Example: 5 years"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="charges" data-i18n="charges">
+                💰 Approximate Charges
+            </label>
+
+            <input
+                type="text"
+                id="charges"
+                data-i18n-placeholder="chargesPlaceholder"
+                placeholder="Example: ₹300 - ₹800"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="availability" data-i18n="availability">
+                ⏰ Availability
+            </label>
+
+            <input
+                type="text"
+                id="availability"
+                data-i18n-placeholder="availabilityPlaceholder"
+                placeholder="Example: 9:00 AM - 7:00 PM"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="description" data-i18n="description">
+                📝 About Your Service
+            </label>
+
+            <textarea
+                id="description"
+                data-i18n-placeholder="descriptionPlaceholder"
+                placeholder="Tell customers about your experience and services..."
+                required
+            ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="photo" data-i18n="photo">
+                📷 Profile Photo
+            </label>
+
+            <input
+                type="file"
+                id="photo"
+                accept="image/*"
+            >
+
+            <div class="photo-preview">
+
+                <img
+                    id="photoPreview"
+                    alt="Profile Preview"
+                >
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="submit-btn"
+            id="submitButton"
+            data-i18n="register"
+        >
+            Register as Helper
+        </button>
+
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+
+        <a
+            href="home.html"
+            class="back-btn"
+            data-i18n="backHome"
+        >
+            ← Back to Home
+        </a>
+
+    </form>
+
+</div>
+
+
+<footer>
+
+    © 2026 QuickFix | Pranali Bhoyar and Mrunmayi Jadhav
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   LANGUAGE SYSTEM
+========================================================= */
+
+const translations = {
+
+    en: {
+
+        logout: "Logout",
+
+        title: "🤝 Become a Helper",
+
+        intro:
+            "Join QuickFix and help people in your local area.",
+
+        fullName:
+            "👤 Full Name",
+
+        namePlaceholder:
+            "Enter your full name",
+
+        contact:
+            "📞 Contact Number",
+
+        contactPlaceholder:
+            "Enter your contact number",
+
+        service:
+            "🛠️ Service You Provide",
+
+        selectService:
+            "Select a service",
+
+        electrician:
+            "Electrician",
+
+        plumber:
+            "Plumber",
+
+        tutor:
+            "Tutor",
+
+        carpenter:
+            "Carpenter",
+
+        cleaner:
+            "Cleaner",
+
+        movingHelp:
+            "Moving Help",
+
+        location:
+            "📍 Location",
+
+        locationPlaceholder:
+            "Enter your city or area",
+
+        experience:
+            "💼 Experience",
+
+        experiencePlaceholder:
+            "Example: 5 years",
+
+        charges:
+            "💰 Approximate Charges",
+
+        chargesPlaceholder:
+            "Example: ₹300 - ₹800",
+
+        availability:
+            "⏰ Availability",
+
+        availabilityPlaceholder:
+            "Example: 9:00 AM - 7:00 PM",
+
+        description:
+            "📝 About Your Service",
+
+        descriptionPlaceholder:
+            "Tell customers about your experience and services...",
+
+        photo:
+            "📷 Profile Photo",
+
+        register:
+            "Register as Helper",
+
+        registering:
+            "Registering...",
+
+        backHome:
+            "← Back to Home",
+
+        success:
+            "🎉 Helper registered successfully! Your profile has been added to QuickFix.",
+
+        registrationFailed:
+            "Registration failed.",
+
+        connectionError:
+            "Unable to connect to QuickFix backend. Please make sure the Flask server is running."
+
+    },
+
+
+    hi: {
+
+        logout:
+            "लॉगआउट",
+
+        title:
+            "🤝 हेल्पर बनें",
+
+        intro:
+            "QuickFix से जुड़ें और अपने स्थानीय क्षेत्र के लोगों की मदद करें।",
+
+        fullName:
+            "👤 पूरा नाम",
+
+        namePlaceholder:
+            "अपना पूरा नाम दर्ज करें",
+
+        contact:
+            "📞 संपर्क नंबर",
+
+        contactPlaceholder:
+            "अपना संपर्क नंबर दर्ज करें",
+
+        service:
+            "🛠️ आपके द्वारा दी जाने वाली सेवा",
+
+        selectService:
+            "सेवा चुनें",
+
+        electrician:
+            "इलेक्ट्रीशियन",
+
+        plumber:
+            "प्लंबर",
+
+        tutor:
+            "ट्यूटर",
+
+        carpenter:
+            "बढ़ई",
+
+        cleaner:
+            "क्लीनर",
+
+        movingHelp:
+            "शिफ्टिंग मदद",
+
+        location:
+            "📍 स्थान",
+
+        locationPlaceholder:
+            "अपना शहर या क्षेत्र दर्ज करें",
+
+        experience:
+            "💼 अनुभव",
+
+        experiencePlaceholder:
+            "उदाहरण: 5 वर्ष",
+
+        charges:
+            "💰 अनुमानित शुल्क",
+
+        chargesPlaceholder:
+            "उदाहरण: ₹300 - ₹800",
+
+        availability:
+            "⏰ उपलब्धता",
+
+        availabilityPlaceholder:
+            "उदाहरण: सुबह 9:00 - शाम 7:00",
+
+        description:
+            "📝 अपनी सेवा के बारे में",
+
+        descriptionPlaceholder:
+            "ग्राहकों को अपने अनुभव और सेवाओं के बारे में बताएं...",
+
+        photo:
+            "📷 प्रोफाइल फोटो",
+
+        register:
+            "हेल्पर के रूप में रजिस्टर करें",
+
+        registering:
+            "रजिस्टर हो रहा है...",
+
+        backHome:
+            "← होम पर वापस जाएं",
+
+        success:
+            "🎉 हेल्पर सफलतापूर्वक रजिस्टर हो गया! आपकी प्रोफाइल QuickFix में जोड़ दी गई है।",
+
+        registrationFailed:
+            "रजिस्ट्रेशन असफल हुआ।",
+
+        connectionError:
+            "QuickFix बैकएंड से कनेक्ट नहीं हो पा रहा है। कृपया सुनिश्चित करें कि Flask सर्वर चल रहा है।"
+
+    },
+
+
+    mr: {
+
+        logout:
+            "लॉगआउट",
+
+        title:
+            "🤝 हेल्पर बना",
+
+        intro:
+            "QuickFix मध्ये सामील व्हा आणि तुमच्या स्थानिक परिसरातील लोकांना मदत करा.",
+
+        fullName:
+            "👤 पूर्ण नाव",
+
+        namePlaceholder:
+            "तुमचे पूर्ण नाव टाका",
+
+        contact:
+            "📞 संपर्क क्रमांक",
+
+        contactPlaceholder:
+            "तुमचा संपर्क क्रमांक टाका",
+
+        service:
+            "🛠️ तुम्ही देत असलेली सेवा",
+
+        selectService:
+            "सेवा निवडा",
+
+        electrician:
+            "इलेक्ट्रिशियन",
+
+        plumber:
+            "प्लंबर",
+
+        tutor:
+            "ट्यूटर",
+
+        carpenter:
+            "सुतार",
+
+        cleaner:
+            "क्लीनर",
+
+        movingHelp:
+            "स्थलांतर मदत",
+
+        location:
+            "📍 ठिकाण",
+
+        locationPlaceholder:
+            "तुमचे शहर किंवा परिसर टाका",
+
+        experience:
+            "💼 अनुभव",
+
+        experiencePlaceholder:
+            "उदाहरण: 5 वर्षे",
+
+        charges:
+            "💰 अंदाजे शुल्क",
+
+        chargesPlaceholder:
+            "उदाहरण: ₹300 - ₹800",
+
+        availability:
+            "⏰ उपलब्धता",
+
+        availabilityPlaceholder:
+            "उदाहरण: सकाळी 9:00 - संध्याकाळी 7:00",
+
+        description:
+            "📝 तुमच्या सेवेबद्दल",
+
+        descriptionPlaceholder:
+            "ग्राहकांना तुमच्या अनुभवाबद्दल आणि सेवांबद्दल सांगा...",
+
+        photo:
+            "📷 प्रोफाइल फोटो",
+
+        register:
+            "हेल्पर म्हणून नोंदणी करा",
+
+        registering:
+            "नोंदणी होत आहे...",
+
+        backHome:
+            "← होमवर परत जा",
+
+        success:
+            "🎉 हेल्परची नोंदणी यशस्वी झाली! तुमची प्रोफाइल QuickFix मध्ये जोडली गेली आहे.",
+
+        registrationFailed:
+            "नोंदणी अयशस्वी झाली.",
+
+        connectionError:
+            "QuickFix बॅकएंडशी कनेक्ट करता येत नाही. कृपया Flask सर्व्हर चालू आहे याची खात्री करा."
+
+    }
+
+};
+
+
+/* =========================================================
+   CURRENT LANGUAGE
+========================================================= */
+
+let currentLanguage =
+    localStorage.getItem("quickfixLanguage") || "en";
+
+
+/* =========================================================
+   APPLY LANGUAGE
+========================================================= */
+
+function applyLanguage() {
+
+    const t =
+        translations[currentLanguage] ||
+        translations.en;
+
+
+    document.documentElement.lang =
+        currentLanguage;
+
+
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach(element => {
+
+            const key =
+                element.getAttribute("data-i18n");
+
+            if (t[key] !== undefined) {
+
+                element.textContent =
+                    t[key];
+
+            }
+
+        });
+
+
+    document
+        .querySelectorAll("[data-i18n-placeholder]")
+        .forEach(element => {
+
+            const key =
+                element.getAttribute(
+                    "data-i18n-placeholder"
+                );
+
+            if (t[key] !== undefined) {
+
+                element.placeholder =
+                    t[key];
+
+            }
+
+        });
+
+
+    const languageSelect =
+        document.getElementById("languageSelect");
+
+    if (languageSelect) {
+
+        languageSelect.value =
+            currentLanguage;
+
+    }
+
+}
+
+
+/* =========================================================
+   CHANGE LANGUAGE
+========================================================= */
+
+function changeLanguage(language) {
+
+    currentLanguage =
+        language;
+
+    localStorage.setItem(
+        "quickfixLanguage",
+        currentLanguage
+    );
+
+    applyLanguage();
+
+}
+
+
+/* =========================================================
+   PHOTO PREVIEW
+========================================================= */
+
+const photoInput =
+    document.getElementById("photo");
+
+const photoPreview =
+    document.getElementById("photoPreview");
+
+
+photoInput.addEventListener(
+    "change",
+    function () {
+
+        const file =
+            this.files[0];
+
+        if (file) {
+
+            const reader =
+                new FileReader();
+
+            reader.onload =
+                function (event) {
+
+                    photoPreview.src =
+                        event.target.result;
+
+                    photoPreview.style.display =
+                        "block";
+
+                };
+
+            reader.readAsDataURL(file);
+
+        } else {
+
+            photoPreview.src = "";
+
+            photoPreview.style.display =
+                "none";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   HELPER REGISTRATION
+========================================================= */
+
+document
+    .getElementById("helperForm")
+    .addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            const submitButton =
+                document.getElementById("submitButton");
+
+            const message =
+                document.getElementById("message");
+
+            const t =
+                translations[currentLanguage] ||
+                translations.en;
+
+
+            const name =
+                document
+                    .getElementById("name")
+                    .value
+                    .trim();
+
+
+            const contact =
+                document
+                    .getElementById("contact")
+                    .value
+                    .trim();
+
+
+            /*
+                IMPORTANT:
+                The VALUE remains English so the backend
+                continues receiving the same service names.
+            */
+            const service =
+                document
+                    .getElementById("service")
+                    .value;
+
+
+            const location =
+                document
+                    .getElementById("location")
+                    .value
+                    .trim();
+
+
+            const experience =
+                document
+                    .getElementById("experience")
+                    .value
+                    .trim();
+
+
+            const charges =
+                document
+                    .getElementById("charges")
+                    .value
+                    .trim();
+
+
+            const availability =
+                document
+                    .getElementById("availability")
+                    .value
+                    .trim();
+
+
+            const description =
+                document
+                    .getElementById("description")
+                    .value
+                    .trim();
+
+
+            const photoFile =
+                document
+                    .getElementById("photo")
+                    .files[0];
+
+
+            let photoName = "";
+
+            if (photoFile) {
+
+                photoName =
+                    photoFile.name;
+
+            }
+
+
+            message.style.display =
+                "none";
+
+            message.className =
+                "message";
+
+
+            submitButton.disabled =
+                true;
+
+            submitButton.textContent =
+                t.registering;
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "https://quickfix.pythonanywhere.com/api/helpers/register",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                name: name,
+
+                                contact: contact,
+
+                                service: service,
+
+                                location: location,
+
+                                experience: experience,
+
+                                charges: charges,
+
+                                availability:
+                                    availability,
+
+                                description:
+                                    description,
+
+                                photo:
+                                    photoName,
+
+                                rating: 5
+
+                            })
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (response.ok) {
+
+                    message.className =
+                        "message success-message";
+
+                    message.textContent =
+                        t.success;
+
+                    message.style.display =
+                        "block";
+
+
+                    document
+                        .getElementById("helperForm")
+                        .reset();
+
+
+                    photoPreview.src = "";
+
+                    photoPreview.style.display =
+                        "none";
+
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.textContent =
+                        t.register;
+
+
+                } else {
+
+                    message.className =
+                        "message error-message";
+
+                    message.textContent =
+                        data.error ||
+                        t.registrationFailed;
+
+                    message.style.display =
+                        "block";
+
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.textContent =
+                        t.register;
+
+                }
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                message.className =
+                    "message error-message";
+
+                message.textContent =
+                    t.connectionError;
+
+                message.style.display =
+                    "block";
+
+
+                submitButton.disabled =
+                    false;
+
+                submitButton.textContent =
+                    t.register;
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout() {
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+applyLanguage();
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QuickFix - Language</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(
+                135deg,
+                #022c22,
+                #064e3b,
+                #065f46
+            );
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background: #022c22;
+            color: white;
+            padding: 18px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            font-size: 13px;
+            margin-top: 3px;
+            color: #bbf7d0;
+        }
+
+        .language-page {
+            min-height: calc(100vh - 150px);
+            padding: 55px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .language-container {
+            width: 100%;
+            max-width: 850px;
+            text-align: center;
+        }
+
+        .language-container h1 {
+            color: white;
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .language-container > p {
+            color: #d1fae5;
+            font-size: 17px;
+            margin-bottom: 40px;
+        }
+
+        .language-options {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .language-card {
+            width: 210px;
+            min-height: 190px;
+            background: white;
+            border-radius: 20px;
+            padding: 28px 18px;
+            box-sizing: border-box;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.18);
+
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            border: 3px solid transparent;
+        }
+
+        .language-card:hover {
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 16px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .language-card.selected {
+            border-color: #16a34a;
+            background: #f0fdf4;
+
+            box-shadow:
+                0 12px 30px rgba(22, 163, 74, 0.25);
+        }
+
+        .language-flag {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .language-card h2 {
+            color: #166534;
+            margin: 8px 0;
+            font-size: 24px;
+        }
+
+        .language-card p {
+            color: #64748b;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .message {
+            margin: 30px auto 0;
+            padding: 14px 25px;
+
+            background: #dcfce7;
+            color: #166534;
+
+            border: 1px solid #86efac;
+            border-radius: 12px;
+
+            display: none;
+            font-weight: bold;
+
+            max-width: 400px;
+
+            box-shadow:
+                0 6px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .back-button {
+            margin-top: 30px;
+            padding: 13px 28px;
+
+            background: #16a34a;
+            color: white;
+
+            border: none;
+            border-radius: 10px;
+
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+
+            box-shadow:
+                0 6px 15px rgba(0, 0, 0, 0.18);
+
+            transition: 0.3s;
+        }
+
+        .back-button:hover {
+            background: #15803d;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background: #022c22;
+            color: #d1fae5;
+            text-align: center;
+            padding: 18px 15px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+
+            .header {
+                padding: 18px 20px;
+            }
+
+            .language-page {
+                padding: 40px 15px;
+            }
+
+            .language-container h1 {
+                font-size: 30px;
+            }
+
+            .language-container > p {
+                font-size: 15px;
+            }
+
+            .language-card {
+                width: 85%;
+                max-width: 300px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <header class="header">
+
+        <div>
+
+            <div class="logo">
+                QUICKFIX
+            </div>
+
+            <div class="tagline">
+                Your Local Help, Anytime
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <main class="language-page">
+
+        <div class="language-container">
+
+            <h1>
+                🌐 Choose Your Language
+            </h1>
+
+            <p>
+                Select your preferred language for the QuickFix experience.
+            </p>
+
+
+            <div class="language-options">
+
+
+                <!-- ENGLISH -->
+
+                <div
+                    class="language-card"
+                    id="englishCard"
+                    onclick="selectLanguage('en')"
+                >
+
+                    <div class="language-flag">
+                        🇬🇧
+                    </div>
+
+                    <h2>
+                        English
+                    </h2>
+
+                    <p>
+                        English
+                    </p>
+
+                </div>
+
+
+
+                <!-- HINDI -->
+
+                <div
+                    class="language-card"
+                    id="hindiCard"
+                    onclick="selectLanguage('hi')"
+                >
+
+                    <div class="language-flag">
+                        🇮🇳
+                    </div>
+
+                    <h2>
+                        हिंदी
+                    </h2>
+
+                    <p>
+                        Hindi
+                    </p>
+
+                </div>
+
+
+
+                <!-- MARATHI -->
+
+                <div
+                    class="language-card"
+                    id="marathiCard"
+                    onclick="selectLanguage('mr')"
+                >
+
+                    <div class="language-flag">
+                        🇮🇳
+                    </div>
+
+                    <h2>
+                        मराठी
+                    </h2>
+
+                    <p>
+                        Marathi
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div
+                class="message"
+                id="message"
+            >
+                Language selected successfully!
+            </div>
+
+
+
+            <button
+                class="back-button"
+                onclick="goHome()"
+            >
+                ← Back to Home
+            </button>
+
+        </div>
+
+    </main>
+
+
+
+    <footer class="footer">
+
+        <p>
+            © 2026 QuickFix | Pranali Bhoyar & Mrunmayi Jadhav
+        </p>
+
+    </footer>
+
+
+
+    <script>
+
+        function selectLanguage(language) {
+
+            /* Save language as the same codes used by Home */
+
+            localStorage.setItem(
+                "fixMeLanguage",
+                language
+            );
+
+
+            /* Remove previous selection */
+
+            document
+                .getElementById("englishCard")
+                .classList.remove("selected");
+
+            document
+                .getElementById("hindiCard")
+                .classList.remove("selected");
+
+            document
+                .getElementById("marathiCard")
+                .classList.remove("selected");
+
+
+            /* Highlight selected language */
+
+            if (language === "en") {
+
+                document
+                    .getElementById("englishCard")
+                    .classList.add("selected");
+
+            }
+
+
+            if (language === "hi") {
+
+                document
+                    .getElementById("hindiCard")
+                    .classList.add("selected");
+
+            }
+
+
+            if (language === "mr") {
+
+                document
+                    .getElementById("marathiCard")
+                    .classList.add("selected");
+
+            }
+
+
+            /* Confirmation message */
+
+            const message =
+                document.getElementById("message");
+
+
+            if (language === "en") {
+                message.textContent =
+                    "English selected successfully!";
+            }
+
+            if (language === "hi") {
+                message.textContent =
+                    "हिंदी भाषा सफलतापूर्वक चुनी गई!";
+            }
+
+            if (language === "mr") {
+                message.textContent =
+                    "मराठी भाषा यशस्वीरित्या निवडली!";
+            }
+
+
+            message.style.display = "block";
+
+        }
+
+
+
+        function showSavedLanguage() {
+
+            const savedLanguage =
+                localStorage.getItem("fixMeLanguage");
+
+
+            if (savedLanguage === "en") {
+
+                document
+                    .getElementById("englishCard")
+                    .classList.add("selected");
+
+            }
+
+
+            if (savedLanguage === "hi") {
+
+                document
+                    .getElementById("hindiCard")
+                    .classList.add("selected");
+
+            }
+
+
+            if (savedLanguage === "mr") {
+
+                document
+                    .getElementById("marathiCard")
+                    .classList.add("selected");
+
+            }
+
+        }
+
+
+
+        function goHome() {
+
+            window.location.href =
+                "home.html";
+
+        }
+
+
+
+        showSavedLanguage();
+
+    </script>
+
+
+</body>
+
+</html>

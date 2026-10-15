@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QuickFix - Helper Profile</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at top left, #0d3628 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #0c3a2b 0%, transparent 30%),
+                #061a14;
+            color: #f7f4eb;
+            min-height: 100vh;
+        }
+
+        /* ==========================================
+           HEADER
+        ========================================== */
+
+        header {
+            background: rgba(6, 26, 20, 0.96);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+
+            color: #f7f4eb;
+            padding: 18px 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            flex-wrap: wrap;
+            gap: 15px;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #e49a2f;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap;
+        }
+
+        .nav-buttons button {
+            border: 1px solid rgba(255,255,255,0.08);
+
+            background: #09251c;
+            color: #f7f4eb;
+
+            padding: 10px 15px;
+            border-radius: 9px;
+
+            cursor: pointer;
+            font-size: 14px;
+
+            transition: 0.25s ease;
+        }
+
+        .nav-buttons button:hover {
+            background: #104534;
+            border-color: rgba(228,154,47,0.35);
+            transform: translateY(-1px);
+        }
+
+        .logout {
+            background: #5b211d !important;
+        }
+
+        .logout:hover {
+            background: #762a24 !important;
+        }
+
+
+        /* ==========================================
+           MAIN
+        ========================================== */
+
+        main {
+            max-width: 900px;
+            margin: 55px auto;
+            padding: 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title h1 {
+            color: #f7f4eb;
+            margin-bottom: 10px;
+            font-size: 38px;
+        }
+
+        .page-title h1::after {
+            content: "";
+            display: block;
+
+            width: 60px;
+            height: 4px;
+
+            background: #e49a2f;
+
+            border-radius: 10px;
+
+            margin: 12px auto 0;
+        }
+
+        .page-title p {
+            color: #aebdb5;
+            font-size: 16px;
+        }
+
+
+        /* ==========================================
+           PROFILE CARD
+        ========================================== */
+
+        .profile-card {
+            background:
+                linear-gradient(
+                    145deg,
+                    #0c3a2b,
+                    #09231a
+                );
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 24px;
+
+            padding: 40px;
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.30);
+
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            background: rgba(228,154,47,0.06);
+
+            border-radius: 50%;
+
+            top: -80px;
+            right: -60px;
+        }
+
+        .profile-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 140px;
+            height: 140px;
+
+            background: rgba(255,255,255,0.025);
+
+            border-radius: 50%;
+
+            bottom: -70px;
+            left: -50px;
+        }
+
+
+        /* ==========================================
+           PROFILE ICON
+        ========================================== */
+
+        .profile-icon {
+            width: 110px;
+            height: 110px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #104534,
+                    #0b2d21
+                );
+
+            border: 2px solid rgba(228,154,47,0.5);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 52px;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.25);
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        /* ==========================================
+           NAME
+        ========================================== */
+
+        .profile-card h2 {
+            color: #f7f4eb;
+            font-size: 31px;
+
+            margin: 10px 0 12px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        /* ==========================================
+           SERVICE BADGE
+        ========================================== */
+
+        .service-name {
+            display: inline-block;
+
+            background: rgba(228,154,47,0.14);
+
+            color: #f5b64e;
+
+            padding: 9px 20px;
+
+            border-radius: 30px;
+
+            font-weight: bold;
+
+            border: 1px solid rgba(228,154,47,0.3);
+
+            margin-bottom: 25px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        /* ==========================================
+           DESCRIPTION
+        ========================================== */
+
+        .description-box {
+            background: rgba(6,26,20,0.50);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 16px;
+
+            padding: 22px;
+
+            margin: 10px auto 28px;
+
+            max-width: 720px;
+
+            text-align: left;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .description-title {
+            color: #e49a2f;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            margin-bottom: 9px;
+        }
+
+        .description {
+            color: #c1cec8;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+            margin: 0;
+        }
+
+
+        /* ==========================================
+           DETAILS
+        ========================================== */
+
+        .details {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin: 28px 0;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .detail-box {
+            background:
+                linear-gradient(
+                    145deg,
+                    #0d3628,
+                    #09251c
+                );
+
+            border-radius: 16px;
+
+            padding: 20px 12px;
+
+            border: 1px solid rgba(255,255,255,0.07);
+
+            transition: 0.25s ease;
+        }
+
+        .detail-box:hover {
+            transform: translateY(-3px);
+
+            border-color:
+                rgba(228,154,47,0.30);
+        }
+
+        .detail-box .icon {
+            font-size: 27px;
+            margin-bottom: 9px;
+        }
+
+        .detail-box strong {
+            display: block;
+
+            color: #f7f4eb;
+
+            margin-bottom: 6px;
+        }
+
+        .detail-box span {
+            color: #aebdb5;
+        }
+
+
+        /* ==========================================
+           BUTTONS
+        ========================================== */
+
+        .button-row {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-top: 32px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .book-button,
+        .back-button {
+
+            border: none;
+
+            padding: 14px 28px;
+
+            border-radius: 11px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.25s ease;
+        }
+
+        .book-button {
+            background:
+                linear-gradient(
+                    135deg,
+                    #e49a2f,
+                    #f5b64e
+                );
+
+            color: #10291f;
+
+            box-shadow:
+                0 8px 20px rgba(228,154,47,0.18);
+        }
+
+        .book-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px rgba(228,154,47,0.28);
+        }
+
+        .back-button {
+            background: #0b2d21;
+
+            color: #d7e1dc;
+
+            border: 1px solid rgba(255,255,255,0.10);
+        }
+
+        .back-button:hover {
+            background: #104534;
+
+            border-color:
+                rgba(228,154,47,0.25);
+        }
+
+
+        /* ==========================================
+           LOADING
+        ========================================== */
+
+        .loading {
+            text-align: center;
+
+            padding: 55px;
+
+            color: #e49a2f;
+
+            font-size: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #0c3a2b,
+                    #09231a
+                );
+
+            border-radius: 20px;
+
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+
+        /* ==========================================
+           ERROR
+        ========================================== */
+
+        .error {
+            background: rgba(120,35,30,0.25);
+
+            color: #ffb4a9;
+
+            padding: 25px;
+
+            border-radius: 16px;
+
+            text-align: center;
+
+            font-weight: bold;
+
+            border: 1px solid rgba(255,100,80,0.20);
+        }
+
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
+
+        footer {
+            text-align: center;
+
+            background: #03110d;
+
+            color: #aebdb5;
+
+            padding: 22px;
+
+            margin-top: 60px;
+
+            font-size: 14px;
+
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        footer span {
+            color: #e49a2f;
+        }
+
+
+        /* ==========================================
+           MOBILE
+        ========================================== */
+
+        @media (max-width: 650px) {
+
+            header {
+                justify-content: center;
+            }
+
+            .logo {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-buttons {
+                justify-content: center;
+            }
+
+            .details {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-card {
+                padding: 28px 18px;
+            }
+
+            .page-title h1 {
+                font-size: 30px;
+            }
+
+            .profile-card h2 {
+                font-size: 26px;
+            }
+
+            .button-row {
+                flex-direction: column;
+            }
+
+            .book-button,
+            .back-button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     HEADER
+========================================== -->
+
+<header>
+
+    <div class="logo">
+        QuickFix
+    </div>
+
+
+    <div class="nav-buttons">
+
+        <button onclick="goHome()">
+            Home
+        </button>
+
+        <button onclick="openQuickMatch()">
+            Quick Match
+        </button>
+
+        <button onclick="openSnapFix()">
+            Snap & Fix
+        </button>
+
+        <button onclick="openServices()">
+            Services
+        </button>
+
+        <button class="logout" onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- ==========================================
+     MAIN
+========================================== -->
+
+<main>
+
+    <div class="page-title">
+
+        <h1>
+            Helper Profile
+        </h1>
+
+        <p>
+            View helper details before requesting a service.
+        </p>
+
+    </div>
+
+
+    <div id="profileContainer">
+
+        <div class="loading">
+            Loading helper profile...
+        </div>
+
+    </div>
+
+</main>
+
+
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<footer>
+
+    © 2026 QuickFix |
+    <span>Pranali Bhoyar and Mrunmayi Jadhav</span>
+
+</footer>
+
+
+
+<script>
+
+
+/* ==========================================
+   BACKEND
+========================================== */
+
+const API_URL =
+    "https://quickfix.pythonanywhere.com";
+
+
+
+/* ==========================================
+   GET HELPER FROM URL
+========================================== */
+
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const helperName =
+    urlParams.get("name");
+
+const helperService =
+    urlParams.get("service");
+
+
+
+/* ==========================================
+   LOAD HELPER
+========================================== */
+
+async function loadHelperProfile() {
+
+    const container =
+        document.getElementById(
+            "profileContainer"
+        );
+
+
+    if (!helperName || !helperService) {
+
+        container.innerHTML = `
+
+            <div class="error">
+
+                Helper information was not found.
+
+                <br><br>
+
+                Please go back and select a helper.
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL + "/api/helpers"
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Backend connection failed."
+            );
+
+        }
+
+
+        const helpers =
+            await response.json();
+
+
+        /* =====================================
+           FIND SELECTED HELPER
+        ===================================== */
+
+        const helper =
+            helpers.find(function(item) {
+
+                return (
+                    item.name === helperName &&
+                    item.service === helperService
+                );
+
+            });
+
+
+        if (!helper) {
+
+            container.innerHTML = `
+
+                <div class="error">
+
+                    Helper profile could not be found
+                    in the database.
+
+                </div>
+
+            `;
+
+            return;
+        }
+
+
+        /* =====================================
+           HELPER ICON
+        ===================================== */
+
+        let icon = "👤";
+
+
+        if (helper.service === "Electrician") {
+
+            icon = "⚡";
+
+        }
+
+        else if (helper.service === "Plumber") {
+
+            icon = "🔧";
+
+        }
+
+        else if (helper.service === "Tutor") {
+
+            icon = "📚";
+
+        }
+
+        else if (helper.service === "Carpenter") {
+
+            icon = "🪚";
+
+        }
+
+        else if (helper.service === "Cleaner") {
+
+            icon = "🧹";
+
+        }
+
+        else if (helper.service === "Moving Help") {
+
+            icon = "📦";
+
+        }
+
+
+
+        /* =====================================
+           DESCRIPTION
+        ===================================== */
+
+        let helperDescription =
+            helper.description;
+
+
+        if (
+            helperDescription === null ||
+            helperDescription === undefined ||
+            helperDescription === ""
+        ) {
+
+            helperDescription =
+                "Professional local helper available for this service.";
+
+        }
+
+
+
+        /* =====================================
+           DISPLAY PROFILE
+        ===================================== */
+
+        container.innerHTML = `
+
+            <div class="profile-card">
+
+
+                <div class="profile-icon">
+
+                    ${icon}
+
+                </div>
+
+
+                <h2>
+
+                    ${helper.name}
+
+                </h2>
+
+
+                <div class="service-name">
+
+                    ${helper.service}
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="description-box">
+
+                    <div class="description-title">
+
+                        📝 About This Helper
+
+                    </div>
+
+                    <p class="description">
+
+                        ${helperDescription}
+
+                    </p>
+
+                </div>
+
+
+                <!-- DETAILS -->
+
+                <div class="details">
+
+
+                    <div class="detail-box">
+
+                        <div class="icon">
+                            ⭐
+                        </div>
+
+                        <strong>
+                            Rating
+                        </strong>
+
+                        <span>
+
+                            ${helper.rating} / 5
+
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="detail-box">
+
+                        <div class="icon">
+                            🏆
+                        </div>
+
+                        <strong>
+                            Experience
+                        </strong>
+
+                        <span>
+
+                            ${helper.experience || "Experienced"}
+
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="detail-box">
+
+                        <div class="icon">
+                            💰
+                        </div>
+
+                        <strong>
+                            Charges
+                        </strong>
+
+                        <span>
+
+                            ${helper.charges || "Contact helper"}
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="button-row">
+
+
+                    <button
+                        class="back-button"
+                        onclick="goBack()">
+
+                        ← Back to Helpers
+
+                    </button>
+
+
+                    <button
+                        class="book-button"
+                        onclick="bookHelper()">
+
+                        Book This Helper
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+        `;
+
+    }
+
+
+    catch (error) {
+
+        console.error(error);
+
+
+        container.innerHTML = `
+
+            <div class="error">
+
+                Unable to load helper profile.
+
+                <br><br>
+
+                Please make sure the QuickFix
+                backend is running.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+
+/* ==========================================
+   BACK
+========================================== */
+
+function goBack() {
+
+    window.history.back();
+
+}
+
+
+
+/* ==========================================
+   BOOK HELPER
+========================================== */
+
+function bookHelper() {
+
+    window.location.href =
+        "booking.html?name=" +
+        encodeURIComponent(helperName) +
+        "&service=" +
+        encodeURIComponent(helperService);
+
+}
+
+
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+function goHome() {
+
+    window.location.href =
+        "home.html";
+
+}
+
+
+function openQuickMatch() {
+
+    window.location.href =
+        "quick-match.html";
+
+}
+
+
+function openSnapFix() {
+
+    window.location.href =
+        "snap-fix.html";
+
+}
+
+
+function openServices() {
+
+    window.location.href =
+        "services.html";
+
+}
+
+
+function logout() {
+
+    window.location.replace(
+        "index.html"
+    );
+
+}
+
+
+
+/* ==========================================
+   START
+========================================== */
+
+loadHelperProfile();
+
+
+</script>
+
+
+</body>
+
+</html>

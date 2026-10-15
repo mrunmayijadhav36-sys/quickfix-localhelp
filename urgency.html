@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QuickFix - Urgency Mode</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f0fdf7;
+            color: #12372a;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #022c22;
+            color: white;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-buttons button {
+            border: none;
+            background: #064e3b;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .nav-buttons button:hover {
+            background: #0f766e;
+        }
+
+        .logout-btn {
+            background: #b91c1c !important;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .back-btn {
+            background: #064e3b;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .back-btn:hover {
+            background: #0f766e;
+        }
+
+        .main-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #b91c1c;
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            text-align: center;
+            color: #527568;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .warning-box {
+            background: #fff7ed;
+            border: 2px solid #f97316;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .warning-box strong {
+            color: #c2410c;
+            font-size: 18px;
+        }
+
+        .warning-box p {
+            margin-top: 7px;
+            color: #7c2d12;
+        }
+
+        .filter-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .filter-area h2 {
+            color: #064e3b;
+        }
+
+        .filter-area select {
+            padding: 10px 14px;
+            border: 1px solid #b7d8ca;
+            border-radius: 8px;
+            background: white;
+            font-size: 14px;
+        }
+
+        .helper-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .helper-card {
+            border: 1px solid #d1e7dc;
+            border-radius: 14px;
+            padding: 20px;
+            background: #fafffc;
+            transition: 0.2s;
+        }
+
+        .helper-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .helper-card h3 {
+            color: #065f46;
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        .service-name {
+            color: #527568;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .rating {
+            color: #92400e;
+            margin-bottom: 8px;
+        }
+
+        .details {
+            color: #527568;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .available {
+            display: inline-block;
+            background: #dcfce7;
+            color: #166534;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .nearby {
+            display: inline-block;
+            background: #ecfdf5;
+            color: #047857;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .request-btn {
+            width: 100%;
+            border: none;
+            background: #ea580c;
+            color: white;
+            padding: 12px;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .request-btn:hover {
+            background: #c2410c;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 10px;
+            margin-top: 30px;
+            color: #527568;
+            font-size: 14px;
+        }
+
+        @media (max-width: 900px) {
+            .helper-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .helper-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        QUICKFIX
+    </div>
+
+    <div class="nav-buttons">
+        <button onclick="goHome()">Home</button>
+        <button onclick="goServices()">Services</button>
+        <button onclick="goQuickMatch()">Quick Match</button>
+        <button onclick="goSnapFix()">Snap & Fix</button>
+        <button onclick="goMyFixes()">My Fixes</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+</header>
+
+
+<div class="container">
+
+    <button class="back-btn" onclick="goBack()">
+        ← Back
+    </button>
+
+
+    <div class="main-card">
+
+        <h1>
+            🚨 Urgency Mode
+        </h1>
+
+        <p class="intro">
+            Find a helper who is available right now.
+        </p>
+
+
+        <div class="warning-box">
+
+            <strong>
+                🚨 Need Immediate Help?
+            </strong>
+
+            <p>
+                Choose an available helper and request help immediately.
+            </p>
+
+        </div>
+
+
+        <div class="filter-area">
+
+            <h2>
+                🟢 Available Helpers Right Now
+            </h2>
+
+            <select
+                id="serviceFilter"
+                onchange="filterHelpers()"
+            >
+                <option value="all">
+                    All Services
+                </option>
+
+                <option value="Electrician">
+                    Electrician
+                </option>
+
+                <option value="Plumber">
+                    Plumber
+                </option>
+
+                <option value="Tutor">
+                    Tutor
+                </option>
+
+                <option value="Carpenter">
+                    Carpenter
+                </option>
+
+                <option value="Cleaner">
+                    Cleaner
+                </option>
+
+                <option value="Moving Help">
+                    Moving Help
+                </option>
+            </select>
+
+        </div>
+
+
+        <div class="helper-grid">
+
+
+            <!-- AKASH -->
+
+            <div
+                class="helper-card"
+                data-service="Plumber"
+            >
+
+                <h3>
+                    Akash Patil
+                </h3>
+
+                <div class="service-name">
+                    🔧 Plumber
+                </div>
+
+                <div class="rating">
+                    ⭐ 4.8 / 5
+                </div>
+
+                <div class="details">
+                    Experience: 5 years<br>
+                    Charges: ₹300 onwards
+                </div>
+
+                <div class="available">
+                    🟢 Available Now
+                </div>
+
+                <div class="nearby">
+                    📍 Nearby
+                </div>
+
+                <button
+                    class="request-btn"
+                    onclick="requestHelper('Akash Patil', 'Plumber')"
+                >
+                    🚨 Request Now
+                </button>
+
+            </div>
+
+
+            <!-- RAHUL -->
+
+            <div
+                class="helper-card"
+                data-service="Electrician"
+            >
+
+                <h3>
+                    Rahul Sharma
+                </h3>
+
+                <div class="service-name">
+                    ⚡ Electrician
+                </div>
+
+                <div class="rating">
+                    ⭐ 4.7 / 5
+                </div>
+
+                <div class="details">
+                    Experience: 6 years<br>
+                    Charges: ₹350 onwards
+                </div>
+
+                <div class="available">
+                    🟢 Available Now
+                </div>
+
+                <div class="nearby">
+                    📍 Nearby
+                </div>
+
+                <button
+                    class="request-btn"
+                    onclick="requestHelper('Rahul Sharma', 'Electrician')"
+                >
+                    🚨 Request Now
+                </button>
+
+            </div>
+
+
+            <!-- VIJAY -->
+
+            <div
+                class="helper-card"
+                data-service="Carpenter"
+            >
+
+                <h3>
+                    Vijay Patil
+                </h3>
+
+                <div class="service-name">
+                    🪚 Carpenter
+                </div>
+
+                <div class="rating">
+                    ⭐ 4.6 / 5
+                </div>
+
+                <div class="details">
+                    Experience: 7 years<br>
+                    Charges: ₹400 onwards
+                </div>
+
+                <div class="available">
+                    🟢 Available Now
+                </div>
+
+                <div class="nearby">
+                    📍 Nearby
+                </div>
+
+                <button
+                    class="request-btn"
+                    onclick="requestHelper('Vijay Patil', 'Carpenter')"
+                >
+                    🚨 Request Now
+                </button>
+
+            </div>
+
+
+            <!-- SUNITA -->
+
+            <div
+                class="helper-card"
+                data-service="Cleaner"
+            >
+
+                <h3>
+                    Sunita Patil
+                </h3>
+
+                <div class="service-name">
+                    🧹 Cleaner
+                </div>
+
+                <div class="rating">
+                    ⭐ 4.8 / 5
+                </div>
+
+                <div class="details">
+                    Experience: 4 years<br>
+                    Charges: ₹250 onwards
+                </div>
+
+                <div class="available">
+                    🟢 Available Now
+                </div>
+
+                <div class="nearby">
+                    📍 Nearby
+                </div>
+
+                <button
+                    class="request-btn"
+                    onclick="requestHelper('Sunita Patil', 'Cleaner')"
+                >
+                    🚨 Request Now
+                </button>
+
+            </div>
+
+
+            <!-- SNEHA -->
+
+            <div
+                class="helper-card"
+                data-service="Tutor"
+            >
+
+                <h3>
+                    Sneha Deshmukh
+                </h3>
+
+                <div class="service-name">
+                    📚 Tutor
+                </div>
+
+                <div class="rating">
+                    ⭐ 4.9 / 5
+                </div>
+
+                <div class="details">
+                    Experience: 5 years<br>
+                    Charges: ₹400 onwards
+                </div>
+
+                <div class="available">
+                    🟢 Available Now
+                </div>
+
+                <div class="nearby">
+                    📍 Nearby
+                </div>
+
+                <button
+                    class="request-btn"
+                    onclick="requestHelper('Sneha Deshmukh', 'Tutor')"
+                >
+                    🚨 Request Now
+                </button>
+
+            </div>
+
+
+            <!-- MANOJ -->
+
+            <div
+                class="helper-card"
+                data-service="Moving Help"
+            >
+
+                <h3>
+                    Manoj Patil
+                </h3>
+
+                <div class="service-name">
+                    📦 Moving Help
+                </div>
+
+                <div class="rating">
+                    ⭐ 4.7 / 5
+                </div>
+
+                <div class="details">
+                    Experience: 6 years<br>
+                    Charges: ₹500 onwards
+                </div>
+
+                <div class="available">
+                    🟢 Available Now
+                </div>
+
+                <div class="nearby">
+                    📍 Nearby
+                </div>
+
+                <button
+                    class="request-btn"
+                    onclick="requestHelper('Manoj Patil', 'Moving Help')"
+                >
+                    🚨 Request Now
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>
+    © 2026 • Pranali Bhoyar and Mrunmayi Jadhav
+</footer>
+
+
+<script>
+
+
+/* ---------------------------------------
+   FILTER HELPERS
+--------------------------------------- */
+
+function filterHelpers() {
+
+    const selectedService =
+        document.getElementById("serviceFilter").value;
+
+    const helperCards =
+        document.querySelectorAll(".helper-card");
+
+
+    helperCards.forEach(function(card) {
+
+        const cardService =
+            card.getAttribute("data-service");
+
+
+        if (
+            selectedService === "all" ||
+            selectedService === cardService
+        ) {
+
+            card.style.display = "block";
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+}
+
+
+/* ---------------------------------------
+   REQUEST HELPER
+--------------------------------------- */
+
+function requestHelper(helperName, service) {
+
+    /*
+       Save selected helper.
+       This can also be used later by the
+       backend/helper dashboard.
+    */
+
+    const selectedHelper = {
+
+        name: helperName,
+
+        service: service,
+
+        urgency: true,
+
+        status: "Urgent Request"
+
+    };
+
+
+    localStorage.setItem(
+        "quickFixSelectedHelper",
+        JSON.stringify(selectedHelper)
+    );
+
+
+    /*
+       IMPORTANT:
+       urgent=true tells booking.html that
+       this is an Urgency Mode booking.
+    */
+
+    window.location.href =
+        "booking.html?name=" +
+        encodeURIComponent(helperName) +
+        "&service=" +
+        encodeURIComponent(service) +
+        "&urgent=true";
+}
+
+
+/* ---------------------------------------
+   NAVIGATION
+--------------------------------------- */
+
+function goBack() {
+
+    window.history.back();
+
+}
+
+
+function goHome() {
+
+    window.location.href =
+        "home.html";
+
+}
+
+
+function goServices() {
+
+    window.location.href =
+        "services.html";
+
+}
+
+
+function goQuickMatch() {
+
+    window.location.href =
+        "QuickMatch.html";
+
+}
+
+
+function goSnapFix() {
+
+    window.location.href =
+        "snap-fix.html";
+
+}
+
+
+function goMyFixes() {
+
+    window.location.href =
+        "my-fixes.html";
+
+}
+
+
+function logout() {
+
+    localStorage.removeItem(
+        "quickfixCurrentUser"
+    );
+
+    localStorage.removeItem(
+        "currentUser"
+    );
+
+    window.location.href =
+        "index.html";
+}
+
+</script>
+
+</body>
+</html>

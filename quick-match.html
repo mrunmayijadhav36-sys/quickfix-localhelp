@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quick Match - QuickFix</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #061a14;
+    min-height: 100vh;
+    color: #f7f4eb;
+    overflow-x: hidden;
+}
+
+button,
+select {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    width: 100%;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(6, 26, 20, 0.96);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(15px);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-size: 29px;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    color: #f7f4eb;
+}
+
+.logo span {
+    color: #e49a2f;
+}
+
+.tagline {
+    font-size: 11px;
+    color: #aebdb5;
+    margin-top: 3px;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.navigation button {
+    border: none;
+    padding: 0;
+    background: transparent;
+    color: #d9e0db;
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.navigation button:hover {
+    color: #e49a2f;
+}
+
+.navigation .logout-button {
+    background: #e49a2f;
+    color: #10291f;
+    padding: 11px 18px;
+    border-radius: 25px;
+    font-weight: 900;
+}
+
+.navigation .logout-button:hover {
+    background: #f3b34f;
+    color: #10291f;
+}
+
+/* =========================
+   LANGUAGE SELECTOR
+========================= */
+
+.language-select {
+    background: #0c3a2b;
+    color: #f7f4eb;
+    border: 1px solid rgba(228,154,47,0.45);
+    padding: 9px 12px;
+    border-radius: 20px;
+    outline: none;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.language-select:focus {
+    border-color: #e49a2f;
+}
+
+.language-select option {
+    background: #061a14;
+    color: #f7f4eb;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 25px 100px;
+    text-align: center;
+    position: relative;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: rgba(228,154,47,0.08);
+    filter: blur(70px);
+    top: 20px;
+    right: -160px;
+    pointer-events: none;
+}
+
+/* =========================
+   ICON
+========================= */
+
+.icon {
+    width: 82px;
+    height: 82px;
+    margin: 0 auto 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #104534, #09271d);
+    border: 1px solid rgba(228,154,47,0.35);
+    color: #e49a2f;
+    font-size: 40px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+}
+
+/* =========================
+   TITLE
+========================= */
+
+h1 {
+    font-size: clamp(48px, 7vw, 76px);
+    line-height: 0.95;
+    letter-spacing: -5px;
+    font-weight: 950;
+    color: #f7f4eb;
+    margin-bottom: 20px;
+}
+
+h1 span {
+    color: #e49a2f;
+}
+
+.subtitle {
+    max-width: 680px;
+    margin: 0 auto 40px;
+    color: #aebdb5;
+    font-size: 17px;
+    line-height: 1.75;
+}
+
+.subtitle strong {
+    color: #f7f4eb;
+    font-size: 20px;
+}
+
+/* =========================
+   INPUT CARD
+========================= */
+
+.input-box {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 34px;
+    border-radius: 30px;
+    background: linear-gradient(145deg, #0c3a2b, #062118);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-top: 3px solid #e49a2f;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+}
+
+.input-label {
+    text-align: left;
+    color: #f7f4eb;
+    font-size: 14px;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 18px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 18px;
+    font-size: 16px;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+    background: #061a14;
+    color: #f7f4eb;
+    transition: 0.3s;
+}
+
+textarea::placeholder {
+    color: #71877e;
+}
+
+textarea:focus {
+    border-color: #e49a2f;
+    box-shadow: 0 0 0 3px rgba(228,154,47,0.10);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.voice-button {
+    background: transparent;
+    color: #f7f4eb;
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 13px 23px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 800;
+    transition: 0.3s;
+}
+
+.voice-button:hover {
+    background: #f7f4eb;
+    color: #10291f;
+    transform: translateY(-3px);
+}
+
+.match-button {
+    background: #e49a2f;
+    color: #10291f;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 900;
+    transition: 0.3s;
+    box-shadow: 0 10px 25px rgba(228,154,47,0.15);
+}
+
+.match-button:hover {
+    background: #f5b64e;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(228,154,47,0.25);
+}
+
+/* =========================
+   QUICK INFO
+========================= */
+
+.quick-info {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    color: #aebdb5;
+    font-size: 13px;
+}
+
+.quick-info span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* =========================
+   RESULT
+========================= */
+
+#result {
+    margin-top: 35px;
+}
+
+.result-box {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px;
+    border-radius: 28px;
+    background: linear-gradient(145deg, #0b2d21, #09231a);
+    border: 1px solid rgba(255,255,255,0.09);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    animation: appear 0.3s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-icon {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.result-title {
+    color: #aebdb5;
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.service-name {
+    font-size: 34px;
+    font-weight: 950;
+    color: #e49a2f;
+    margin: 12px 0 15px;
+}
+
+.result-description {
+    color: #c4d0ca;
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+.profile-button {
+    background: #e49a2f;
+    color: #10291f;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 900;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.profile-button:hover {
+    background: #f5b64e;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(228,154,47,0.25);
+}
+
+.error {
+    color: #ff8585;
+    font-weight: 800;
+}
+
+.suggestion {
+    margin-top: 15px;
+    color: #aebdb5;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #03110d;
+    color: #899990;
+    padding: 35px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+footer .authors {
+    color: #e49a2f;
+    font-weight: 900;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 1050px) {
+
+    header {
+        padding: 17px 5%;
+    }
+
+    .navigation {
+        gap: 12px;
+    }
+
+    .navigation button {
+        font-size: 12px;
+    }
+
+}
+
+@media(max-width: 760px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 17px 5%;
+    }
+
+    .navigation {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .navigation button {
+        font-size: 11px;
+    }
+
+    .navigation .logout-button {
+        padding: 9px 15px;
+    }
+
+    .container {
+        padding: 55px 5% 75px;
+    }
+
+    h1 {
+        font-size: 48px;
+        letter-spacing: -3px;
+    }
+
+    .subtitle {
+        font-size: 15px;
+    }
+
+    .input-box {
+        padding: 22px;
+        border-radius: 24px;
+    }
+
+    .quick-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    footer {
+        justify-content: center;
+        text-align: center;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="brand">
+        <div>
+
+            <div class="logo">
+                Quick<span>Fix</span>
+            </div>
+
+            <div
+                class="tagline"
+                id="tagline"
+                data-i18n="tagline">
+                Your Local Help, Anytime
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="navigation">
+
+        <button
+            onclick="goHome()"
+            data-i18n="home">
+            Home
+        </button>
+
+        <button
+            onclick="openServices()"
+            data-i18n="services">
+            Services
+        </button>
+
+        <button
+            onclick="openSnapFix()"
+            data-i18n="snapFix">
+            Snap & Fix
+        </button>
+
+
+        <select
+            id="languageSelect"
+            class="language-select"
+            onchange="changeLanguage(this.value)"
+            aria-label="Language">
+
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+            <option value="mr">मराठी</option>
+
+        </select>
+
+
+        <button
+            class="logout-button"
+            onclick="logout()"
+            data-i18n="logout">
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<div class="container">
+
+    <div class="icon">
+        ⚡
+    </div>
+
+
+    <h1>
+        <span data-i18n="quick">Quick</span>
+        <span data-i18n="match"> Match</span>
+    </h1>
+
+
+    <p class="subtitle">
+
+        <strong data-i18n="howCan">
+            How can we help you today?
+        </strong>
+
+        <br>
+
+        <span data-i18n="subtitle">
+            Tell us about your problem by typing or speaking.
+            We'll identify the right type of helper for you.
+        </span>
+
+    </p>
+
+
+    <div class="input-box">
+
+        <div
+            class="input-label"
+            data-i18n="describe">
+            Describe your problem
+        </div>
+
+
+        <textarea
+            id="problem"
+            data-i18n-placeholder="problemPlaceholder"
+            placeholder="Example: My bathroom tap is leaking..."
+        ></textarea>
+
+
+        <div class="button-row">
+
+            <button
+                class="voice-button"
+                onclick="startVoice()"
+                data-i18n="speak">
+                🎤 Speak
+            </button>
+
+            <button
+                class="match-button"
+                onclick="findHelper()"
+                data-i18n="findHelper">
+                🔍 Find My Helper
+            </button>
+
+        </div>
+
+
+        <div class="quick-info">
+
+            <span data-i18n="typeProblem">
+                ✍️ Type your problem
+            </span>
+
+            <span data-i18n="useVoice">
+                🎤 Use your voice
+            </span>
+
+            <span data-i18n="matchedQuickly">
+                ⚡ Get matched quickly
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div id="result"></div>
+
+</div>
+
+
+<footer>
+
+    <div>
+        © 2026 QuickFix
+    </div>
+
+    <div class="authors">
+        Pranali Bhoyar and Mrunmayi Jadhav
+    </div>
+
+    <div data-i18n="footerTagline">
+        Your Local Help, Anytime
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   LANGUAGE SYSTEM
+========================================================= */
+
+const translations = {
+
+    en: {
+
+        tagline: "Your Local Help, Anytime",
+
+        home: "Home",
+        services: "Services",
+        snapFix: "Snap & Fix",
+        logout: "Logout",
+
+        quick: "Quick",
+        match: " Match",
+
+        howCan: "How can we help you today?",
+
+        subtitle:
+            "Tell us about your problem by typing or speaking. We'll identify the right type of helper for you.",
+
+        describe:
+            "Describe your problem",
+
+        problemPlaceholder:
+            "Example: My bathroom tap is leaking...",
+
+        speak:
+            "🎤 Speak",
+
+        findHelper:
+            "🔍 Find My Helper",
+
+        typeProblem:
+            "✍️ Type your problem",
+
+        useVoice:
+            "🎤 Use your voice",
+
+        matchedQuickly:
+            "⚡ Get matched quickly",
+
+        footerTagline:
+            "Your Local Help, Anytime",
+
+        emptyProblem:
+            "Please tell us about your problem first.",
+
+        voiceNotSupported:
+            "Voice input is not supported in this browser. Please type your problem.",
+
+        listening:
+            "Listening... Speak now 🎤",
+
+        voiceError:
+            "Sorry, I couldn't hear you. Please try again.",
+
+        matchFound:
+            "QuickFix Match Found",
+
+        recommends:
+            "Based on your problem, QuickFix recommends a",
+
+        helperForYou:
+            "helper for you.",
+
+        viewHelpers:
+            "👨‍🔧 View Helpers",
+
+        notIdentified:
+            "We couldn't identify the service yet.",
+
+        moreDetail:
+            "Try describing your problem with a little more detail.",
+
+        example:
+            "Example:",
+
+        tapExample:
+            '"My bathroom tap is leaking."',
+
+        fanExample:
+            '"My ceiling fan is not working."',
+
+        movingExample:
+            '"I need help moving some boxes."'
+
+    },
+
+
+    hi: {
+
+        tagline:
+            "आपकी स्थानीय मदद, कभी भी",
+
+        home: "होम",
+        services: "सेवाएँ",
+        snapFix: "स्नैप & फिक्स",
+        logout: "लॉगआउट",
+
+        quick: "क्विक",
+        match: " मैच",
+
+        howCan:
+            "आज हम आपकी कैसे मदद कर सकते हैं?",
+
+        subtitle:
+            "अपनी समस्या टाइप करके या बोलकर बताएं। हम आपके लिए सही प्रकार के हेल्पर की पहचान करेंगे।",
+
+        describe:
+            "अपनी समस्या का विवरण दें",
+
+        problemPlaceholder:
+            "उदाहरण: मेरे बाथरूम का नल लीक हो रहा है...",
+
+        speak:
+            "🎤 बोलें",
+
+        findHelper:
+            "🔍 मेरा हेल्पर खोजें",
+
+        typeProblem:
+            "✍️ अपनी समस्या टाइप करें",
+
+        useVoice:
+            "🎤 अपनी आवाज़ का उपयोग करें",
+
+        matchedQuickly:
+            "⚡ जल्दी सही हेल्पर पाएं",
+
+        footerTagline:
+            "आपकी स्थानीय मदद, कभी भी",
+
+        emptyProblem:
+            "कृपया पहले अपनी समस्या के बारे में बताएं।",
+
+        voiceNotSupported:
+            "इस ब्राउज़र में वॉइस इनपुट समर्थित नहीं है। कृपया अपनी समस्या टाइप करें।",
+
+        listening:
+            "सुन रहे हैं... अब बोलें 🎤",
+
+        voiceError:
+            "माफ़ कीजिए, मैं आपकी आवाज़ सुन नहीं पाया। कृपया फिर से कोशिश करें।",
+
+        matchFound:
+            "QuickFix मैच मिल गया",
+
+        recommends:
+            "आपकी समस्या के आधार पर QuickFix आपके लिए",
+
+        helperForYou:
+            "हेल्पर की सलाह देता है।",
+
+        viewHelpers:
+            "👨‍🔧 हेल्पर्स देखें",
+
+        notIdentified:
+            "हम अभी सेवा की पहचान नहीं कर पाए।",
+
+        moreDetail:
+            "अपनी समस्या को थोड़ी अधिक जानकारी के साथ बताने की कोशिश करें।",
+
+        example:
+            "उदाहरण:",
+
+        tapExample:
+            '"मेरे बाथरूम का नल लीक हो रहा है।"',
+
+        fanExample:
+            '"मेरे सीलिंग फैन ने काम करना बंद कर दिया है।"',
+
+        movingExample:
+            '"मुझे कुछ बॉक्स शिफ्ट करने में मदद चाहिए।"'
+
+    },
+
+
+    mr: {
+
+        tagline:
+            "तुमची स्थानिक मदत, कधीही",
+
+        home: "होम",
+        services: "सेवा",
+        snapFix: "स्नॅप & फिक्स",
+        logout: "लॉगआउट",
+
+        quick: "क्विक",
+        match: " मॅच",
+
+        howCan:
+            "आज आम्ही तुमची कशी मदत करू शकतो?",
+
+        subtitle:
+            "तुमची समस्या टाइप करून किंवा बोलून सांगा. आम्ही तुमच्यासाठी योग्य प्रकारचा हेल्पर शोधू.",
+
+        describe:
+            "तुमच्या समस्येचे वर्णन करा",
+
+        problemPlaceholder:
+            "उदाहरण: माझ्या बाथरूमचा नळ गळत आहे...",
+
+        speak:
+            "🎤 बोला",
+
+        findHelper:
+            "🔍 माझा हेल्पर शोधा",
+
+        typeProblem:
+            "✍️ तुमची समस्या टाइप करा",
+
+        useVoice:
+            "🎤 तुमचा आवाज वापरा",
+
+        matchedQuickly:
+            "⚡ पटकन योग्य हेल्पर मिळवा",
+
+        footerTagline:
+            "तुमची स्थानिक मदत, कधीही",
+
+        emptyProblem:
+            "कृपया आधी तुमची समस्या सांगा.",
+
+        voiceNotSupported:
+            "या ब्राउझरमध्ये व्हॉइस इनपुट उपलब्ध नाही. कृपया तुमची समस्या टाइप करा.",
+
+        listening:
+            "ऐकत आहे... आता बोला 🎤",
+
+        voiceError:
+            "माफ करा, मला तुमचे बोलणे ऐकू आले नाही. कृपया पुन्हा प्रयत्न करा.",
+
+        matchFound:
+            "QuickFix मॅच सापडला",
+
+        recommends:
+            "तुमच्या समस्येनुसार QuickFix तुमच्यासाठी",
+
+        helperForYou:
+            "हेल्परची शिफारस करतो.",
+
+        viewHelpers:
+            "👨‍🔧 हेल्पर्स पहा",
+
+        notIdentified:
+            "आम्हाला अजून सेवेची ओळख पटली नाही.",
+
+        moreDetail:
+            "तुमच्या समस्येचे थोडे अधिक तपशीलवार वर्णन करा.",
+
+        example:
+            "उदाहरण:",
+
+        tapExample:
+            '"माझ्या बाथरूमचा नळ गळत आहे."',
+
+        fanExample:
+            '"माझा सीलिंग फॅन चालत नाही."',
+
+        movingExample:
+            '"मला काही बॉक्स हलवण्यासाठी मदत हवी आहे."'
+
+    }
+
+};
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+let currentLanguage =
+    localStorage.getItem("quickfixLanguage") || "en";
+
+
+function changeLanguage(language) {
+
+    currentLanguage =
+        language;
+
+    localStorage.setItem(
+        "quickfixLanguage",
+        language
+    );
+
+    applyLanguage();
+
+}
+
+
+function applyLanguage() {
+
+    const t =
+        translations[currentLanguage] ||
+        translations.en;
+
+    document.documentElement.lang =
+        currentLanguage;
+
+
+    document.querySelectorAll("[data-i18n]")
+        .forEach(element => {
+
+            const key =
+                element.getAttribute("data-i18n");
+
+            if (t[key] !== undefined) {
+
+                element.textContent =
+                    t[key];
+
+            }
+
+        });
+
+
+    document.querySelectorAll("[data-i18n-placeholder]")
+        .forEach(element => {
+
+            const key =
+                element.getAttribute(
+                    "data-i18n-placeholder"
+                );
+
+            if (t[key] !== undefined) {
+
+                element.placeholder =
+                    t[key];
+
+            }
+
+        });
+
+
+    const languageSelect =
+        document.getElementById(
+            "languageSelect"
+        );
+
+    if (languageSelect) {
+
+        languageSelect.value =
+            currentLanguage;
+
+    }
+
+}
+
+
+applyLanguage();
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goHome() {
+
+    window.location.href =
+        "home.html";
+
+}
+
+
+function openServices() {
+
+    window.location.href =
+        "services.html";
+
+}
+
+
+function openSnapFix() {
+
+    window.location.href =
+        "snap-fix.html";
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout() {
+
+    localStorage.removeItem(
+        "currentUser"
+    );
+
+    localStorage.removeItem(
+        "quickfixCurrentUser"
+    );
+
+    window.location.replace(
+        "index.html"
+    );
+
+}
+
+
+/* =========================================================
+   VOICE INPUT
+========================================================= */
+
+function startVoice() {
+
+    const textarea =
+        document.getElementById(
+            "problem"
+        );
+
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+
+    const t =
+        translations[currentLanguage] ||
+        translations.en;
+
+
+    if (!SpeechRecognition) {
+
+        alert(
+            t.voiceNotSupported
+        );
+
+        return;
+
+    }
+
+
+    const recognition =
+        new SpeechRecognition();
+
+
+    if (currentLanguage === "hi") {
+
+        recognition.lang =
+            "hi-IN";
+
+    }
+
+    else if (currentLanguage === "mr") {
+
+        recognition.lang =
+            "mr-IN";
+
+    }
+
+    else {
+
+        recognition.lang =
+            "en-IN";
+
+    }
+
+
+    recognition.continuous =
+        false;
+
+    recognition.interimResults =
+        false;
+
+
+    recognition.onstart =
+        function () {
+
+            textarea.placeholder =
+                t.listening;
+
+        };
+
+
+    recognition.onresult =
+        function (event) {
+
+            const spokenText =
+                event.results[0][0].transcript;
+
+            textarea.value =
+                spokenText;
+
+        };
+
+
+    recognition.onerror =
+        function () {
+
+            alert(
+                t.voiceError
+            );
+
+        };
+
+
+    recognition.onend =
+        function () {
+
+            textarea.placeholder =
+                t.problemPlaceholder;
+
+        };
+
+
+    recognition.start();
+
+}
+
+
+/* =========================================================
+   SERVICE NAME TRANSLATIONS
+========================================================= */
+
+const serviceTranslations = {
+
+    en: {
+        "Plumber": "Plumber",
+        "Electrician": "Electrician",
+        "Tutor": "Tutor",
+        "Carpenter": "Carpenter",
+        "Cleaner": "Cleaner",
+        "Moving Help": "Moving Help"
+    },
+
+    hi: {
+        "Plumber": "प्लंबर",
+        "Electrician": "इलेक्ट्रीशियन",
+        "Tutor": "ट्यूटर",
+        "Carpenter": "बढ़ई",
+        "Cleaner": "क्लीनर",
+        "Moving Help": "मूविंग हेल्प"
+    },
+
+    mr: {
+        "Plumber": "प्लंबर",
+        "Electrician": "इलेक्ट्रीशियन",
+        "Tutor": "ट्यूटर",
+        "Carpenter": "सुतार",
+        "Cleaner": "क्लीनर",
+        "Moving Help": "सामान हलवण्याची मदत"
+    }
+
+};
+
+
+function translateService(service) {
+
+    return (
+        serviceTranslations[currentLanguage] &&
+        serviceTranslations[currentLanguage][service]
+    ) || service;
+
+}
+
+
+/* =========================================================
+   FIND HELPER
+========================================================= */
+
+function findHelper() {
+
+    const problem =
+        document
+            .getElementById("problem")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    const result =
+        document.getElementById("result");
+
+
+    const t =
+        translations[currentLanguage] ||
+        translations.en;
+
+
+    if (problem === "") {
+
+        result.innerHTML = `
+
+            <div class="result-box">
+
+                <div class="result-icon">
+                    💬
+                </div>
+
+                <p class="error">
+                    ${t.emptyProblem}
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    let service = "";
+
+
+    /* ==============================
+       PLUMBER
+    ============================== */
+
+    if (
+
+        problem.includes("tap") ||
+        problem.includes("faucet") ||
+        problem.includes("pipe") ||
+        problem.includes("water") ||
+        problem.includes("leak") ||
+        problem.includes("leaking") ||
+        problem.includes("leakage") ||
+        problem.includes("toilet") ||
+        problem.includes("sink") ||
+        problem.includes("washbasin") ||
+        problem.includes("bathroom") ||
+        problem.includes("drain") ||
+        problem.includes("plumber") ||
+        problem.includes("plumbing") ||
+
+        problem.includes("नल") ||
+        problem.includes("पानी") ||
+        problem.includes("लीक") ||
+        problem.includes("पाइप") ||
+        problem.includes("टॉयलेट") ||
+        problem.includes("सिंक") ||
+
+        problem.includes("नळ") ||
+        problem.includes("पाणी") ||
+        problem.includes("गळत") ||
+        problem.includes("गळती") ||
+        problem.includes("पाईप") ||
+        problem.includes("शौचालय") ||
+        problem.includes("सिंक")
+
+    ) {
+
+        service = "Plumber";
+
+    }
+
+
+    /* ==============================
+       ELECTRICIAN
+    ============================== */
+
+    else if (
+
+        problem.includes("fan") ||
+        problem.includes("light") ||
+        problem.includes("bulb") ||
+        problem.includes("switch") ||
+        problem.includes("socket") ||
+        problem.includes("electric") ||
+        problem.includes("electricity") ||
+        problem.includes("wire") ||
+        problem.includes("wiring") ||
+        problem.includes("power") ||
+        problem.includes("plug") ||
+
+        problem.includes("पंखा") ||
+        problem.includes("लाइट") ||
+        problem.includes("बल्ब") ||
+        problem.includes("स्विच") ||
+        problem.includes("बिजली") ||
+        problem.includes("तार") ||
+
+        problem.includes("दिवा") ||
+        problem.includes("वीज")
+
+    ) {
+
+        service = "Electrician";
+
+    }
+
+
+    /* ==============================
+       TUTOR
+    ============================== */
+
+    else if (
+
+        problem.includes("study") ||
+        problem.includes("homework") ||
+        problem.includes("math") ||
+        problem.includes("mathematics") ||
+        problem.includes("science") ||
+        problem.includes("school") ||
+        problem.includes("exam") ||
+        problem.includes("teacher") ||
+        problem.includes("tutor") ||
+        problem.includes("student") ||
+
+        problem.includes("पढ़ाई") ||
+        problem.includes("होमवर्क") ||
+        problem.includes("गणित") ||
+        problem.includes("विज्ञान") ||
+        problem.includes("स्कूल") ||
+        problem.includes("परीक्षा") ||
+        problem.includes("शिक्षक") ||
+        problem.includes("छात्र") ||
+
+        problem.includes("अभ्यास") ||
+        problem.includes("शाळा") ||
+        problem.includes("विद्यार्थी")
+
+    ) {
+
+        service = "Tutor";
+
+    }
+
+
+    /* ==============================
+       CARPENTER
+    ============================== */
+
+    else if (
+
+        problem.includes("furniture") ||
+        problem.includes("table") ||
+        problem.includes("chair") ||
+        problem.includes("door") ||
+        problem.includes("wood") ||
+        problem.includes("wooden") ||
+        problem.includes("cupboard") ||
+        problem.includes("wardrobe") ||
+        problem.includes("shelf") ||
+        problem.includes("carpenter") ||
+
+        problem.includes("फर्नीचर") ||
+        problem.includes("टेबल") ||
+        problem.includes("कुर्सी") ||
+        problem.includes("दरवाजा") ||
+        problem.includes("लकड़ी") ||
+        problem.includes("अलमारी") ||
+
+        problem.includes("फर्निचर") ||
+        problem.includes("खुर्ची") ||
+        problem.includes("लाकूड") ||
+        problem.includes("कपाट")
+
+    ) {
+
+        service = "Carpenter";
+
+    }
+
+
+    /* ==============================
+       CLEANER
+    ============================== */
+
+    else if (
+
+        problem.includes("clean") ||
+        problem.includes("cleaning") ||
+        problem.includes("dirty") ||
+        problem.includes("dust") ||
+        problem.includes("dirt") ||
+        problem.includes("floor") ||
+        problem.includes("room") ||
+        problem.includes("cleaner") ||
+
+        problem.includes("सफाई") ||
+        problem.includes("गंदा") ||
+        problem.includes("धूल") ||
+        problem.includes("कमरा") ||
+        problem.includes("फर्श") ||
+
+        problem.includes("स्वच्छ") ||
+        problem.includes("घाण") ||
+        problem.includes("धूळ") ||
+        problem.includes("खोली") ||
+        problem.includes("जमीन")
+
+    ) {
+
+        service = "Cleaner";
+
+    }
+
+
+    /* ==============================
+       MOVING HELP
+    ============================== */
+
+    else if (
+
+        problem.includes("move") ||
+        problem.includes("moving") ||
+        problem.includes("shift") ||
+        problem.includes("shifting") ||
+        problem.includes("boxes") ||
+        problem.includes("packing") ||
+        problem.includes("pack") ||
+        problem.includes("relocate") ||
+        problem.includes("relocation") ||
+
+        problem.includes("शिफ्ट") ||
+        problem.includes("स्थानांतर") ||
+        problem.includes("बॉक्स") ||
+        problem.includes("पैकिंग") ||
+        problem.includes("पैक") ||
+
+        problem.includes("हलव") ||
+        problem.includes("स्थलांतर") ||
+        problem.includes("पेट्या") ||
+        problem.includes("पॅकिंग")
+
+    ) {
+
+        service = "Moving Help";
+
+    }
+
+
+    /* ==============================
+       MATCH FOUND
+    ============================== */
+
+    if (service !== "") {
+
+        const translatedService =
+            translateService(service);
+
+
+        result.innerHTML = `
+
+            <div class="result-box">
+
+                <div class="result-icon">
+                    🎯
+                </div>
+
+                <div class="result-title">
+                    ${t.matchFound}
+                </div>
+
+                <div class="service-name">
+                    ${translatedService}
+                </div>
+
+                <p class="result-description">
+
+                    ${t.recommends}
+
+                    <strong>
+                        ${translatedService}
+                    </strong>
+
+                    ${t.helperForYou}
+
+                </p>
+
+                <br>
+
+                <button
+                    class="profile-button"
+                    onclick="viewHelpers('${service}')">
+
+                    ${t.viewHelpers}
+
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* ==============================
+       NO MATCH
+    ============================== */
+
+    else {
+
+        result.innerHTML = `
+
+            <div class="result-box">
+
+                <div class="result-icon">
+                    🤔
+                </div>
+
+                <p>
+                    ${t.notIdentified}
+                </p>
+
+                <p class="suggestion">
+                    ${t.moreDetail}
+                </p>
+
+                <br>
+
+                <p class="suggestion">
+
+                    <strong>
+                        ${t.example}
+                    </strong>
+
+                    <br><br>
+
+                    ${t.tapExample}
+
+                    <br>
+
+                    ${t.fanExample}
+
+                    <br>
+
+                    ${t.movingExample}
+
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   OPEN HELPER PROFILES
+========================================================= */
+
+function viewHelpers(service) {
+
+    localStorage.setItem(
+        "selectedService",
+        service
+    );
+
+    localStorage.setItem(
+        "quickFixSelectedService",
+        service
+    );
+
+    window.location.href =
+        "service-profiles.html";
+
+}
+
+
+/* =========================================================
+   INITIAL LANGUAGE
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        currentLanguage =
+            localStorage.getItem(
+                "quickfixLanguage"
+            ) || "en";
+
+        applyLanguage();
+
+    }
+);
+
+</script>
+
+</body>
+</html>

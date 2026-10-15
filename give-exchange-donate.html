@@ -1,0 +1,3058 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QuickFix - Give, Exchange or Donate</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #061b16;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            background: #022c22;
+            padding: 18px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #f5a623;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #d2e2dd;
+            text-decoration: none;
+            padding: 9px 11px;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(245,166,35,0.10);
+            color: white;
+        }
+
+        .nav-links .active {
+            color: #f5a623;
+            background: rgba(245,166,35,0.13);
+        }
+
+        /* ================= LANGUAGE ================= */
+
+        .language-select {
+            background: #0a261f;
+            color: white;
+            border: 1px solid rgba(245,166,35,0.35);
+            border-radius: 9px;
+            padding: 9px 10px;
+            font-size: 13px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .language-select:focus {
+            border-color: #f5a623;
+        }
+
+        .language-select option {
+            background: #061b16;
+            color: white;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            padding: 70px 8%;
+
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(245,166,35,0.14),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 10% 80%,
+                    rgba(16,185,129,0.08),
+                    transparent 28%
+                ),
+                #061b16;
+        }
+
+        .hero-content {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #f5a623;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: rgba(245,166,35,0.10);
+            border: 1px solid rgba(245,166,35,0.30);
+            color: #f5a623;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 64px);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #f5a623;
+        }
+
+        .hero p {
+            max-width: 750px;
+            color: #afc4bd;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            padding: 70px 8% 90px;
+            background: #022c22;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        /* ================= ACTION CARDS ================= */
+
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 70px;
+        }
+
+        .action-card {
+            background: #0a261f;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .action-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(245,166,35,0.40);
+        }
+
+        .action-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: rgba(245,166,35,0.11);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 29px;
+            margin-bottom: 20px;
+        }
+
+        .action-card h2 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .action-card p {
+            color: #a9beb7;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* ================= FORM ================= */
+
+        .form-section {
+            display: none;
+            margin-bottom: 70px;
+        }
+
+        .form-section.show {
+            display: block;
+        }
+
+        .section-title {
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #9db5ad;
+            line-height: 1.7;
+        }
+
+        .form-card {
+            background: #0a261f;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 22px;
+            padding: 35px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            margin-bottom: 8px;
+            color: #dce8e4;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px;
+
+            background: #061b16;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+
+            color: white;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #f5a623;
+        }
+
+        select option {
+            background: #061b16;
+            color: white;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            margin-top: 25px;
+            padding: 14px 25px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: #f5a623;
+            color: #17210e;
+
+            font-size: 15px;
+            font-weight: 800;
+
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        .success {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+
+            background: rgba(16,185,129,0.10);
+            border: 1px solid rgba(16,185,129,0.30);
+
+            color: #b7f7dc;
+            line-height: 1.6;
+        }
+
+        .error {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+
+            background: rgba(239,68,68,0.10);
+            border: 1px solid rgba(239,68,68,0.30);
+
+            color: #fecaca;
+            line-height: 1.6;
+        }
+
+        /* ================= COMMUNITY ITEMS ================= */
+
+        .items-title {
+            margin-bottom: 30px;
+        }
+
+        .items-title h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .items-title p {
+            color: #9db5ad;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .item-card {
+            background: #0a261f;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 26px;
+            transition: 0.3s;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(245,166,35,0.35);
+        }
+
+        .item-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 15px;
+            background: rgba(245,166,35,0.11);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 27px;
+            margin-bottom: 18px;
+        }
+
+        .item-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .item-card p {
+            color: #a9beb7;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .details {
+            margin-top: 18px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .details div {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .details span:first-child {
+            color: #819b93;
+        }
+
+        .details span:last-child {
+            color: #e4efeb;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .item-btn {
+            width: 100%;
+            margin-top: 18px;
+            padding: 12px;
+
+            border-radius: 9px;
+
+            border: 1px solid rgba(245,166,35,0.40);
+            background: transparent;
+
+            color: #f5a623;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .item-btn:hover {
+            background: #f5a623;
+            color: #17210e;
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 55px 20px;
+
+            background: #0a261f;
+            border: 1px dashed rgba(255,255,255,0.12);
+            border-radius: 20px;
+
+            color: #9db5ad;
+        }
+
+        .loading {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px;
+            color: #9db5ad;
+        }
+
+        /* ================= INFO ================= */
+
+        .info {
+            margin-top: 65px;
+            padding: 30px;
+            border-radius: 20px;
+
+            background: rgba(245,166,35,0.06);
+            border: 1px solid rgba(245,166,35,0.15);
+
+            text-align: center;
+        }
+
+        .info h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .info h3 span {
+            color: #f5a623;
+        }
+
+        .info p {
+            max-width: 750px;
+            margin: auto;
+            color: #a9beb7;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* ================= MODAL ================= */
+
+        .modal {
+            display: none;
+
+            position: fixed;
+            inset: 0;
+
+            background: rgba(0,0,0,0.75);
+
+            z-index: 2000;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 450px;
+
+            background: #0a261f;
+
+            border: 1px solid rgba(245,166,35,0.25);
+            border-radius: 20px;
+
+            padding: 30px;
+
+            text-align: center;
+        }
+
+        .modal-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .modal-box h2 {
+            margin-bottom: 12px;
+        }
+
+        .modal-box p {
+            color: #a9beb7;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .close-btn {
+            margin-top: 22px;
+            padding: 12px 25px;
+
+            border: none;
+            border-radius: 9px;
+
+            background: #f5a623;
+            color: #17210e;
+
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #011c16;
+            border-top: 1px solid rgba(255,255,255,0.06);
+
+            text-align: center;
+
+            padding: 28px 15px;
+
+            color: #829b94;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: #f5a623;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 950px) {
+
+            nav {
+                flex-direction: column;
+            }
+
+            .actions,
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            .form-card {
+                padding: 25px;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .hero {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+
+            .main {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <nav>
+
+        <div class="logo">
+            Quick<span>Fix</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="home.html" data-i18n="home">
+                Home
+            </a>
+
+            <a href="quick-match.html" data-i18n="quickMatch">
+                Quick Match
+            </a>
+
+            <a href="my-fixes.html" data-i18n="myFixes">
+                My Fixes
+            </a>
+
+            <a href="helper-dashboard.html" data-i18n="helperDashboard">
+                Helper Dashboard
+            </a>
+
+            <a href="snap-fix.html" data-i18n="snapFix">
+                Snap & Fix
+            </a>
+
+            <a href="services.html" data-i18n="services">
+                Services
+            </a>
+
+            <a href="give-grow.html"
+               class="active"
+               data-i18n="giveGrow">
+                Give & Grow
+            </a>
+
+            <a href="index.html" data-i18n="logout">
+                Logout
+            </a>
+
+            <select
+                id="languageSelect"
+                class="language-select"
+                onchange="changeLanguage(this.value)">
+
+                <option value="en">English</option>
+                <option value="hi">हिंदी</option>
+                <option value="mr">मराठी</option>
+
+            </select>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <a href="give-grow.html"
+               class="back-link"
+               data-i18n="backToGiveGrow">
+
+                ← Back to Give & Grow
+
+            </a>
+
+            <div class="badge"
+                 data-i18n="communitySharing">
+
+                🎁 COMMUNITY SHARING
+
+            </div>
+
+            <h1>
+
+                <span data-i18n="giveWord">
+                    Give.
+                </span>
+
+                <span data-i18n="exchangeWord">
+                    Exchange.
+                </span>
+
+                <span data-i18n="donateWord">
+                    Donate.
+                </span>
+
+            </h1>
+
+            <p data-i18n="heroText">
+
+                Give useful items a second life.
+                Share something you no longer need,
+                exchange it with someone in your community,
+                or donate it to someone who needs it.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <section class="main">
+
+        <div class="container">
+
+
+            <!-- ================= ACTIONS ================= -->
+
+            <div class="actions">
+
+                <div
+                    class="action-card"
+                    onclick="openForm('Give')">
+
+                    <div class="action-icon">
+                        🎁
+                    </div>
+
+                    <h2 data-i18n="giveItemTitle">
+                        Give an Item
+                    </h2>
+
+                    <p data-i18n="giveItemText">
+
+                        Have something useful that you
+                        no longer need? Share it with
+                        someone in the community.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="action-card"
+                    onclick="openForm('Exchange')">
+
+                    <div class="action-icon">
+                        🔄
+                    </div>
+
+                    <h2 data-i18n="exchangeItemTitle">
+                        Exchange an Item
+                    </h2>
+
+                    <p data-i18n="exchangeItemText">
+
+                        Exchange something you have
+                        for something another person
+                        needs.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="action-card"
+                    onclick="openForm('Donate')">
+
+                    <div class="action-icon">
+                        💛
+                    </div>
+
+                    <h2 data-i18n="donateItemTitle">
+                        Donate an Item
+                    </h2>
+
+                    <p data-i18n="donateItemText">
+
+                        Donate useful items to someone
+                        who genuinely needs them.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= FORM ================= -->
+
+            <div
+                class="form-section"
+                id="formSection">
+
+                <div class="section-title">
+
+                    <h2 id="formTitle"
+                        data-i18n="addItem">
+                        Add Your Item
+                    </h2>
+
+                    <p data-i18n="formDescription">
+
+                        Fill in the details below to
+                        share your item with the community.
+
+                    </p>
+
+                </div>
+
+
+                <div class="form-card">
+
+                    <form id="itemForm">
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label data-i18n="yourName">
+                                    Your Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="ownerName"
+                                    data-i18n-placeholder="namePlaceholder"
+                                    placeholder="Enter your name"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label data-i18n="itemName">
+                                    Item Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="itemName"
+                                    data-i18n-placeholder="itemPlaceholder"
+                                    placeholder="Example: Study Table"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label data-i18n="category">
+                                    Category
+                                </label>
+
+                                <select
+                                    id="category"
+                                    required>
+
+                                    <option value=""
+                                            data-i18n="selectCategory">
+                                        Select category
+                                    </option>
+
+                                    <option value="Furniture">
+                                        Furniture
+                                    </option>
+
+                                    <option value="Electronics">
+                                        Electronics
+                                    </option>
+
+                                    <option value="Books">
+                                        Books
+                                    </option>
+
+                                    <option value="Clothing">
+                                        Clothing
+                                    </option>
+
+                                    <option value="Kitchen">
+                                        Kitchen
+                                    </option>
+
+                                    <option value="Home Items">
+                                        Home Items
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label data-i18n="condition">
+                                    Condition
+                                </label>
+
+                                <select
+                                    id="condition"
+                                    required>
+
+                                    <option value=""
+                                            data-i18n="selectCondition">
+                                        Select condition
+                                    </option>
+
+                                    <option value="New">
+                                        New
+                                    </option>
+
+                                    <option value="Like New">
+                                        Like New
+                                    </option>
+
+                                    <option value="Good">
+                                        Good
+                                    </option>
+
+                                    <option value="Used">
+                                        Used
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label data-i18n="location">
+                                    Location
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="location"
+                                    data-i18n-placeholder="locationPlaceholder"
+                                    placeholder="Enter your area"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label data-i18n="contactNumber">
+                                    Contact Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="contact"
+                                    data-i18n-placeholder="contactPlaceholder"
+                                    placeholder="Enter contact number"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group full">
+
+                                <label data-i18n="itemDescription">
+                                    Item Description
+                                </label>
+
+                                <textarea
+                                    id="description"
+                                    data-i18n-placeholder="descriptionPlaceholder"
+                                    placeholder="Describe the item..."
+                                    required></textarea>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="submit-btn"
+                            id="submitBtn"
+                            data-i18n="publishItem">
+
+                            Publish Item →
+
+                        </button>
+
+
+                        <div
+                            class="success"
+                            id="successMessage">
+                        </div>
+
+
+                        <div
+                            class="error"
+                            id="errorMessage">
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= COMMUNITY ITEMS ================= -->
+
+            <div class="items-title">
+
+                <h2 data-i18n="communityItems">
+                    Community Items
+                </h2>
+
+                <p data-i18n="communityItemsText">
+
+                    Explore useful items shared by
+                    members of the QuickFix community.
+
+                </p>
+
+            </div>
+
+
+            <div
+                class="items-grid"
+                id="itemsGrid">
+
+                <div class="loading"
+                     data-i18n="loadingItems">
+
+                    Loading community items...
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= INFO ================= -->
+
+            <div class="info">
+
+                <h3>
+
+                    <span data-i18n="infoTitle">
+                        One person's unused item can become
+                        another person's useful resource.
+                    </span>
+
+                </h3>
+
+                <p data-i18n="infoText">
+
+                    QuickFix encourages responsible sharing
+                    within the community. Instead of throwing
+                    away useful things, users can give,
+                    exchange or donate them to people who
+                    may genuinely need them.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MODAL ================= -->
+
+    <div
+        class="modal"
+        id="modal">
+
+        <div class="modal-box">
+
+            <div class="modal-icon">
+                💛
+            </div>
+
+            <h2 data-i18n="interestRecorded">
+                Interest Recorded!
+            </h2>
+
+            <p id="modalMessage"
+               data-i18n="interestDefault">
+
+                Your interest has been recorded.
+
+            </p>
+
+            <button
+                class="close-btn"
+                onclick="closeModal()"
+                data-i18n="continue">
+
+                Continue
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        © 2026 QuickFix |
+
+        <strong>
+            Pranali Bhoyar and Mrunmayi Jadhav
+        </strong>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+    const API_BASE = "https://quickfix.pythonanywhere.com";
+
+        let selectedType = "Give";
+
+        let currentLanguage =
+            localStorage.getItem("quickfixLanguage") || "en";
+
+
+        /* =====================================================
+           TRANSLATIONS
+        ===================================================== */
+
+        const translations = {
+
+            en: {
+
+                home: "Home",
+                quickMatch: "Quick Match",
+                myFixes: "My Fixes",
+                helperDashboard: "Helper Dashboard",
+                snapFix: "Snap & Fix",
+                services: "Services",
+                giveGrow: "Give & Grow",
+                logout: "Logout",
+
+                backToGiveGrow:
+                    "← Back to Give & Grow",
+
+                communitySharing:
+                    "🎁 COMMUNITY SHARING",
+
+                giveWord:
+                    "Give.",
+
+                exchangeWord:
+                    "Exchange.",
+
+                donateWord:
+                    "Donate.",
+
+                heroText:
+                    "Give useful items a second life. Share something you no longer need, exchange it with someone in your community, or donate it to someone who needs it.",
+
+                giveItemTitle:
+                    "Give an Item",
+
+                giveItemText:
+                    "Have something useful that you no longer need? Share it with someone in the community.",
+
+                exchangeItemTitle:
+                    "Exchange an Item",
+
+                exchangeItemText:
+                    "Exchange something you have for something another person needs.",
+
+                donateItemTitle:
+                    "Donate an Item",
+
+                donateItemText:
+                    "Donate useful items to someone who genuinely needs them.",
+
+                addItem:
+                    "Add Your Item",
+
+                formDescription:
+                    "Fill in the details below to share your item with the community.",
+
+                yourName:
+                    "Your Name",
+
+                itemName:
+                    "Item Name",
+
+                category:
+                    "Category",
+
+                condition:
+                    "Condition",
+
+                location:
+                    "Location",
+
+                contactNumber:
+                    "Contact Number",
+
+                itemDescription:
+                    "Item Description",
+
+                namePlaceholder:
+                    "Enter your name",
+
+                itemPlaceholder:
+                    "Example: Study Table",
+
+                selectCategory:
+                    "Select category",
+
+                selectCondition:
+                    "Select condition",
+
+                locationPlaceholder:
+                    "Enter your area",
+
+                contactPlaceholder:
+                    "Enter contact number",
+
+                descriptionPlaceholder:
+                    "Describe the item...",
+
+                publishItem:
+                    "Publish Item →",
+
+                publishing:
+                    "Publishing...",
+
+                communityItems:
+                    "Community Items",
+
+                communityItemsText:
+                    "Explore useful items shared by members of the QuickFix community.",
+
+                loadingItems:
+                    "Loading community items...",
+
+                noItems:
+                    "No community items yet",
+
+                noItemsText:
+                    "Be the first person to give, exchange or donate an item.",
+
+                unableLoad:
+                    "Unable to load items",
+
+                backendMessage:
+                    "Make sure the QuickFix Flask backend is running.",
+
+                tryAgain:
+                    "Try Again",
+
+                type:
+                    "Type",
+
+                itemCondition:
+                    "Condition",
+
+                sharedBy:
+                    "Shared By",
+
+                interested:
+                    "I'm Interested",
+
+                requestItem:
+                    "Request Item",
+
+                interestedExchange:
+                    "Interested in Exchange",
+
+                infoTitle:
+                    "One person's unused item can become another person's useful resource.",
+
+                infoText:
+                    "QuickFix encourages responsible sharing within the community. Instead of throwing away useful things, users can give, exchange or donate them to people who may genuinely need them.",
+
+                interestRecorded:
+                    "Interest Recorded!",
+
+                interestDefault:
+                    "Your interest has been recorded.",
+
+                continue:
+                    "Continue",
+
+                interestMessage:
+                    "Your interest in",
+
+                recordedSuccessfully:
+                    "has been recorded successfully.",
+
+                publishSuccess:
+                    "✅ Your item has been successfully added to the QuickFix community.",
+
+                itemId:
+                    "Item ID"
+
+            },
+
+
+            hi: {
+
+                home: "होम",
+                quickMatch: "क्विक मैच",
+                myFixes: "मेरे फिक्स",
+                helperDashboard: "हेल्पर डैशबोर्ड",
+                snapFix: "स्नैप एंड फिक्स",
+                services: "सेवाएँ",
+                giveGrow: "गिव एंड ग्रो",
+                logout: "लॉगआउट",
+
+                backToGiveGrow:
+                    "← गिव एंड ग्रो पर वापस जाएँ",
+
+                communitySharing:
+                    "🎁 कम्युनिटी शेयरिंग",
+
+                giveWord:
+                    "दें।",
+
+                exchangeWord:
+                    "अदल-बदल करें।",
+
+                donateWord:
+                    "दान करें।",
+
+                heroText:
+                    "उपयोगी वस्तुओं को दूसरा जीवन दें। ऐसी चीज़ साझा करें जिसकी आपको अब आवश्यकता नहीं है, समुदाय के किसी व्यक्ति के साथ वस्तु बदलें या जरूरतमंद व्यक्ति को दान करें।",
+
+                giveItemTitle:
+                    "वस्तु दें",
+
+                giveItemText:
+                    "क्या आपके पास कोई उपयोगी वस्तु है जिसकी अब आपको आवश्यकता नहीं है? उसे कम्युनिटी के किसी व्यक्ति के साथ साझा करें।",
+
+                exchangeItemTitle:
+                    "वस्तु बदलें",
+
+                exchangeItemText:
+                    "अपनी वस्तु को ऐसी वस्तु के साथ बदलें जिसकी किसी अन्य व्यक्ति को आवश्यकता है।",
+
+                donateItemTitle:
+                    "वस्तु दान करें",
+
+                donateItemText:
+                    "उपयोगी वस्तुएँ ऐसे व्यक्ति को दान करें जिसे वास्तव में उनकी आवश्यकता है।",
+
+                addItem:
+                    "अपनी वस्तु जोड़ें",
+
+                formDescription:
+                    "अपनी वस्तु को कम्युनिटी के साथ साझा करने के लिए नीचे जानकारी भरें।",
+
+                yourName:
+                    "आपका नाम",
+
+                itemName:
+                    "वस्तु का नाम",
+
+                category:
+                    "श्रेणी",
+
+                condition:
+                    "स्थिति",
+
+                location:
+                    "स्थान",
+
+                contactNumber:
+                    "संपर्क नंबर",
+
+                itemDescription:
+                    "वस्तु का विवरण",
+
+                namePlaceholder:
+                    "अपना नाम दर्ज करें",
+
+                itemPlaceholder:
+                    "उदाहरण: स्टडी टेबल",
+
+                selectCategory:
+                    "श्रेणी चुनें",
+
+                selectCondition:
+                    "स्थिति चुनें",
+
+                locationPlaceholder:
+                    "अपना क्षेत्र दर्ज करें",
+
+                contactPlaceholder:
+                    "संपर्क नंबर दर्ज करें",
+
+                descriptionPlaceholder:
+                    "वस्तु का विवरण दें...",
+
+                publishItem:
+                    "वस्तु प्रकाशित करें →",
+
+                publishing:
+                    "प्रकाशित किया जा रहा है...",
+
+                communityItems:
+                    "कम्युनिटी की वस्तुएँ",
+
+                communityItemsText:
+                    "QuickFix कम्युनिटी के सदस्यों द्वारा साझा की गई उपयोगी वस्तुएँ देखें।",
+
+                loadingItems:
+                    "कम्युनिटी की वस्तुएँ लोड हो रही हैं...",
+
+                noItems:
+                    "अभी कोई कम्युनिटी वस्तु नहीं है",
+
+                noItemsText:
+                    "किसी वस्तु को देने, बदलने या दान करने वाले पहले व्यक्ति बनें।",
+
+                unableLoad:
+                    "वस्तुएँ लोड नहीं हो सकीं",
+
+                backendMessage:
+                    "सुनिश्चित करें कि QuickFix Flask backend चल रहा है।",
+
+                tryAgain:
+                    "फिर कोशिश करें",
+
+                type:
+                    "प्रकार",
+
+                itemCondition:
+                    "स्थिति",
+
+                sharedBy:
+                    "साझा किया",
+
+                interested:
+                    "मुझे रुचि है",
+
+                requestItem:
+                    "वस्तु का अनुरोध करें",
+
+                interestedExchange:
+                    "अदल-बदल में रुचि है",
+
+                infoTitle:
+                    "एक व्यक्ति की अनुपयोगी वस्तु दूसरे व्यक्ति के लिए उपयोगी संसाधन बन सकती है।",
+
+                infoText:
+                    "QuickFix समुदाय में जिम्मेदारी से वस्तुएँ साझा करने को प्रोत्साहित करता है। उपयोगी चीज़ें फेंकने के बजाय उपयोगकर्ता उन्हें दे, बदल या जरूरतमंद लोगों को दान कर सकते हैं।",
+
+                interestRecorded:
+                    "रुचि दर्ज की गई!",
+
+                interestDefault:
+                    "आपकी रुचि दर्ज कर ली गई है।",
+
+                continue:
+                    "जारी रखें",
+
+                interestMessage:
+                    "आपकी रुचि",
+
+                recordedSuccessfully:
+                    "सफलतापूर्वक दर्ज की गई है।",
+
+                publishSuccess:
+                    "✅ आपकी वस्तु QuickFix कम्युनिटी में सफलतापूर्वक जोड़ दी गई है।",
+
+                itemId:
+                    "वस्तु ID"
+
+            },
+
+
+            mr: {
+
+                home: "होम",
+                quickMatch: "क्विक मॅच",
+                myFixes: "माझे फिक्स",
+                helperDashboard: "हेल्पर डॅशबोर्ड",
+                snapFix: "स्नॅप अँड फिक्स",
+                services: "सेवा",
+                giveGrow: "गिव अँड ग्रो",
+                logout: "लॉगआउट",
+
+                backToGiveGrow:
+                    "← गिव अँड ग्रो वर परत जा",
+
+                communitySharing:
+                    "🎁 कम्युनिटी शेअरिंग",
+
+                giveWord:
+                    "द्या.",
+
+                exchangeWord:
+                    "अदलाबदल करा.",
+
+                donateWord:
+                    "दान करा.",
+
+                heroText:
+                    "उपयोगी वस्तूंना दुसरे आयुष्य द्या. ज्या वस्तूची तुम्हाला आता गरज नाही ती शेअर करा, कम्युनिटीमधील व्यक्तीसोबत अदलाबदल करा किंवा गरजू व्यक्तीला दान करा.",
+
+                giveItemTitle:
+                    "वस्तू द्या",
+
+                giveItemText:
+                    "तुमच्याकडे अशी उपयोगी वस्तू आहे का ज्याची आता तुम्हाला गरज नाही? ती कम्युनिटीमधील कोणासोबत शेअर करा.",
+
+                exchangeItemTitle:
+                    "वस्तूची अदलाबदल करा",
+
+                exchangeItemText:
+                    "तुमच्याकडील वस्तू दुसऱ्या व्यक्तीला आवश्यक असलेल्या वस्तूसोबत बदला.",
+
+                donateItemTitle:
+                    "वस्तू दान करा",
+
+                donateItemText:
+                    "ज्यांना खरोखर गरज आहे अशा व्यक्तीला उपयोगी वस्तू दान करा.",
+
+                addItem:
+                    "तुमची वस्तू जोडा",
+
+                formDescription:
+                    "तुमची वस्तू कम्युनिटीसोबत शेअर करण्यासाठी खालील माहिती भरा.",
+
+                yourName:
+                    "तुमचे नाव",
+
+                itemName:
+                    "वस्तूचे नाव",
+
+                category:
+                    "वर्ग",
+
+                condition:
+                    "स्थिती",
+
+                location:
+                    "ठिकाण",
+
+                contactNumber:
+                    "संपर्क क्रमांक",
+
+                itemDescription:
+                    "वस्तूचे वर्णन",
+
+                namePlaceholder:
+                    "तुमचे नाव लिहा",
+
+                itemPlaceholder:
+                    "उदाहरण: स्टडी टेबल",
+
+                selectCategory:
+                    "वर्ग निवडा",
+
+                selectCondition:
+                    "स्थिती निवडा",
+
+                locationPlaceholder:
+                    "तुमचा परिसर लिहा",
+
+                contactPlaceholder:
+                    "संपर्क क्रमांक लिहा",
+
+                descriptionPlaceholder:
+                    "वस्तूचे वर्णन करा...",
+
+                publishItem:
+                    "वस्तू प्रकाशित करा →",
+
+                publishing:
+                    "प्रकाशित होत आहे...",
+
+                communityItems:
+                    "कम्युनिटीमधील वस्तू",
+
+                communityItemsText:
+                    "QuickFix कम्युनिटीच्या सदस्यांनी शेअर केलेल्या उपयोगी वस्तू पहा.",
+
+                loadingItems:
+                    "कम्युनिटीमधील वस्तू लोड होत आहेत...",
+
+                noItems:
+                    "अजून कम्युनिटीमधील वस्तू नाहीत",
+
+                noItemsText:
+                    "वस्तू देणारे, अदलाबदल करणारे किंवा दान करणारे पहिले व्यक्ती बना.",
+
+                unableLoad:
+                    "वस्तू लोड करता आल्या नाहीत",
+
+                backendMessage:
+                    "QuickFix Flask backend सुरू आहे याची खात्री करा.",
+
+                tryAgain:
+                    "पुन्हा प्रयत्न करा",
+
+                type:
+                    "प्रकार",
+
+                itemCondition:
+                    "स्थिती",
+
+                sharedBy:
+                    "शेअर करणारे",
+
+                interested:
+                    "मला स्वारस्य आहे",
+
+                requestItem:
+                    "वस्तूची विनंती करा",
+
+                interestedExchange:
+                    "अदलाबदलीमध्ये स्वारस्य आहे",
+
+                infoTitle:
+                    "एका व्यक्तीची न वापरलेली वस्तू दुसऱ्या व्यक्तीसाठी उपयोगी साधन बनू शकते.",
+
+                infoText:
+                    "QuickFix कम्युनिटीमध्ये जबाबदारीने वस्तू शेअर करण्यास प्रोत्साहन देते. उपयोगी वस्तू फेकून देण्याऐवजी वापरकर्ते त्या देऊ शकतात, अदलाबदल करू शकतात किंवा गरजू व्यक्तींना दान करू शकतात.",
+
+                interestRecorded:
+                    "स्वारस्य नोंदवले गेले!",
+
+                interestDefault:
+                    "तुमचे स्वारस्य नोंदवले गेले आहे.",
+
+                continue:
+                    "पुढे जा",
+
+                interestMessage:
+                    "तुमचे स्वारस्य",
+
+                recordedSuccessfully:
+                    "यशस्वीरित्या नोंदवले गेले आहे.",
+
+                publishSuccess:
+                    "✅ तुमची वस्तू QuickFix कम्युनिटीमध्ये यशस्वीरित्या जोडली गेली आहे.",
+
+                itemId:
+                    "वस्तू ID"
+
+            }
+
+        };
+
+
+        /* =====================================================
+           TRANSLATE SERVICE/DYNAMIC VALUES
+        ===================================================== */
+
+        const valueTranslations = {
+
+            Furniture: {
+                hi: "फर्नीचर",
+                mr: "फर्निचर"
+            },
+
+            Electronics: {
+                hi: "इलेक्ट्रॉनिक्स",
+                mr: "इलेक्ट्रॉनिक्स"
+            },
+
+            Books: {
+                hi: "किताबें",
+                mr: "पुस्तके"
+            },
+
+            Clothing: {
+                hi: "कपड़े",
+                mr: "कपडे"
+            },
+
+            Kitchen: {
+                hi: "रसोई",
+                mr: "स्वयंपाकघर"
+            },
+
+            "Home Items": {
+                hi: "घर की वस्तुएँ",
+                mr: "घरगुती वस्तू"
+            },
+
+            Other: {
+                hi: "अन्य",
+                mr: "इतर"
+            },
+
+            New: {
+                hi: "नया",
+                mr: "नवीन"
+            },
+
+            "Like New": {
+                hi: "नए जैसा",
+                mr: "नवीनसारखे"
+            },
+
+            Good: {
+                hi: "अच्छी",
+                mr: "चांगली"
+            },
+
+            Used: {
+                hi: "इस्तेमाल किया हुआ",
+                mr: "वापरलेली"
+            },
+
+            Give: {
+                hi: "देना",
+                mr: "देणे"
+            },
+
+            Exchange: {
+                hi: "अदलाबदल",
+                mr: "अदलाबदल"
+            },
+
+            Donate: {
+                hi: "दान",
+                mr: "दान"
+            }
+
+        };
+
+
+        function translateValue(value) {
+
+            if (!value) {
+                return "-";
+            }
+
+            if (currentLanguage === "en") {
+                return value;
+            }
+
+            if (
+                valueTranslations[value] &&
+                valueTranslations[value][currentLanguage]
+            ) {
+
+                return valueTranslations[value][currentLanguage];
+
+            }
+
+            return value;
+
+        }
+
+
+        /* =====================================================
+           LANGUAGE SYSTEM
+        ===================================================== */
+
+        function applyLanguage() {
+
+            const language =
+                translations[currentLanguage] ||
+                translations.en;
+
+
+            document.documentElement.lang =
+                currentLanguage;
+
+
+            document
+                .querySelectorAll("[data-i18n]")
+                .forEach(function(element) {
+
+                    const key =
+                        element.getAttribute(
+                            "data-i18n"
+                        );
+
+                    if (
+                        language[key] !== undefined
+                    ) {
+
+                        element.textContent =
+                            language[key];
+
+                    }
+
+                });
+
+
+            document
+                .querySelectorAll(
+                    "[data-i18n-placeholder]"
+                )
+                .forEach(function(element) {
+
+                    const key =
+                        element.getAttribute(
+                            "data-i18n-placeholder"
+                        );
+
+                    if (
+                        language[key] !== undefined
+                    ) {
+
+                        element.placeholder =
+                            language[key];
+
+                    }
+
+                });
+
+
+            const selector =
+                document.getElementById(
+                    "languageSelect"
+                );
+
+
+            if (selector) {
+
+                selector.value =
+                    currentLanguage;
+
+            }
+
+
+            updateCategoryOptions();
+            updateConditionOptions();
+
+
+            if (
+                document
+                    .getElementById(
+                        "formSection"
+                    )
+                    .classList
+                    .contains("show")
+            ) {
+
+                updateFormTitle();
+
+            }
+
+
+            loadCommunityItems();
+
+        }
+
+
+        function changeLanguage(language) {
+
+            currentLanguage =
+                language;
+
+            localStorage.setItem(
+                "quickfixLanguage",
+                language
+            );
+
+            applyLanguage();
+
+        }
+
+
+        /* =====================================================
+           CATEGORY OPTIONS
+        ===================================================== */
+
+        function updateCategoryOptions() {
+
+            const select =
+                document.getElementById(
+                    "category"
+                );
+
+
+            if (!select) {
+                return;
+            }
+
+
+            const selected =
+                select.value;
+
+
+            const categoryOptions = {
+
+                "Furniture": {
+                    en: "Furniture",
+                    hi: "फर्नीचर",
+                    mr: "फर्निचर"
+                },
+
+                "Electronics": {
+                    en: "Electronics",
+                    hi: "इलेक्ट्रॉनिक्स",
+                    mr: "इलेक्ट्रॉनिक्स"
+                },
+
+                "Books": {
+                    en: "Books",
+                    hi: "किताबें",
+                    mr: "पुस्तके"
+                },
+
+                "Clothing": {
+                    en: "Clothing",
+                    hi: "कपड़े",
+                    mr: "कपडे"
+                },
+
+                "Kitchen": {
+                    en: "Kitchen",
+                    hi: "रसोई",
+                    mr: "स्वयंपाकघर"
+                },
+
+                "Home Items": {
+                    en: "Home Items",
+                    hi: "घर की वस्तुएँ",
+                    mr: "घरगुती वस्तू"
+                },
+
+                "Other": {
+                    en: "Other",
+                    hi: "अन्य",
+                    mr: "इतर"
+                }
+
+            };
+
+
+            const placeholder =
+                translations[
+                    currentLanguage
+                ].selectCategory;
+
+
+            select.innerHTML = "";
+
+
+            const firstOption =
+                document.createElement(
+                    "option"
+                );
+
+            firstOption.value = "";
+
+            firstOption.textContent =
+                placeholder;
+
+            select.appendChild(
+                firstOption
+            );
+
+
+            Object.keys(
+                categoryOptions
+            ).forEach(function(key) {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                option.value = key;
+
+                option.textContent =
+                    categoryOptions[key][
+                        currentLanguage
+                    ];
+
+                select.appendChild(
+                    option
+                );
+
+            });
+
+
+            select.value =
+                selected;
+
+        }
+
+
+        /* =====================================================
+           CONDITION OPTIONS
+        ===================================================== */
+
+        function updateConditionOptions() {
+
+            const select =
+                document.getElementById(
+                    "condition"
+                );
+
+
+            if (!select) {
+                return;
+            }
+
+
+            const selected =
+                select.value;
+
+
+            const conditionOptions = {
+
+                "New": {
+                    en: "New",
+                    hi: "नया",
+                    mr: "नवीन"
+                },
+
+                "Like New": {
+                    en: "Like New",
+                    hi: "नए जैसा",
+                    mr: "नवीनसारखे"
+                },
+
+                "Good": {
+                    en: "Good",
+                    hi: "अच्छी",
+                    mr: "चांगली"
+                },
+
+                "Used": {
+                    en: "Used",
+                    hi: "इस्तेमाल किया हुआ",
+                    mr: "वापरलेली"
+                }
+
+            };
+
+
+            const placeholder =
+                translations[
+                    currentLanguage
+                ].selectCondition;
+
+
+            select.innerHTML = "";
+
+
+            const firstOption =
+                document.createElement(
+                    "option"
+                );
+
+            firstOption.value = "";
+
+            firstOption.textContent =
+                placeholder;
+
+            select.appendChild(
+                firstOption
+            );
+
+
+            Object.keys(
+                conditionOptions
+            ).forEach(function(key) {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                option.value = key;
+
+                option.textContent =
+                    conditionOptions[key][
+                        currentLanguage
+                    ];
+
+                select.appendChild(
+                    option
+                );
+
+            });
+
+
+            select.value =
+                selected;
+
+        }
+
+
+        /* =====================================================
+           FORM TITLE
+        ===================================================== */
+
+        function updateFormTitle() {
+
+            const title =
+                document.getElementById(
+                    "formTitle"
+                );
+
+
+            if (!title) {
+                return;
+            }
+
+
+            const language =
+                translations[
+                    currentLanguage
+                ];
+
+
+            const titles = {
+
+                Give: {
+
+                    en: "Give an Item",
+                    hi: "वस्तु दें",
+                    mr: "वस्तू द्या"
+
+                },
+
+                Exchange: {
+
+                    en: "Exchange an Item",
+                    hi: "वस्तु बदलें",
+                    mr: "वस्तूची अदलाबदल करा"
+
+                },
+
+                Donate: {
+
+                    en: "Donate an Item",
+                    hi: "वस्तु दान करें",
+                    mr: "वस्तू दान करा"
+
+                }
+
+            };
+
+
+            title.textContent =
+                titles[selectedType][
+                    currentLanguage
+                ];
+
+        }
+
+
+        /* =====================================================
+           OPEN FORM
+        ===================================================== */
+
+        function openForm(type) {
+
+            selectedType =
+                type;
+
+
+            updateFormTitle();
+
+
+            document
+                .getElementById(
+                    "formSection"
+                )
+                .classList
+                .add("show");
+
+
+            document
+                .getElementById(
+                    "successMessage"
+                )
+                .style
+                .display = "none";
+
+
+            document
+                .getElementById(
+                    "errorMessage"
+                )
+                .style
+                .display = "none";
+
+
+            document
+                .getElementById(
+                    "formSection"
+                )
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }
+
+
+        /* =====================================================
+           SUBMIT ITEM
+        ===================================================== */
+
+        document
+            .getElementById("itemForm")
+            .addEventListener(
+                "submit",
+                async function(event) {
+
+                    event.preventDefault();
+
+
+                    const submitBtn =
+                        document.getElementById(
+                            "submitBtn"
+                        );
+
+
+                    const successMessage =
+                        document.getElementById(
+                            "successMessage"
+                        );
+
+
+                    const errorMessage =
+                        document.getElementById(
+                            "errorMessage"
+                        );
+
+
+                    successMessage.style.display =
+                        "none";
+
+                    errorMessage.style.display =
+                        "none";
+
+
+                    const itemData = {
+
+                        name:
+                            document
+                                .getElementById(
+                                    "ownerName"
+                                )
+                                .value
+                                .trim(),
+
+                        item_name:
+                            document
+                                .getElementById(
+                                    "itemName"
+                                )
+                                .value
+                                .trim(),
+
+                        category:
+                            document
+                                .getElementById(
+                                    "category"
+                                )
+                                .value,
+
+                        condition:
+                            document
+                                .getElementById(
+                                    "condition"
+                                )
+                                .value,
+
+                        location:
+                            document
+                                .getElementById(
+                                    "location"
+                                )
+                                .value
+                                .trim(),
+
+                        contact:
+                            document
+                                .getElementById(
+                                    "contact"
+                                )
+                                .value
+                                .trim(),
+
+                        description:
+                            document
+                                .getElementById(
+                                    "description"
+                                )
+                                .value
+                                .trim(),
+
+                        action_type:
+                            selectedType
+
+                    };
+
+
+                    submitBtn.disabled =
+                        true;
+
+
+                    submitBtn.innerText =
+                        translations[
+                            currentLanguage
+                        ].publishing;
+
+
+                    try {
+
+                        const response =
+                            await fetch(
+
+                                API_BASE +
+                                "/api/give-grow/community-items",
+
+                                {
+
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body:
+                                        JSON.stringify(
+                                            itemData
+                                        )
+
+                                }
+
+                            );
+
+
+                        const result =
+                            await response.json();
+
+
+                        if (!response.ok) {
+
+                            throw new Error(
+                                result.error ||
+                                "Unable to publish item."
+                            );
+
+                        }
+
+
+                        const newItem =
+                            result.item;
+
+
+                        successMessage.innerHTML = `
+
+                            ${translations[
+                                currentLanguage
+                            ].publishSuccess}
+
+                            <br><br>
+
+                            <strong>
+                                ${translations[
+                                    currentLanguage
+                                ].itemId}: #${newItem.id}
+                            </strong>
+
+                        `;
+
+
+                        successMessage.style.display =
+                            "block";
+
+
+                        document
+                            .getElementById(
+                                "itemForm"
+                            )
+                            .reset();
+
+
+                        await loadCommunityItems();
+
+
+                    } catch (error) {
+
+                        console.error(
+                            "Community item error:",
+                            error
+                        );
+
+
+                        errorMessage.innerHTML =
+                            "❌ " +
+                            escapeHtml(
+                                error.message
+                            );
+
+
+                        errorMessage.style.display =
+                            "block";
+
+
+                    } finally {
+
+                        submitBtn.disabled =
+                            false;
+
+
+                        submitBtn.innerText =
+                            translations[
+                                currentLanguage
+                            ].publishItem;
+
+                    }
+
+                }
+            );
+
+
+        /* =====================================================
+           LOAD COMMUNITY ITEMS
+        ===================================================== */
+
+        async function loadCommunityItems() {
+
+            const grid =
+                document.getElementById(
+                    "itemsGrid"
+                );
+
+
+            grid.innerHTML = `
+
+                <div class="loading">
+
+                    ${translations[
+                        currentLanguage
+                    ].loadingItems}
+
+                </div>
+
+            `;
+
+
+            try {
+
+                const response =
+                    await fetch(
+
+                        API_BASE +
+                        "/api/give-grow/community-items"
+
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Unable to load community items."
+                    );
+
+                }
+
+
+                const result =
+                    await response.json();
+
+
+                const items =
+                    result.items || [];
+
+
+                grid.innerHTML = "";
+
+
+                if (
+                    !Array.isArray(items) ||
+                    items.length === 0
+                ) {
+
+                    grid.innerHTML = `
+
+                        <div class="empty-state">
+
+                            <div
+                                style="
+                                font-size:42px;
+                                margin-bottom:15px;
+                                "
+                            >
+                                🎁
+                            </div>
+
+                            <h3
+                                style="
+                                color:#ffffff;
+                                margin-bottom:10px;
+                                "
+                            >
+
+                                ${translations[
+                                    currentLanguage
+                                ].noItems}
+
+                            </h3>
+
+                            <p>
+
+                                ${translations[
+                                    currentLanguage
+                                ].noItemsText}
+
+                            </p>
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                items.forEach(
+                    function(item) {
+
+                        addItemToPage(
+                            item
+                        );
+
+                    }
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Load items error:",
+                    error
+                );
+
+
+                grid.innerHTML = `
+
+                    <div class="empty-state">
+
+                        <div
+                            style="
+                            font-size:42px;
+                            margin-bottom:15px;
+                            "
+                        >
+                            ⚠️
+                        </div>
+
+                        <h3
+                            style="
+                            color:#ffffff;
+                            margin-bottom:10px;
+                            "
+                        >
+
+                            ${translations[
+                                currentLanguage
+                            ].unableLoad}
+
+                        </h3>
+
+                        <p>
+
+                            ${translations[
+                                currentLanguage
+                            ].backendMessage}
+
+                        </p>
+
+                        <button
+                            class="item-btn"
+                            style="max-width:220px;"
+                            onclick="loadCommunityItems()"
+                        >
+
+                            ${translations[
+                                currentLanguage
+                            ].tryAgain}
+
+                        </button>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           ADD ITEM CARD
+        ===================================================== */
+
+        function addItemToPage(item) {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "item-card";
+
+
+            const icon =
+                getItemIcon(
+                    item.category
+                );
+
+
+            let buttonText =
+                translations[
+                    currentLanguage
+                ].interested;
+
+
+            if (
+                item.action_type ===
+                "Donate"
+            ) {
+
+                buttonText =
+                    translations[
+                        currentLanguage
+                    ].requestItem;
+
+            }
+
+
+            if (
+                item.action_type ===
+                "Exchange"
+            ) {
+
+                buttonText =
+                    translations[
+                        currentLanguage
+                    ].interestedExchange;
+
+            }
+
+
+            card.innerHTML = `
+
+                <div class="item-icon">
+                    ${icon}
+                </div>
+
+
+                <h3>
+                    ${escapeHtml(
+                        item.item_name ||
+                        "Community Item"
+                    )}
+                </h3>
+
+
+                <p>
+                    ${escapeHtml(
+                        item.description ||
+                        "Useful item shared by a QuickFix community member."
+                    )}
+                </p>
+
+
+                <div class="details">
+
+                    <div>
+
+                        <span>
+                            ${translations[
+                                currentLanguage
+                            ].type}
+                        </span>
+
+                        <span>
+                            ${escapeHtml(
+                                translateValue(
+                                    item.action_type
+                                )
+                            )}
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            ${translations[
+                                currentLanguage
+                            ].itemCondition}
+                        </span>
+
+                        <span>
+                            ${escapeHtml(
+                                translateValue(
+                                    item.condition
+                                )
+                            )}
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            ${translations[
+                                currentLanguage
+                            ].location}
+                        </span>
+
+                        <span>
+                            ${escapeHtml(
+                                item.location ||
+                                "-"
+                            )}
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            ${translations[
+                                currentLanguage
+                            ].sharedBy}
+                        </span>
+
+                        <span>
+                            ${escapeHtml(
+                                item.name ||
+                                "-"
+                            )}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="item-btn"
+                    onclick="showInterest(
+                        '${escapeJs(
+                            item.item_name
+                        )}'
+                    )"
+                >
+
+                    ${buttonText}
+
+                </button>
+
+            `;
+
+
+            document
+                .getElementById(
+                    "itemsGrid"
+                )
+                .appendChild(
+                    card
+                );
+
+        }
+
+
+        /* =====================================================
+           ITEM ICON
+        ===================================================== */
+
+        function getItemIcon(
+            category
+        ) {
+
+            const icons = {
+
+                "Furniture":
+                    "🪑",
+
+                "Electronics":
+                    "💻",
+
+                "Books":
+                    "📚",
+
+                "Clothing":
+                    "👕",
+
+                "Kitchen":
+                    "🍳",
+
+                "Home Items":
+                    "🏠",
+
+                "Other":
+                    "🎁"
+
+            };
+
+
+            return (
+                icons[category] ||
+                "🎁"
+            );
+
+        }
+
+
+        /* =====================================================
+           SHOW INTEREST
+        ===================================================== */
+
+        function showInterest(
+            itemName
+        ) {
+
+            localStorage.setItem(
+                "quickfixInterestedItem",
+                itemName
+            );
+
+
+            const language =
+                translations[
+                    currentLanguage
+                ];
+
+
+            document
+                .getElementById(
+                    "modalMessage"
+                )
+                .innerHTML =
+
+                language.interestMessage +
+                " <strong>" +
+                escapeHtml(
+                    itemName
+                ) +
+                "</strong> " +
+                language.recordedSuccessfully;
+
+
+            document
+                .getElementById(
+                    "modal"
+                )
+                .classList.add(
+                    "show"
+                );
+
+        }
+
+
+        /* =====================================================
+           CLOSE MODAL
+        ===================================================== */
+
+        function closeModal() {
+
+            document
+                .getElementById(
+                    "modal"
+                )
+                .classList.remove(
+                    "show"
+                );
+
+        }
+
+
+        /* =====================================================
+           ESCAPE HTML
+        ===================================================== */
+
+        function escapeHtml(
+            text
+        ) {
+
+            return String(
+                text ?? ""
+            )
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+        }
+
+
+        /* =====================================================
+           ESCAPE JAVASCRIPT
+        ===================================================== */
+
+        function escapeJs(
+            text
+        ) {
+
+            return String(
+                text ?? ""
+            )
+            .replace(
+                /\\/g,
+                "\\\\"
+            )
+            .replace(
+                /'/g,
+                "\\'"
+            )
+            .replace(
+                /\r/g,
+                "\\r"
+            )
+            .replace(
+                /\n/g,
+                "\\n"
+            );
+
+        }
+
+
+        /* =====================================================
+           CLOSE MODAL OUTSIDE CLICK
+        ===================================================== */
+
+        window.addEventListener(
+            "click",
+            function(event) {
+
+                const modal =
+                    document.getElementById(
+                        "modal"
+                    );
+
+
+                if (
+                    event.target ===
+                    modal
+                ) {
+
+                    closeModal();
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           INITIAL LOAD
+        ===================================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                applyLanguage();
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

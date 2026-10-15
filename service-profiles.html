@@ -1,0 +1,2894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QuickFix - Professionals</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:
+        radial-gradient(circle at 10% 0%,rgba(16,69,52,.55),transparent 30%),
+        radial-gradient(circle at 90% 80%,rgba(12,58,43,.45),transparent 32%),
+        #061a14;
+    color:#f7f4eb;
+    min-height:100vh;
+}
+
+/* HEADER */
+
+header{
+    background:rgba(6,26,20,.96);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    padding:18px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    backdrop-filter:blur(12px);
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo{
+    width:45px;
+    height:45px;
+    border-radius:13px;
+    background:linear-gradient(135deg,#e49a2f,#f5b64e);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    font-weight:bold;
+    color:#10291f;
+}
+
+.brand h1{
+    font-size:22px;
+    color:#e49a2f;
+}
+
+.brand p{
+    font-size:11px;
+    color:#aebdb5;
+    margin-top:3px;
+}
+
+nav{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+}
+
+nav button{
+    background:#09251c;
+    color:#f7f4eb;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:9px;
+    padding:9px 13px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+nav button:hover{
+    background:#104534;
+    border-color:rgba(228,154,47,.35);
+}
+
+.language-select{
+    background:#09251c;
+    color:#f7f4eb;
+    border:1px solid rgba(228,154,47,.35);
+    border-radius:9px;
+    padding:9px 11px;
+    cursor:pointer;
+    outline:none;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.language-select option{
+    background:#09231a;
+    color:#f7f4eb;
+}
+
+/* MAIN */
+
+.container{
+    width:90%;
+    max-width:1250px;
+    margin:auto;
+    padding:50px 0 75px;
+}
+
+.page-heading{
+    text-align:center;
+    margin-bottom:32px;
+}
+
+.page-heading h2{
+    font-size:35px;
+    color:#f7f4eb;
+    margin-bottom:11px;
+}
+
+.page-heading h2 span{
+    color:#e49a2f;
+}
+
+.page-heading h2::after{
+    content:"";
+    display:block;
+    width:55px;
+    height:4px;
+    background:#e49a2f;
+    border-radius:10px;
+    margin:13px auto 0;
+}
+
+.page-heading p{
+    color:#aebdb5;
+    font-size:15px;
+    margin-top:13px;
+}
+
+/* LOCATION */
+
+.location-box{
+    background:linear-gradient(145deg,#0c3a2b,#09231a);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:24px;
+    margin-bottom:28px;
+    box-shadow:0 18px 40px rgba(0,0,0,.25);
+}
+
+.location-title{
+    font-size:18px;
+    font-weight:bold;
+    color:#f7f4eb;
+    margin-bottom:7px;
+}
+
+.location-subtitle{
+    font-size:13px;
+    color:#aebdb5;
+    margin-bottom:17px;
+    line-height:1.5;
+}
+
+.location-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.location-input{
+    flex:1;
+    min-width:250px;
+    padding:14px 15px;
+    border-radius:11px;
+    border:1px solid rgba(255,255,255,.10);
+    background:#061a14;
+    color:#f7f4eb;
+    outline:none;
+    font-size:14px;
+}
+
+.location-input:focus{
+    border-color:#e49a2f;
+}
+
+.location-input::placeholder{
+    color:#73877e;
+}
+
+.location-btn{
+    border:none;
+    border-radius:11px;
+    padding:13px 18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.find-btn{
+    background:linear-gradient(135deg,#e49a2f,#f5b64e);
+    color:#10291f;
+}
+
+.current-btn{
+    background:#0b2d21;
+    color:#f7f4eb;
+    border:1px solid rgba(255,255,255,.10);
+}
+
+.location-btn:hover{
+    transform:translateY(-2px);
+}
+
+.location-status{
+    margin-top:14px;
+    font-size:13px;
+    color:#9eafa8;
+    min-height:18px;
+}
+
+.location-status.success{
+    color:#e49a2f;
+}
+
+.location-status.error{
+    color:#ffaaa0;
+}
+
+/* FILTERS */
+
+.filters{
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr;
+    gap:14px;
+    background:linear-gradient(145deg,#0b2d21,#09231a);
+    border:1px solid rgba(255,255,255,.07);
+    padding:18px;
+    border-radius:17px;
+    margin-bottom:28px;
+}
+
+.filters input,
+.filters select{
+    width:100%;
+    padding:13px;
+    background:#061a14;
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:10px;
+    color:#f7f4eb;
+    outline:none;
+}
+
+.filters input:focus,
+.filters select:focus{
+    border-color:#e49a2f;
+}
+
+.filters input::placeholder{
+    color:#73877e;
+}
+
+.filters select option{
+    background:#09231a;
+}
+
+/* RESULTS */
+
+.results-info{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:19px;
+    flex-wrap:wrap;
+}
+
+.results-info h3{
+    color:#f7f4eb;
+    font-size:20px;
+}
+
+.results-info h3 span{
+    color:#e49a2f;
+}
+
+.count{
+    color:#9eafa8;
+    font-size:13px;
+}
+
+/* CARDS */
+
+#profilesContainer{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:23px;
+}
+
+.profile-card{
+    background:linear-gradient(150deg,#0c3a2b,#09231a);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    overflow:hidden;
+    transition:.25s;
+    box-shadow:0 12px 30px rgba(0,0,0,.20);
+}
+
+.profile-card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(228,154,47,.35);
+    box-shadow:0 22px 45px rgba(0,0,0,.32);
+}
+
+.profile-image-wrap{
+    height:195px;
+    position:relative;
+    background:#0b2d21;
+    overflow:hidden;
+}
+
+.profile-image{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.image-fallback{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:60px;
+    color:#e49a2f;
+    background:
+        radial-gradient(circle at center,rgba(228,154,47,.13),transparent 60%),
+        #0b2d21;
+}
+
+.favorite-btn{
+    position:absolute;
+    right:13px;
+    top:13px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(3,17,13,.72);
+    color:#f7f4eb;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.favorite-btn.active{
+    color:#f5b64e;
+}
+
+.distance-badge{
+    position:absolute;
+    left:13px;
+    bottom:13px;
+    background:rgba(3,17,13,.78);
+    color:#f5b64e;
+    padding:7px 10px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.profile-content{
+    padding:19px;
+}
+
+.provider-label{
+    display:inline-block;
+    margin-bottom:11px;
+    padding:6px 9px;
+    border-radius:7px;
+    background:rgba(228,154,47,.10);
+    border:1px solid rgba(228,154,47,.22);
+    color:#e49a2f;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.provider-label.registered{
+    background:rgba(255,255,255,.05);
+    border-color:rgba(255,255,255,.12);
+    color:#aebdb5;
+}
+
+.profile-name{
+    font-size:21px;
+    color:#f7f4eb;
+    margin-bottom:5px;
+}
+
+.profile-service{
+    color:#e49a2f;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:11px;
+}
+
+.rating{
+    color:#f5b64e;
+    font-size:14px;
+    margin-bottom:12px;
+}
+
+.description{
+    color:#aebdb5;
+    font-size:13px;
+    line-height:1.6;
+    min-height:63px;
+    margin-bottom:16px;
+}
+
+.details{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+    margin-bottom:15px;
+}
+
+.detail{
+    background:rgba(6,26,20,.48);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:10px;
+    padding:10px;
+}
+
+.detail-label{
+    display:block;
+    color:#748980;
+    font-size:10px;
+    margin-bottom:4px;
+    text-transform:uppercase;
+}
+
+.detail-value{
+    color:#dce5df;
+    font-size:12px;
+}
+
+.availability{
+    font-size:12px;
+    color:#aebdb5;
+    margin-bottom:16px;
+}
+
+.book-btn{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:11px;
+    background:linear-gradient(135deg,#e49a2f,#f5b64e);
+    color:#10291f;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.book-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* LOADING */
+
+.loading{
+    grid-column:1/-1;
+    text-align:center;
+    padding:55px 20px;
+    color:#aebdb5;
+    background:linear-gradient(145deg,#0c3a2b,#09231a);
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.spinner{
+    width:42px;
+    height:42px;
+    border:4px solid rgba(255,255,255,.08);
+    border-top-color:#e49a2f;
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+    margin:0 auto 15px;
+}
+
+@keyframes spin{
+    to{transform:rotate(360deg);}
+}
+
+/* EMPTY */
+
+.empty{
+    grid-column:1/-1;
+    text-align:center;
+    padding:60px 20px;
+    background:linear-gradient(145deg,#0b2d21,#09231a);
+    border-radius:18px;
+    border:1px dashed rgba(255,255,255,.14);
+}
+
+.empty-icon{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+.empty h3{
+    color:#f7f4eb;
+    margin-bottom:9px;
+}
+
+.empty p{
+    color:#9eafa8;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.show-all-btn{
+    margin-top:18px;
+    background:transparent;
+    color:#e49a2f;
+    border:1px solid #e49a2f;
+    padding:10px 18px;
+    border-radius:9px;
+    cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:25px;
+    background:#03110d;
+    color:#aebdb5;
+    font-size:13px;
+    border-top:1px solid rgba(255,255,255,.06);
+}
+
+footer span{
+    color:#e49a2f;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+    #profilesContainer{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:760px){
+    header{
+        flex-direction:column;
+    }
+
+    .filters{
+        grid-template-columns:1fr;
+    }
+
+    #profilesContainer{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:520px){
+    .container{
+        width:94%;
+    }
+
+    .location-row{
+        flex-direction:column;
+    }
+
+    .location-input{
+        min-width:100%;
+    }
+
+    .location-btn{
+        width:100%;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="logo-area">
+
+        <div class="logo">Q</div>
+
+        <div class="brand">
+
+            <h1>QuickFix</h1>
+
+            <p id="brandTagline">
+                Local help, made easy.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <button onclick="goTo('home.html')" id="navHome">
+            Home
+        </button>
+
+        <button onclick="goToQuickMatch()" id="navQuickMatch">
+            Quick Match
+        </button>
+
+        <button onclick="goToSnapFix()" id="navSnapFix">
+            Snap & Fix
+        </button>
+
+        <button onclick="goTo('services.html')" id="navServices">
+            Services
+        </button>
+
+        <button onclick="logout()" id="navLogout">
+            Logout
+        </button>
+
+        <select
+            id="languageSelect"
+            class="language-select"
+            onchange="changeLanguage(this.value)"
+        >
+            <option value="en">🌐 English</option>
+            <option value="hi">🌐 हिंदी</option>
+            <option value="mr">🌐 मराठी</option>
+        </select>
+
+    </nav>
+
+</header>
+
+
+<main class="container">
+
+    <section class="page-heading">
+
+        <h2>
+            <span id="availableText">Available</span>
+            <span id="serviceTitle">Professionals</span>
+        </h2>
+
+        <p id="pageDescription">
+            Find trusted professionals near your selected location.
+        </p>
+
+    </section>
+
+
+    <section class="location-box">
+
+        <div class="location-title" id="locationTitle">
+            📍 Where do you need help?
+        </div>
+
+        <div class="location-subtitle" id="locationSubtitle">
+            Enter your area, city or locality to find nearby registered QuickFix professionals.
+        </div>
+
+        <div class="location-row">
+
+            <input
+                type="text"
+                id="locationInput"
+                class="location-input"
+                placeholder="Example: Talegaon Dabhade, Akurdi, Pimpri"
+                autocomplete="off"
+            >
+
+            <button
+                class="location-btn find-btn"
+                onclick="searchByLocation()"
+                id="findHelpersButton"
+            >
+                🔎 Find Helpers
+            </button>
+
+            <button
+                class="location-btn current-btn"
+                onclick="useCurrentLocation()"
+                id="useLocationButton"
+            >
+                📌 Use My Location
+            </button>
+
+        </div>
+
+        <div id="locationStatus" class="location-status">
+            Showing QuickFix professionals.
+        </div>
+
+    </section>
+
+
+    <section class="filters">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Search professional by name..."
+            oninput="displayProfiles()"
+        >
+
+        <select id="ratingFilter" onchange="displayProfiles()">
+
+            <option value="" id="allRatingsOption">
+                All Ratings
+            </option>
+
+            <option value="4.9">4.9 ⭐</option>
+            <option value="4.8">4.8 ⭐</option>
+            <option value="4.7">4.7 ⭐</option>
+            <option value="4.6">4.6 ⭐</option>
+
+        </select>
+
+
+        <select id="priceFilter" onchange="displayProfiles()">
+
+            <option value="" id="allPricesOption">
+                All Prices
+            </option>
+
+            <option value="500">₹500</option>
+            <option value="700">₹700</option>
+            <option value="1000">₹1000</option>
+
+        </select>
+
+    </section>
+
+
+    <section class="results-info">
+
+        <h3>
+
+            <span id="selectedLocationText">
+                QuickFix
+            </span>
+
+            <span id="professionalsText">
+                Professionals
+            </span>
+
+        </h3>
+
+        <div class="count" id="resultCount">
+            Loading...
+        </div>
+
+    </section>
+
+
+    <section id="profilesContainer">
+
+        <div class="loading">
+
+            <div class="spinner"></div>
+
+            <span id="loadingText">
+                Loading QuickFix professionals...
+            </span>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    © 2026 QuickFix |
+    <span>
+        Pranali Bhoyar and Mrunmayi Jadhav
+    </span>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   CONFIG
+===================================================== */
+
+const API_URL = "https://quickfix.pythonanywhere.com";
+
+let baseHelpers = [];
+let nearbyHelpers = [];
+let allHelpers = [];
+
+let selectedService = "";
+
+let userLatitude = null;
+let userLongitude = null;
+let currentLocationName = "";
+
+
+/* =====================================================
+   TRANSLATIONS
+===================================================== */
+
+const translations = {
+
+    en: {
+
+        home:"Home",
+        quickMatch:"Quick Match",
+        snapFix:"Snap & Fix",
+        services:"Services",
+        logout:"Logout",
+
+        tagline:"Local help, made easy.",
+
+        available:"Available",
+        professionals:"Professionals",
+
+        pageDescription:
+            "Find trusted professionals near your selected location.",
+
+        locationTitle:
+            "📍 Where do you need help?",
+
+        locationSubtitle:
+            "Enter your area, city or locality to find nearby registered QuickFix professionals.",
+
+        locationPlaceholder:
+            "Example: Talegaon Dabhade, Akurdi, Pimpri",
+
+        findHelpers:"🔎 Find Helpers",
+        useLocation:"📌 Use My Location",
+
+        locationStatus:
+            "Showing QuickFix professionals. Enter a location to find additional registered helpers.",
+
+        searchPlaceholder:
+            "🔍 Search professional by name...",
+
+        allRatings:"All Ratings",
+        allPrices:"All Prices",
+
+        loading:"Loading QuickFix professionals...",
+
+        experience:"Experience",
+        charges:"Charges",
+        location:"Location",
+        contact:"Contact",
+
+        notSpecified:"Not specified",
+        contactPrice:"Contact for price",
+        localArea:"Local area",
+        afterBooking:"Available after booking",
+
+        book:"Book This Professional",
+
+        quickFix:"✓ QuickFix Professional",
+        nearby:"📍 Nearby Registered Helper",
+
+        noProfessionals:"No professionals found",
+
+        noProfessionalsText:
+            "We couldn't find a matching professional for your current filters. Try another filter.",
+
+        clearFilters:"Clear Filters",
+
+        unableLoad:"Unable to load professionals",
+
+        backendMessage:
+            "Please make sure the QuickFix backend is running and a service has been selected.",
+
+        professional:"Professional",
+
+        reliable:
+            "Reliable QuickFix professional ready to help you.",
+
+        availability:
+            "Availability to be confirmed",
+
+        locationRequired:
+            "Please enter a location first.",
+
+        locationFound:
+            "📍 Location found. Searching for nearby registered helpers...",
+
+        locationNotFound:
+            "Location not found. Try another area.",
+
+        locationSearchError:
+            "Unable to search this location. Make sure the QuickFix backend is running.",
+
+        gettingLocation:
+            "📍 Getting your current location...",
+
+        browserLocation:
+            "Your browser does not support location.",
+
+        searchingNearby:
+            "📍 Searching for registered helpers near you...",
+
+        locationUnavailable:
+            "Location unavailable. You can type your area above instead.",
+
+        savedLocation:
+            "📍 Using saved location:",
+
+        searchingRegistered:
+            "Searching registered helpers...",
+
+        noAdditional:
+            "📍 No additional registered helpers were found nearby. Your QuickFix professionals are still available.",
+
+        nearbyUnavailable:
+            "📍 Nearby registered-helper search is unavailable. Your QuickFix professionals are still available.",
+
+        showingQuickFix:
+            "Showing QuickFix professionals. Enter a location to find additional nearby registered helpers.",
+
+        oneProfessional:"professional",
+        manyProfessionals:"professionals"
+
+    },
+
+
+    hi: {
+
+        home:"होम",
+        quickMatch:"क्विक मैच",
+        snapFix:"स्नैप एंड फिक्स",
+        services:"सेवाएं",
+        logout:"लॉगआउट",
+
+        tagline:"स्थानीय सहायता, आसान तरीके से।",
+
+        available:"उपलब्ध",
+        professionals:"पेशेवर",
+
+        pageDescription:
+            "अपने चुने हुए स्थान के पास भरोसेमंद पेशेवर खोजें।",
+
+        locationTitle:
+            "📍 आपको सहायता कहाँ चाहिए?",
+
+        locationSubtitle:
+            "पास के पंजीकृत QuickFix पेशेवरों को खोजने के लिए अपना क्षेत्र, शहर या स्थान दर्ज करें।",
+
+        locationPlaceholder:
+            "उदाहरण: Talegaon Dabhade, Akurdi, Pimpri",
+
+        findHelpers:"🔎 हेल्पर खोजें",
+        useLocation:"📌 मेरा स्थान उपयोग करें",
+
+        locationStatus:
+            "QuickFix पेशेवर दिखाए जा रहे हैं।",
+
+        searchPlaceholder:
+            "🔍 नाम से पेशेवर खोजें...",
+
+        allRatings:"सभी रेटिंग",
+        allPrices:"सभी कीमतें",
+
+        loading:"QuickFix पेशेवर लोड हो रहे हैं...",
+
+        experience:"अनुभव",
+        charges:"शुल्क",
+        location:"स्थान",
+        contact:"संपर्क",
+
+        notSpecified:"उल्लेख नहीं है",
+        contactPrice:"कीमत के लिए संपर्क करें",
+        localArea:"स्थानीय क्षेत्र",
+        afterBooking:"बुकिंग के बाद उपलब्ध",
+
+        book:"इस पेशेवर को बुक करें",
+
+        quickFix:"✓ QuickFix पेशेवर",
+        nearby:"📍 पास का पंजीकृत हेल्पर",
+
+        noProfessionals:"कोई पेशेवर नहीं मिला",
+
+        noProfessionalsText:
+            "आपके वर्तमान फ़िल्टर के अनुसार कोई पेशेवर नहीं मिला। दूसरा फ़िल्टर आज़माएं।",
+
+        clearFilters:"फ़िल्टर हटाएं",
+
+        unableLoad:"पेशेवर लोड नहीं हो सके",
+
+        backendMessage:
+            "कृपया सुनिश्चित करें कि QuickFix backend चल रहा है और कोई सेवा चुनी गई है।",
+
+        professional:"पेशेवर",
+
+        reliable:
+            "भरोसेमंद QuickFix पेशेवर आपकी सहायता के लिए तैयार है।",
+
+        availability:
+            "उपलब्धता की पुष्टि की जाएगी",
+
+        locationRequired:
+            "कृपया पहले स्थान दर्ज करें।",
+
+        locationFound:
+            "📍 स्थान मिल गया। पास के पंजीकृत हेल्पर खोजे जा रहे हैं...",
+
+        locationNotFound:
+            "स्थान नहीं मिला। दूसरा क्षेत्र आज़माएं।",
+
+        locationSearchError:
+            "इस स्थान को खोज नहीं सके। सुनिश्चित करें कि QuickFix backend चल रहा है।",
+
+        gettingLocation:
+            "📍 आपका वर्तमान स्थान प्राप्त किया जा रहा है...",
+
+        browserLocation:
+            "आपका ब्राउज़र स्थान सुविधा का समर्थन नहीं करता।",
+
+        searchingNearby:
+            "📍 आपके पास पंजीकृत हेल्पर खोजे जा रहे हैं...",
+
+        locationUnavailable:
+            "स्थान उपलब्ध नहीं है। आप ऊपर अपना क्षेत्र दर्ज कर सकते हैं।",
+
+        savedLocation:
+            "📍 सहेजे गए स्थान का उपयोग हो रहा है:",
+
+        searchingRegistered:
+            "पंजीकृत हेल्पर खोजे जा रहे हैं...",
+
+        noAdditional:
+            "📍 आसपास कोई अतिरिक्त पंजीकृत हेल्पर नहीं मिला। आपके QuickFix पेशेवर अभी भी उपलब्ध हैं।",
+
+        nearbyUnavailable:
+            "📍 आसपास के पंजीकृत हेल्पर की खोज उपलब्ध नहीं है।",
+
+        showingQuickFix:
+            "QuickFix पेशेवर दिखाए जा रहे हैं।",
+
+        oneProfessional:"पेशेवर",
+        manyProfessionals:"पेशेवर"
+
+    },
+
+
+    mr: {
+
+        home:"होम",
+        quickMatch:"क्विक मॅच",
+        snapFix:"स्नॅप अँड फिक्स",
+        services:"सेवा",
+        logout:"लॉगआउट",
+
+        tagline:"स्थानिक मदत, अगदी सोप्या पद्धतीने.",
+
+        available:"उपलब्ध",
+        professionals:"तज्ञ",
+
+        pageDescription:
+            "तुमच्या निवडलेल्या ठिकाणाजवळ विश्वासू तज्ञ शोधा.",
+
+        locationTitle:
+            "📍 तुम्हाला मदत कुठे हवी आहे?",
+
+        locationSubtitle:
+            "जवळील नोंदणीकृत QuickFix तज्ञ शोधण्यासाठी तुमचा परिसर, शहर किंवा ठिकाण लिहा.",
+
+        locationPlaceholder:
+            "उदाहरण: Talegaon Dabhade, Akurdi, Pimpri",
+
+        findHelpers:"🔎 हेल्पर शोधा",
+        useLocation:"📌 माझे स्थान वापरा",
+
+        locationStatus:
+            "QuickFix तज्ञ दाखवले जात आहेत.",
+
+        searchPlaceholder:
+            "🔍 नावाने तज्ञ शोधा...",
+
+        allRatings:"सर्व रेटिंग",
+        allPrices:"सर्व किंमती",
+
+        loading:"QuickFix तज्ञ लोड होत आहेत...",
+
+        experience:"अनुभव",
+        charges:"शुल्क",
+        location:"स्थान",
+        contact:"संपर्क",
+
+        notSpecified:"माहिती उपलब्ध नाही",
+        contactPrice:"किमतीसाठी संपर्क करा",
+        localArea:"स्थानिक परिसर",
+        afterBooking:"बुकिंगनंतर उपलब्ध",
+
+        book:"या तज्ञाला बुक करा",
+
+        quickFix:"✓ QuickFix तज्ञ",
+        nearby:"📍 जवळील नोंदणीकृत हेल्पर",
+
+        noProfessionals:"कोणतेही तज्ञ सापडले नाहीत",
+
+        noProfessionalsText:
+            "तुमच्या सध्याच्या फिल्टरनुसार कोणतेही तज्ञ सापडले नाहीत. दुसरा फिल्टर वापरून पाहा.",
+
+        clearFilters:"फिल्टर साफ करा",
+
+        unableLoad:"तज्ञ लोड करता आले नाहीत",
+
+        backendMessage:
+            "कृपया QuickFix backend सुरू आहे आणि सेवा निवडलेली आहे याची खात्री करा.",
+
+        professional:"तज्ञ",
+
+        reliable:
+            "विश्वासू QuickFix तज्ञ तुमच्या मदतीसाठी तयार आहे.",
+
+        availability:
+            "उपलब्धतेची पुष्टी केली जाईल",
+
+        locationRequired:
+            "कृपया प्रथम स्थान लिहा.",
+
+        locationFound:
+            "📍 स्थान सापडले. जवळील नोंदणीकृत हेल्पर शोधले जात आहेत...",
+
+        locationNotFound:
+            "स्थान सापडले नाही. दुसरा परिसर वापरून पाहा.",
+
+        locationSearchError:
+            "हे स्थान शोधता आले नाही. QuickFix backend सुरू आहे याची खात्री करा.",
+
+        gettingLocation:
+            "📍 तुमचे सध्याचे स्थान मिळवत आहे...",
+
+        browserLocation:
+            "तुमचा ब्राउझर स्थान सुविधेला समर्थन देत नाही.",
+
+        searchingNearby:
+            "📍 तुमच्या जवळील नोंदणीकृत हेल्पर शोधले जात आहेत...",
+
+        locationUnavailable:
+            "स्थान उपलब्ध नाही. तुम्ही वर तुमचा परिसर लिहू शकता.",
+
+        savedLocation:
+            "📍 सेव्ह केलेले स्थान वापरत आहे:",
+
+        searchingRegistered:
+            "नोंदणीकृत हेल्पर शोधले जात आहेत...",
+
+        noAdditional:
+            "📍 जवळ कोणतेही अतिरिक्त नोंदणीकृत हेल्पर सापडले नाहीत. तुमचे QuickFix तज्ञ अजूनही उपलब्ध आहेत.",
+
+        nearbyUnavailable:
+            "📍 जवळील नोंदणीकृत हेल्पर शोध सेवा उपलब्ध नाही.",
+
+        showingQuickFix:
+            "QuickFix तज्ञ दाखवले जात आहेत.",
+
+        oneProfessional:"तज्ञ",
+        manyProfessionals:"तज्ञ"
+
+    }
+
+};
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+function getLanguage(){
+
+    return localStorage.getItem(
+        "quickfixLanguage"
+    ) || "en";
+
+}
+
+function t(key){
+
+    const lang = getLanguage();
+
+    return translations[lang]?.[key]
+        || translations.en[key]
+        || key;
+
+}
+
+function changeLanguage(lang){
+
+    localStorage.setItem(
+        "quickfixLanguage",
+        lang
+    );
+
+    applyLanguage();
+
+    displayProfiles();
+
+}
+
+
+/* =====================================================
+   SERVICE NAME TRANSLATION
+===================================================== */
+
+function translateService(service){
+
+    const key =
+        String(service || "")
+        .trim()
+        .toLowerCase();
+
+    const lang = getLanguage();
+
+    const services = {
+
+        electrician:{
+            en:"Electrician",
+            hi:"इलेक्ट्रीशियन",
+            mr:"इलेक्ट्रिशियन"
+        },
+
+        plumber:{
+            en:"Plumber",
+            hi:"प्लंबर",
+            mr:"प्लंबर"
+        },
+
+        tutor:{
+            en:"Tutor",
+            hi:"शिक्षक",
+            mr:"शिक्षक"
+        },
+
+        carpenter:{
+            en:"Carpenter",
+            hi:"बढ़ई",
+            mr:"सुतार"
+        },
+
+        cleaner:{
+            en:"Cleaner",
+            hi:"सफाई कर्मचारी",
+            mr:"स्वच्छता कर्मचारी"
+        },
+
+        "moving help":{
+            en:"Moving Help",
+            hi:"स्थानांतरण सहायता",
+            mr:"स्थलांतर मदत"
+        },
+
+        cook:{
+            en:"Cook",
+            hi:"रसोइया",
+            mr:"स्वयंपाकी"
+        },
+
+        gardener:{
+            en:"Gardener",
+            hi:"माली",
+            mr:"माळी"
+        },
+
+        "house helping":{
+            en:"House Helping",
+            hi:"घरेलू सहायता",
+            mr:"घरगुती मदत"
+        },
+
+        "woman help":{
+            en:"Woman Help",
+            hi:"महिला सहायता",
+            mr:"महिला मदत"
+        }
+
+    };
+
+    return services[key]?.[lang]
+        || services[key]?.en
+        || service;
+
+}
+
+
+/* =====================================================
+   GET SELECTED SERVICE
+   IMPORTANT FIX
+===================================================== */
+
+function getSelectedService(){
+
+    let service =
+        localStorage.getItem(
+            "selectedService"
+        );
+
+    if(!service){
+
+        service =
+            localStorage.getItem(
+                "quickFixSelectedService"
+            );
+
+    }
+
+    if(!service){
+
+        service =
+            localStorage.getItem(
+                "service"
+            );
+
+    }
+
+    if(service){
+
+        service =
+            service.trim();
+
+    }
+
+    return service || "";
+
+}
+
+
+/* =====================================================
+   APPLY LANGUAGE
+===================================================== */
+
+function applyLanguage(){
+
+    const lang = getLanguage();
+
+    document.documentElement.lang = lang;
+
+    document.getElementById(
+        "languageSelect"
+    ).value = lang;
+
+    document.getElementById(
+        "navHome"
+    ).textContent = t("home");
+
+    document.getElementById(
+        "navQuickMatch"
+    ).textContent = t("quickMatch");
+
+    document.getElementById(
+        "navSnapFix"
+    ).textContent = t("snapFix");
+
+    document.getElementById(
+        "navServices"
+    ).textContent = t("services");
+
+    document.getElementById(
+        "navLogout"
+    ).textContent = t("logout");
+
+    document.getElementById(
+        "brandTagline"
+    ).textContent = t("tagline");
+
+    document.getElementById(
+        "availableText"
+    ).textContent = t("available");
+
+    document.getElementById(
+        "pageDescription"
+    ).textContent = t("pageDescription");
+
+    document.getElementById(
+        "locationTitle"
+    ).textContent = t("locationTitle");
+
+    document.getElementById(
+        "locationSubtitle"
+    ).textContent = t("locationSubtitle");
+
+    document.getElementById(
+        "locationInput"
+    ).placeholder = t("locationPlaceholder");
+
+    document.getElementById(
+        "findHelpersButton"
+    ).textContent = t("findHelpers");
+
+    document.getElementById(
+        "useLocationButton"
+    ).textContent = t("useLocation");
+
+    document.getElementById(
+        "searchInput"
+    ).placeholder = t("searchPlaceholder");
+
+    document.getElementById(
+        "allRatingsOption"
+    ).textContent = t("allRatings");
+
+    document.getElementById(
+        "allPricesOption"
+    ).textContent = t("allPrices");
+
+    document.getElementById(
+        "professionalsText"
+    ).textContent = t("professionals");
+
+    document.getElementById(
+        "loadingText"
+    ).textContent = t("loading");
+
+    updateServiceTitle();
+
+}
+
+
+/* =====================================================
+   SERVICE TITLE
+===================================================== */
+
+function updateServiceTitle(){
+
+    const title =
+        selectedService
+            ? translateService(
+                selectedService
+            )
+            : t("professionals");
+
+    document.getElementById(
+        "serviceTitle"
+    ).textContent = title;
+
+}
+
+
+/* =====================================================
+   LOAD HELPERS
+   ROBUST VERSION
+===================================================== */
+
+async function loadBaseHelpers(){
+
+    const container =
+        document.getElementById(
+            "profilesContainer"
+        );
+
+    try{
+
+        selectedService =
+            getSelectedService();
+
+        console.log(
+            "Selected service:",
+            selectedService
+        );
+
+
+        if(!selectedService){
+
+            container.innerHTML = `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        ⚠️
+                    </div>
+
+                    <h3>
+                        ${t("unableLoad")}
+                    </h3>
+
+                    <p>
+                        ${t("backendMessage")}
+                    </p>
+
+                </div>
+
+            `;
+
+            document.getElementById(
+                "resultCount"
+            ).textContent =
+                "0";
+
+            return;
+
+        }
+
+
+        updateServiceTitle();
+
+
+        const url =
+            API_URL +
+            "/api/helpers?service=" +
+            encodeURIComponent(
+                selectedService
+            );
+
+
+        console.log(
+            "Requesting:",
+            url
+        );
+
+
+        const response =
+            await fetch(
+                url,
+                {
+                    method:"GET",
+                    headers:{
+                        "Accept":
+                            "application/json"
+                    }
+                }
+            );
+
+
+        console.log(
+            "Helpers response status:",
+            response.status
+        );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "HTTP " +
+                response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "Helpers API data:",
+            data
+        );
+
+
+        /*
+           SUPPORT ALL COMMON RESPONSE FORMATS
+        */
+
+        let helpers = [];
+
+
+        if(Array.isArray(data)){
+
+            helpers = data;
+
+        }
+        else if(
+            Array.isArray(data.helpers)
+        ){
+
+            helpers =
+                data.helpers;
+
+        }
+        else if(
+            Array.isArray(data.data)
+        ){
+
+            helpers =
+                data.data;
+
+        }
+        else if(
+            Array.isArray(data.results)
+        ){
+
+            helpers =
+                data.results;
+
+        }
+
+
+        /*
+           FILTER BY SERVICE
+           BUT DON'T THROW AWAY DATA
+           IF BACKEND ALREADY FILTERED IT.
+        */
+
+        if(helpers.length > 0){
+
+            const matching =
+                helpers.filter(
+                    helper => {
+
+                        const helperService =
+                            String(
+                                helper.service ||
+                                ""
+                            )
+                            .trim()
+                            .toLowerCase();
+
+                        return(
+                            helperService ===
+                            selectedService
+                                .trim()
+                                .toLowerCase()
+                        );
+
+                    }
+                );
+
+
+            if(matching.length > 0){
+
+                helpers =
+                    matching;
+
+            }
+
+        }
+
+
+        /*
+           EXACTLY 5 NORMAL QUICKFIX HELPERS
+        */
+
+        baseHelpers =
+            helpers
+                .slice(0,5)
+                .map(
+                    helper => ({
+
+                        ...helper,
+
+                        providerType:
+                            "QuickFix Professional"
+
+                    })
+                );
+
+
+        nearbyHelpers = [];
+
+
+        allHelpers =
+            baseHelpers;
+
+
+        console.log(
+            "Final QuickFix helpers:",
+            baseHelpers
+        );
+
+
+        /*
+           IMPORTANT:
+           SHOW CARDS IMMEDIATELY.
+        */
+
+        displayProfiles();
+
+
+        /*
+           IF EMPTY, SHOW CLEAR MESSAGE
+           INSTEAD OF INFINITE LOADING.
+        */
+
+        if(baseHelpers.length === 0){
+
+            container.innerHTML = `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        🔍
+                    </div>
+
+                    <h3>
+                        ${t("noProfessionals")}
+                    </h3>
+
+                    <p>
+                        ${t("backendMessage")}
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+
+    }catch(error){
+
+        console.error(
+            "❌ Helper loading failed:",
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ⚠️
+                </div>
+
+                <h3>
+                    ${t("unableLoad")}
+                </h3>
+
+                <p>
+                    ${t("backendMessage")}
+                </p>
+
+                <button
+                    class="show-all-btn"
+                    onclick="loadBaseHelpers()"
+                >
+                    Try Again
+                </button>
+
+            </div>
+
+        `;
+
+
+        document.getElementById(
+            "resultCount"
+        ).textContent =
+            "0";
+
+    }
+
+}
+
+
+/* =====================================================
+   DISPLAY PROFILES
+===================================================== */
+
+function displayProfiles(){
+
+    const container =
+        document.getElementById(
+            "profilesContainer"
+        );
+
+    if(!container){
+
+        return;
+
+    }
+
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const rating =
+        document.getElementById(
+            "ratingFilter"
+        ).value;
+
+
+    const price =
+        document.getElementById(
+            "priceFilter"
+        ).value;
+
+
+    let filtered =
+        allHelpers.filter(
+            helper => {
+
+                const name =
+                    String(
+                        helper.name || ""
+                    )
+                    .toLowerCase();
+
+
+                const helperRating =
+                    Number(
+                        helper.rating || 0
+                    );
+
+
+                const chargeText =
+                    String(
+                        helper.charges || ""
+                    );
+
+
+                const chargeNumber =
+                    parseInt(
+                        chargeText.replace(
+                            /[^0-9]/g,
+                            ""
+                        )
+                    ) || 0;
+
+
+                const searchMatch =
+                    !search ||
+                    name.includes(
+                        search
+                    );
+
+
+                const ratingMatch =
+                    !rating ||
+                    helperRating >=
+                    Number(rating);
+
+
+                const priceMatch =
+                    !price ||
+                    chargeNumber <=
+                    Number(price);
+
+
+                return(
+                    searchMatch &&
+                    ratingMatch &&
+                    priceMatch
+                );
+
+            }
+        );
+
+
+    document.getElementById(
+        "resultCount"
+    ).textContent =
+        filtered.length +
+        " " +
+        (
+            filtered.length === 1
+                ? t("oneProfessional")
+                : t("manyProfessionals")
+        );
+
+
+    if(filtered.length === 0){
+
+        if(allHelpers.length === 0){
+
+            return;
+
+        }
+
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🔍
+                </div>
+
+                <h3>
+                    ${t("noProfessionals")}
+                </h3>
+
+                <p>
+                    ${t("noProfessionalsText")}
+                </p>
+
+                <button
+                    class="show-all-btn"
+                    onclick="clearFilters()"
+                >
+                    ${t("clearFilters")}
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        filtered
+        .map(
+            helper =>
+                createProfileCard(
+                    helper
+                )
+        )
+        .join("");
+
+}
+
+
+/* =====================================================
+   PROFILE CARD
+===================================================== */
+
+function createProfileCard(helper){
+
+    const rating =
+        Number(
+            helper.rating || 0
+        );
+
+
+    const rounded =
+        Math.round(rating);
+
+
+    const stars =
+        "★".repeat(
+            Math.min(
+                rounded,
+                5
+            )
+        ) +
+        "☆".repeat(
+            Math.max(
+                0,
+                5-rounded
+            )
+        );
+
+
+    let imageHTML;
+
+
+    if(helper.photo){
+
+        imageHTML = `
+
+            <img
+                class="profile-image"
+                src="${escapeHTML(
+                    helper.photo
+                )}"
+                alt="${escapeHTML(
+                    helper.name ||
+                    t("professional")
+                )}"
+                onerror="
+                    this.style.display='none';
+                    this.nextElementSibling.style.display='flex';
+                "
+            >
+
+            <div
+                class="image-fallback"
+                style="display:none"
+            >
+                👤
+            </div>
+
+        `;
+
+    }else{
+
+        imageHTML = `
+
+            <div class="image-fallback">
+                👤
+            </div>
+
+        `;
+
+    }
+
+
+    const distance =
+        helper.distance !== undefined &&
+        helper.distance !== null
+            ? Number(
+                helper.distance
+              ).toFixed(1) +
+              " km"
+            : "";
+
+
+    const distanceHTML =
+        distance
+            ? `
+                <div class="distance-badge">
+                    📍 ${distance}
+                </div>
+              `
+            : "";
+
+
+    const registered =
+        helper.providerType ===
+        "Nearby Registered Helper";
+
+
+    const providerLabel =
+        registered
+            ? `
+                <div class="provider-label registered">
+                    ${t("nearby")}
+                </div>
+              `
+            : `
+                <div class="provider-label">
+                    ${t("quickFix")}
+                </div>
+              `;
+
+
+    return `
+
+        <article class="profile-card">
+
+            <div class="profile-image-wrap">
+
+                ${imageHTML}
+
+                ${distanceHTML}
+
+                <button
+                    class="favorite-btn"
+                    onclick="toggleFavorite(
+                        '${escapeJS(
+                            helper.name ||
+                            "Professional"
+                        )}',
+                        this
+                    )"
+                >
+                    ♡
+                </button>
+
+            </div>
+
+
+            <div class="profile-content">
+
+                ${providerLabel}
+
+
+                <h3 class="profile-name">
+
+                    ${escapeHTML(
+                        helper.name ||
+                        t("professional")
+                    )}
+
+                </h3>
+
+
+                <div class="profile-service">
+
+                    ${escapeHTML(
+                        translateService(
+                            helper.service ||
+                            selectedService
+                        )
+                    )}
+
+                </div>
+
+
+                <div class="rating">
+
+                    ${stars}
+                    ${rating.toFixed(1)}
+
+                </div>
+
+
+                <p class="description">
+
+                    ${escapeHTML(
+                        helper.description ||
+                        t("reliable")
+                    )}
+
+                </p>
+
+
+                <div class="details">
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            ${t("experience")}
+                        </span>
+
+                        <span class="detail-value">
+                            ${escapeHTML(
+                                helper.experience ||
+                                t("notSpecified")
+                            )}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            ${t("charges")}
+                        </span>
+
+                        <span class="detail-value">
+                            ${escapeHTML(
+                                helper.charges ||
+                                t("contactPrice")
+                            )}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            ${t("location")}
+                        </span>
+
+                        <span class="detail-value">
+                            ${escapeHTML(
+                                helper.location ||
+                                t("localArea")
+                            )}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            ${t("contact")}
+                        </span>
+
+                        <span class="detail-value">
+                            ${escapeHTML(
+                                helper.contact ||
+                                t("afterBooking")
+                            )}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="availability">
+
+                    🟢
+
+                    ${escapeHTML(
+                        helper.availability ||
+                        t("availability")
+                    )}
+
+                </div>
+
+
+                <button
+                    class="book-btn"
+                    onclick="bookHelperById(
+                        ${Number(
+                            helper.id || 0
+                        )}
+                    )"
+                >
+                    ${t("book")}
+                </button>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* =====================================================
+   BOOK HELPER
+===================================================== */
+
+function bookHelperById(id){
+
+    const helper =
+        allHelpers.find(
+            item =>
+                Number(item.id) ===
+                Number(id)
+        );
+
+
+    if(!helper){
+
+        alert(
+            "Professional information is missing."
+        );
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "selectedHelper",
+        JSON.stringify(
+            helper
+        )
+    );
+
+
+    localStorage.setItem(
+        "selectedService",
+        helper.service ||
+        selectedService
+    );
+
+
+    window.location.href =
+        "booking.html";
+
+}
+
+
+/* =====================================================
+   FAVORITES
+===================================================== */
+
+function toggleFavorite(
+    name,
+    button
+){
+
+    let favorites =
+        JSON.parse(
+            localStorage.getItem(
+                "quickFixFavorites"
+            ) || "[]"
+        );
+
+
+    if(
+        favorites.includes(name)
+    ){
+
+        favorites =
+            favorites.filter(
+                item =>
+                    item !== name
+            );
+
+        button.classList.remove(
+            "active"
+        );
+
+        button.textContent =
+            "♡";
+
+    }else{
+
+        favorites.push(name);
+
+        button.classList.add(
+            "active"
+        );
+
+        button.textContent =
+            "♥";
+
+    }
+
+
+    localStorage.setItem(
+        "quickFixFavorites",
+        JSON.stringify(
+            favorites
+        )
+    );
+
+}
+
+
+/* =====================================================
+   CLEAR FILTERS
+===================================================== */
+
+function clearFilters(){
+
+    document.getElementById(
+        "searchInput"
+    ).value = "";
+
+    document.getElementById(
+        "ratingFilter"
+    ).value = "";
+
+    document.getElementById(
+        "priceFilter"
+    ).value = "";
+
+    displayProfiles();
+
+}
+
+
+/* =====================================================
+   LOCATION SEARCH
+===================================================== */
+
+async function searchByLocation(){
+
+    const location =
+        document.getElementById(
+            "locationInput"
+        ).value.trim();
+
+
+    if(!location){
+
+        setLocationStatus(
+            t("locationRequired"),
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    setLocationStatus(
+        t("locationFound"),
+        ""
+    );
+
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL +
+                "/api/geocode?location=" +
+                encodeURIComponent(
+                    location
+                )
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            !response.ok ||
+            !data.success
+        ){
+
+            setLocationStatus(
+                t("locationNotFound"),
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        userLatitude =
+            Number(data.latitude);
+
+
+        userLongitude =
+            Number(data.longitude);
+
+
+        currentLocationName =
+            data.display_name ||
+            location;
+
+
+        localStorage.setItem(
+            "selectedLocation",
+            location
+        );
+
+
+        localStorage.setItem(
+            "selectedLatitude",
+            userLatitude
+        );
+
+
+        localStorage.setItem(
+            "selectedLongitude",
+            userLongitude
+        );
+
+
+        document.getElementById(
+            "selectedLocationText"
+        ).textContent =
+            location;
+
+
+        setLocationStatus(
+            t("locationFound"),
+            "success"
+        );
+
+
+        await loadNearbyHelpers();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        setLocationStatus(
+            t("locationSearchError"),
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CURRENT LOCATION
+===================================================== */
+
+function useCurrentLocation(){
+
+    if(
+        !navigator.geolocation
+    ){
+
+        setLocationStatus(
+            t("browserLocation"),
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    setLocationStatus(
+        t("gettingLocation"),
+        ""
+    );
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        async position => {
+
+            userLatitude =
+                position.coords.latitude;
+
+            userLongitude =
+                position.coords.longitude;
+
+
+            localStorage.setItem(
+                "selectedLatitude",
+                userLatitude
+            );
+
+            localStorage.setItem(
+                "selectedLongitude",
+                userLongitude
+            );
+
+            localStorage.setItem(
+                "selectedLocation",
+                "Your current location"
+            );
+
+
+            document.getElementById(
+                "selectedLocationText"
+            ).textContent =
+                getLanguage() === "mr"
+                    ? "तुमचे स्थान"
+                    : getLanguage() === "hi"
+                        ? "आपका स्थान"
+                        : "Your Location";
+
+
+            setLocationStatus(
+                t("searchingNearby"),
+                "success"
+            );
+
+
+            await loadNearbyHelpers();
+
+        },
+
+        error => {
+
+            console.error(
+                error
+            );
+
+            setLocationStatus(
+                t("locationUnavailable"),
+                "error"
+            );
+
+        },
+
+        {
+            enableHighAccuracy:true,
+            timeout:10000,
+            maximumAge:60000
+        }
+
+    );
+
+}
+
+
+/* =====================================================
+   NEARBY HELPERS
+===================================================== */
+
+async function loadNearbyHelpers(){
+
+    if(
+        userLatitude === null ||
+        userLongitude === null ||
+        !selectedService
+    ){
+
+        return;
+
+    }
+
+
+    try{
+
+        const url =
+            API_URL +
+            "/api/helpers/nearby" +
+            "?latitude=" +
+            encodeURIComponent(
+                userLatitude
+            ) +
+            "&longitude=" +
+            encodeURIComponent(
+                userLongitude
+            ) +
+            "&service=" +
+            encodeURIComponent(
+                selectedService
+            ) +
+            "&radius=10";
+
+
+        const response =
+            await fetch(url);
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            response.ok &&
+            data.success
+        ){
+
+            nearbyHelpers =
+                Array.isArray(
+                    data.helpers
+                )
+                    ? data.helpers
+                    : [];
+
+
+            nearbyHelpers =
+                nearbyHelpers.filter(
+                    helper =>
+                        !baseHelpers.some(
+                            base =>
+                                Number(
+                                    base.id
+                                ) === Number(
+                                    helper.id
+                                )
+                        )
+                );
+
+
+            allHelpers = [
+                ...baseHelpers,
+                ...nearbyHelpers
+            ];
+
+
+            displayProfiles();
+
+            return;
+
+        }
+
+
+        displayProfiles();
+
+    }catch(error){
+
+        console.error(
+            "Nearby helpers error:",
+            error
+        );
+
+        displayProfiles();
+
+    }
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function goTo(page){
+
+    window.location.href =
+        page;
+
+}
+
+
+function goToQuickMatch(){
+
+    window.location.href =
+        "quick-match.html";
+
+}
+
+
+function goToSnapFix(){
+
+    window.location.href =
+        "snap-fix.html";
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+    localStorage.removeItem(
+        "selectedHelper"
+    );
+
+    localStorage.removeItem(
+        "selectedService"
+    );
+
+    localStorage.removeItem(
+        "selectedLocation"
+    );
+
+    localStorage.removeItem(
+        "selectedLatitude"
+    );
+
+    localStorage.removeItem(
+        "selectedLongitude"
+    );
+
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* =====================================================
+   SAFE TEXT
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeJS(value){
+
+    return String(value)
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/"/g,"&quot;")
+        .replace(/\n/g,"\\n")
+        .replace(/\r/g,"");
+
+}
+
+
+/* =====================================================
+   ENTER KEY FOR LOCATION
+===================================================== */
+
+document
+.getElementById("locationInput")
+.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Enter"
+        ){
+
+            searchByLocation();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function(){
+
+        console.log(
+            "QuickFix service-profiles loading..."
+        );
+
+
+        /*
+           FIRST:
+           Get service BEFORE loading helpers.
+        */
+
+        selectedService =
+            getSelectedService();
+
+
+        console.log(
+            "Selected service:",
+            selectedService
+        );
+
+
+        /*
+           Apply language.
+        */
+
+        applyLanguage();
+
+
+        /*
+           Show selected service immediately.
+        */
+
+        updateServiceTitle();
+
+
+        /*
+           Load backend helpers.
+        */
+
+        await loadBaseHelpers();
+
+
+        /*
+           Restore saved location.
+        */
+
+        const savedLocation =
+            localStorage.getItem(
+                "selectedLocation"
+            );
+
+
+        const savedLatitude =
+            localStorage.getItem(
+                "selectedLatitude"
+            );
+
+
+        const savedLongitude =
+            localStorage.getItem(
+                "selectedLongitude"
+            );
+
+
+        if(
+            savedLocation &&
+            savedLatitude &&
+            savedLongitude
+        ){
+
+            document.getElementById(
+                "locationInput"
+            ).value =
+                savedLocation;
+
+
+            userLatitude =
+                Number(
+                    savedLatitude
+                );
+
+
+            userLongitude =
+                Number(
+                    savedLongitude
+                );
+
+
+            currentLocationName =
+                savedLocation;
+
+
+            document.getElementById(
+                "selectedLocationText"
+            ).textContent =
+                savedLocation;
+
+
+            await loadNearbyHelpers();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

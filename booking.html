@@ -1,0 +1,1678 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QuickFix - Booking</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:
+        radial-gradient(circle at top left, rgba(228,154,47,0.07), transparent 30%),
+        linear-gradient(135deg,#061a14,#09251c 55%,#061a14);
+    min-height:100vh;
+    color:#f7f4eb;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    background:rgba(3,17,13,0.96);
+    color:#f7f4eb;
+    padding:18px 45px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+    box-shadow:0 5px 25px rgba(0,0,0,0.35);
+    border-bottom:1px solid rgba(228,154,47,0.12);
+    position:sticky;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(12px);
+}
+
+.logo{
+    font-size:29px;
+    font-weight:800;
+    letter-spacing:2px;
+    color:#f7f4eb;
+}
+
+.logo span{
+    color:#e49a2f;
+}
+
+nav{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+nav a,
+nav button{
+    text-decoration:none;
+    color:#dce7e1;
+    background:#0c3024;
+    border:1px solid rgba(255,255,255,0.06);
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:700;
+    transition:0.25s ease;
+}
+
+nav a:hover,
+nav button:hover{
+    background:#e49a2f;
+    color:#10291f;
+    border-color:#e49a2f;
+    transform:translateY(-2px);
+}
+
+nav button:last-child{
+    background:#7f251f;
+    color:#fff;
+}
+
+nav button:last-child:hover{
+    background:#a83229;
+    color:#fff;
+    border-color:#a83229;
+}
+
+/* ================= MAIN ================= */
+
+.container{
+    width:92%;
+    max-width:900px;
+    margin:55px auto 80px;
+}
+
+.booking-card{
+    background:
+        linear-gradient(145deg,rgba(16,60,45,0.96),rgba(8,35,27,0.98));
+    padding:42px;
+    border-radius:28px;
+    border:1px solid rgba(228,154,47,0.15);
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.38),
+        inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+/* ================= TITLE ================= */
+
+h1{
+    text-align:center;
+    margin-bottom:10px;
+    color:#f7f4eb;
+    font-size:38px;
+    font-weight:800;
+    letter-spacing:-0.5px;
+}
+
+h1::after{
+    content:"";
+    display:block;
+    width:72px;
+    height:4px;
+    background:#e49a2f;
+    margin:16px auto 0;
+    border-radius:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#aebdb5;
+    margin:18px auto 32px;
+    line-height:1.7;
+    max-width:650px;
+}
+
+/* ================= MESSAGE ================= */
+
+.message{
+    display:none;
+    padding:15px 18px;
+    border-radius:12px;
+    margin-bottom:22px;
+    text-align:center;
+    font-weight:700;
+}
+
+.success{
+    background:rgba(24,115,78,0.22);
+    color:#7ee2b3;
+    border:1px solid rgba(126,226,179,0.45);
+}
+
+.error{
+    background:rgba(127,37,31,0.25);
+    color:#ff9d96;
+    border:1px solid rgba(255,100,90,0.45);
+}
+
+/* ================= HELPER CARD ================= */
+
+.helper-box{
+    background:
+        linear-gradient(145deg,#104534,#0b2d21);
+    border:1px solid rgba(228,154,47,0.18);
+    border-left:5px solid #e49a2f;
+    padding:24px;
+    border-radius:18px;
+    margin-bottom:26px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.18);
+}
+
+.helper-box h2{
+    color:#e49a2f;
+    margin-bottom:15px;
+    font-size:25px;
+    font-weight:800;
+}
+
+.helper-box p{
+    margin:11px 0;
+    color:#c8d4ce;
+    line-height:1.5;
+}
+
+.helper-box strong{
+    color:#f5b64e;
+}
+
+/* ================= URGENT MODE ================= */
+
+.urgent-box{
+    background:
+        linear-gradient(145deg,rgba(105,65,18,0.45),rgba(63,39,12,0.35));
+    border:1px solid rgba(228,154,47,0.5);
+    padding:17px 18px;
+    border-radius:14px;
+    margin-bottom:25px;
+}
+
+.urgent-box label{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:0;
+    color:#f5b64e;
+    cursor:pointer;
+    line-height:1.5;
+}
+
+.urgent-box input{
+    width:auto;
+    accent-color:#e49a2f;
+}
+
+/* ================= FORM ================= */
+
+.form-group{
+    margin-bottom:22px;
+}
+
+label{
+    display:block;
+    font-weight:700;
+    margin-bottom:9px;
+    color:#e49a2f;
+    font-size:14px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:14px 15px;
+    border:1px solid rgba(174,189,181,0.22);
+    border-radius:12px;
+    font-size:15px;
+    outline:none;
+    background:#061a14;
+    color:#f7f4eb;
+    transition:0.25s ease;
+}
+
+input::placeholder,
+textarea::placeholder{
+    color:#71877d;
+}
+
+input:focus,
+textarea:focus{
+    border-color:#e49a2f;
+    box-shadow:0 0 0 3px rgba(228,154,47,0.10);
+    background:#09251c;
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+input[type="date"],
+input[type="time"]{
+    color-scheme:dark;
+}
+
+.date-time-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.selected-time{
+    background:rgba(228,154,47,0.10);
+    border:1px solid rgba(228,154,47,0.28);
+    padding:13px 15px;
+    border-radius:11px;
+    margin-top:3px;
+    color:#f5b64e;
+    font-weight:700;
+    display:none;
+}
+
+/* ================= BUTTONS ================= */
+
+.confirm-btn{
+    width:100%;
+    background:#e49a2f;
+    color:#10291f;
+    border:none;
+    padding:16px;
+    border-radius:12px;
+    font-size:17px;
+    font-weight:800;
+    cursor:pointer;
+    margin-top:8px;
+    transition:0.25s ease;
+    box-shadow:0 8px 22px rgba(228,154,47,0.16);
+}
+
+.confirm-btn:hover{
+    background:#f5b64e;
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px rgba(228,154,47,0.22);
+}
+
+.confirm-btn:disabled{
+    background:#53655d;
+    color:#d6ded9;
+    cursor:not-allowed;
+    transform:none;
+    box-shadow:none;
+}
+
+.back-btn{
+    display:block;
+    width:100%;
+    text-align:center;
+    margin-top:15px;
+    padding:13px;
+    border-radius:12px;
+    background:#0c3024;
+    border:1px solid rgba(255,255,255,0.07);
+    color:#c8d4ce;
+    text-decoration:none;
+    font-weight:700;
+    transition:0.25s ease;
+}
+
+.back-btn:hover{
+    background:#104534;
+    border-color:rgba(228,154,47,0.35);
+    color:#f5b64e;
+    transform:translateY(-2px);
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#03110d;
+    color:#91a39b;
+    text-align:center;
+    padding:25px;
+    font-size:14px;
+    border-top:1px solid rgba(255,255,255,0.05);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:800px){
+
+    header{
+        padding:18px 20px;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    nav{
+        justify-content:center;
+    }
+
+    .container{
+        width:94%;
+        margin:35px auto 55px;
+    }
+
+    .booking-card{
+        padding:28px 22px;
+    }
+
+    h1{
+        font-size:31px;
+    }
+}
+
+@media(max-width:600px){
+
+    nav a,
+    nav button{
+        font-size:13px;
+        padding:9px 11px;
+    }
+
+    .date-time-row{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .helper-box{
+        padding:20px;
+    }
+
+    .urgent-box{
+        padding:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        QUICK<span>FIX</span>
+    </div>
+
+    <nav>
+
+        <a href="home.html" data-i18n="home">
+            Home
+        </a>
+
+        <a href="quick-match.html" data-i18n="quickMatch">
+            Quick Match
+        </a>
+
+        <a href="snap-fix.html" data-i18n="snapFix">
+            Snap & Fix
+        </a>
+
+        <a href="services.html" data-i18n="services">
+            Services
+        </a>
+
+        <a href="my-fixes.html" data-i18n="myFixes">
+            My Fixes
+        </a>
+
+        <button onclick="changeLanguage()" data-i18n="language">
+            🌐 Language
+        </button>
+
+        <button onclick="logout()" data-i18n="logout">
+            Logout
+        </button>
+
+    </nav>
+
+</header>
+
+
+<div class="container">
+
+    <div class="booking-card">
+
+        <h1 data-i18n="title">
+            Book a Professional
+        </h1>
+
+        <p class="subtitle" data-i18n="subtitle">
+            Fill in the details below to request a service.
+        </p>
+
+        <div id="message" class="message"></div>
+
+
+        <div class="helper-box">
+
+            <h2 id="helperName">
+                Loading helper...
+            </h2>
+
+            <p>
+                <strong data-i18n="serviceLabel">
+                    Service:
+                </strong>
+
+                <span id="serviceName">
+                    Loading...
+                </span>
+            </p>
+
+            <p>
+                <strong data-i18n="experienceLabel">
+                    Experience:
+                </strong>
+
+                <span id="helperExperience">-</span>
+            </p>
+
+            <p>
+                <strong data-i18n="chargesLabel">
+                    Charges:
+                </strong>
+
+                <span id="helperCharges">-</span>
+            </p>
+
+            <p>
+                <strong data-i18n="ratingLabel">
+                    Rating:
+                </strong>
+
+                <span id="helperRating">-</span>
+            </p>
+
+            <p>
+                <strong data-i18n="availabilityLabel">
+                    Availability:
+                </strong>
+
+                <span id="helperAvailability">-</span>
+            </p>
+
+        </div>
+
+
+        <div class="urgent-box">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    id="urgentMode"
+                    onchange="toggleUrgentMode()"
+                >
+
+                <span data-i18n="urgentMode">
+                    🚨 Urgent Mode - I need help immediately
+                </span>
+
+            </label>
+
+        </div>
+
+
+        <div id="dateTimeSection">
+
+            <div class="date-time-row">
+
+                <div class="form-group">
+
+                    <label for="bookingDate" data-i18n="dateLabel">
+                        Appointment Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="bookingDate"
+                        onchange="updateSelectedDateTime()"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="bookingTime" data-i18n="timeLabel">
+                        Appointment Time
+                    </label>
+
+                    <input
+                        type="time"
+                        id="bookingTime"
+                        onchange="updateSelectedDateTime()"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="selectedDateTime"
+                class="selected-time"
+            ></div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="address" data-i18n="addressLabel">
+                Address
+            </label>
+
+            <input
+                type="text"
+                id="address"
+                data-i18n-placeholder="addressPlaceholder"
+                placeholder="Enter your complete address"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="phone" data-i18n="phoneLabel">
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                id="phone"
+                data-i18n-placeholder="phonePlaceholder"
+                placeholder="Enter your phone number"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="problem" data-i18n="problemLabel">
+                Describe Your Problem
+            </label>
+
+            <textarea
+                id="problem"
+                data-i18n-placeholder="problemPlaceholder"
+                placeholder="Describe what you need help with..."
+            ></textarea>
+
+        </div>
+
+
+        <button
+            id="confirmButton"
+            class="confirm-btn"
+            onclick="confirmBooking()"
+            data-i18n="confirmButton"
+        >
+            Confirm Booking
+        </button>
+
+
+        <a
+            href="service-profiles.html"
+            class="back-btn"
+            data-i18n="backButton"
+        >
+            ← Back to Professionals
+        </a>
+
+    </div>
+
+</div>
+
+
+<footer>
+    © 2026 QuickFix | Pranali Bhoyar and Mrunmayi Jadhav
+</footer>
+
+
+<script>
+
+const API_URL =
+    "https://quickfix.pythonanywhere.com";
+
+
+let currentLanguage =
+    localStorage.getItem("fixMeLanguage") || "en";
+
+
+const translations = {
+
+    en:{
+        home:"Home",
+        quickMatch:"Quick Match",
+        snapFix:"Snap & Fix",
+        services:"Services",
+        myFixes:"My Fixes",
+        language:"🌐 Language",
+        logout:"Logout",
+
+        title:"Book a Professional",
+
+        subtitle:
+            "Fill in the details below to request a service.",
+
+        serviceLabel:"Service:",
+        experienceLabel:"Experience:",
+        chargesLabel:"Charges:",
+        ratingLabel:"Rating:",
+        availabilityLabel:"Availability:",
+
+        urgentMode:
+            "🚨 Urgent Mode - I need help immediately",
+
+        dateLabel:"Appointment Date",
+        timeLabel:"Appointment Time",
+        addressLabel:"Address",
+        phoneLabel:"Phone Number",
+        problemLabel:"Describe Your Problem",
+
+        addressPlaceholder:
+            "Enter your complete address",
+
+        phonePlaceholder:
+            "Enter your phone number",
+
+        problemPlaceholder:
+            "Describe what you need help with...",
+
+        confirmButton:"Confirm Booking",
+
+        backButton:
+            "← Back to Professionals",
+
+        selectDateTime:
+            "Selected appointment:",
+
+        noHelper:
+            "Helper information is missing.",
+
+        loginRequired:
+            "Please login first.",
+
+        fillDetails:
+            "Please fill in all required details.",
+
+        bookingSuccess:
+            "Booking request sent successfully!",
+
+        bookingError:
+            "Unable to create booking.",
+
+        backendError:
+            "Could not connect to the QuickFix server."
+
+    },
+
+    hi:{
+        home:"होम",
+        quickMatch:"क्विक मैच",
+        snapFix:"स्नैप एंड फिक्स",
+        services:"सेवाएं",
+        myFixes:"मेरे फिक्स",
+        language:"🌐 भाषा",
+        logout:"लॉगआउट",
+
+        title:"प्रोफेशनल बुक करें",
+
+        subtitle:
+            "सेवा का अनुरोध करने के लिए नीचे दिए गए विवरण भरें।",
+
+        serviceLabel:"सेवा:",
+        experienceLabel:"अनुभव:",
+        chargesLabel:"शुल्क:",
+        ratingLabel:"रेटिंग:",
+        availabilityLabel:"उपलब्धता:",
+
+        urgentMode:
+            "🚨 अर्जेंट मोड - मुझे तुरंत मदद चाहिए",
+
+        dateLabel:"अपॉइंटमेंट की तारीख",
+        timeLabel:"अपॉइंटमेंट का समय",
+        addressLabel:"पता",
+        phoneLabel:"फोन नंबर",
+        problemLabel:"अपनी समस्या बताएं",
+
+        addressPlaceholder:
+            "अपना पूरा पता दर्ज करें",
+
+        phonePlaceholder:
+            "अपना फोन नंबर दर्ज करें",
+
+        problemPlaceholder:
+            "बताएं कि आपको किस प्रकार की मदद चाहिए...",
+
+        confirmButton:"बुकिंग कन्फर्म करें",
+
+        backButton:
+            "← प्रोफेशनल्स पर वापस जाएं",
+
+        selectDateTime:
+            "चयनित अपॉइंटमेंट:",
+
+        noHelper:
+            "हेल्पर की जानकारी उपलब्ध नहीं है।",
+
+        loginRequired:
+            "कृपया पहले लॉगिन करें।",
+
+        fillDetails:
+            "कृपया सभी आवश्यक जानकारी भरें।",
+
+        bookingSuccess:
+            "बुकिंग अनुरोध सफलतापूर्वक भेज दिया गया!",
+
+        bookingError:
+            "बुकिंग नहीं हो सकी।",
+
+        backendError:
+            "QuickFix सर्वर से कनेक्ट नहीं हो सका।"
+
+    },
+
+    mr:{
+        home:"होम",
+        quickMatch:"क्विक मॅच",
+        snapFix:"स्नॅप अँड फिक्स",
+        services:"सेवा",
+        myFixes:"माझ्या बुकिंग",
+        language:"🌐 भाषा",
+        logout:"लॉगआउट",
+
+        title:"प्रोफेशनल बुक करा",
+
+        subtitle:
+            "सेवेची विनंती करण्यासाठी खालील माहिती भरा.",
+
+        serviceLabel:"सेवा:",
+        experienceLabel:"अनुभव:",
+        chargesLabel:"शुल्क:",
+        ratingLabel:"रेटिंग:",
+        availabilityLabel:"उपलब्धता:",
+
+        urgentMode:
+            "🚨 अर्जंट मोड - मला त्वरित मदत हवी आहे",
+
+        dateLabel:"अपॉइंटमेंटची तारीख",
+        timeLabel:"अपॉइंटमेंटची वेळ",
+        addressLabel:"पत्ता",
+        phoneLabel:"फोन नंबर",
+        problemLabel:"तुमची समस्या सांगा",
+
+        addressPlaceholder:
+            "तुमचा पूर्ण पत्ता लिहा",
+
+        phonePlaceholder:
+            "तुमचा फोन नंबर लिहा",
+
+        problemPlaceholder:
+            "तुम्हाला कोणत्या प्रकारची मदत हवी आहे ते सांगा...",
+
+        confirmButton:"बुकिंग कन्फर्म करा",
+
+        backButton:
+            "← प्रोफेशनल्सकडे परत जा",
+
+        selectDateTime:
+            "निवडलेली अपॉइंटमेंट:",
+
+        noHelper:
+            "हेल्परची माहिती उपलब्ध नाही.",
+
+        loginRequired:
+            "कृपया प्रथम लॉगिन करा.",
+
+        fillDetails:
+            "कृपया सर्व आवश्यक माहिती भरा.",
+
+        bookingSuccess:
+            "बुकिंग विनंती यशस्वीपणे पाठवली!",
+
+        bookingError:
+            "बुकिंग करता आली नाही.",
+
+        backendError:
+            "QuickFix सर्व्हरशी कनेक्ट करता आले नाही."
+
+    }
+
+};
+
+
+function getTranslations(){
+
+    return translations[currentLanguage] ||
+           translations.en;
+
+}
+
+
+function applyLanguage(){
+
+    const lang =
+        getTranslations();
+
+
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach(function(element){
+
+            const key =
+                element.getAttribute("data-i18n");
+
+            if(lang[key]){
+                element.textContent =
+                    lang[key];
+            }
+
+        });
+
+
+    document
+        .querySelectorAll("[data-i18n-placeholder]")
+        .forEach(function(element){
+
+            const key =
+                element.getAttribute(
+                    "data-i18n-placeholder"
+                );
+
+            if(lang[key]){
+                element.placeholder =
+                    lang[key];
+            }
+
+        });
+
+}
+
+
+function changeLanguage(){
+
+    window.location.href =
+        "language.html";
+
+}
+
+
+// =========================================
+// CURRENT USER
+// =========================================
+
+let currentUser = null;
+
+try{
+
+    currentUser =
+        JSON.parse(
+            localStorage.getItem(
+                "quickfixCurrentUser"
+            ) || "null"
+        );
+
+    if(!currentUser){
+
+        currentUser =
+            JSON.parse(
+                localStorage.getItem(
+                    "currentUser"
+                ) || "null"
+            );
+
+    }
+
+}catch(error){
+
+    console.error(
+        "Current user error:",
+        error
+    );
+
+    currentUser = null;
+
+}
+
+
+// =========================================
+// SELECTED HELPER
+// =========================================
+
+let selectedHelperData = null;
+
+let helper = "";
+let service = "";
+
+
+try{
+
+    const savedHelper =
+        localStorage.getItem(
+            "selectedHelper"
+        );
+
+
+    const savedService =
+        localStorage.getItem(
+            "selectedService"
+        );
+
+
+    console.log(
+        "QuickFix selectedHelper:",
+        savedHelper
+    );
+
+    console.log(
+        "QuickFix selectedService:",
+        savedService
+    );
+
+
+    if(savedHelper){
+
+        try{
+
+            selectedHelperData =
+                JSON.parse(savedHelper);
+
+        }catch(error){
+
+            console.error(
+                "Could not parse selectedHelper:",
+                error
+            );
+
+            selectedHelperData = null;
+
+        }
+
+    }
+
+
+    if(selectedHelperData){
+
+        if(
+            typeof selectedHelperData === "object"
+        ){
+
+            helper =
+                selectedHelperData.name ||
+                selectedHelperData.helper ||
+                selectedHelperData.helperName ||
+                "";
+
+        }else{
+
+            helper =
+                String(
+                    selectedHelperData
+                );
+
+        }
+
+    }
+
+
+    if(savedService){
+
+        service =
+            savedService;
+
+    }
+
+
+    if(
+        !service &&
+        selectedHelperData &&
+        typeof selectedHelperData === "object"
+    ){
+
+        service =
+            selectedHelperData.service ||
+            "";
+
+    }
+
+
+}catch(error){
+
+    console.error(
+        "Helper loading error:",
+        error
+    );
+
+}
+
+
+// =========================================
+// PRICE FORMAT
+// =========================================
+
+function cleanPrice(value){
+
+    if(
+        value === undefined ||
+        value === null ||
+        value === ""
+    ){
+
+        return "-";
+
+    }
+
+
+    let price =
+        String(value)
+            .replace(/₹/g,"")
+            .replace(/^Rs\.?\s*/i,"")
+            .trim();
+
+
+    return "₹" + price;
+
+}
+
+
+// =========================================
+// DISPLAY HELPER
+// =========================================
+
+function displayHelperInformation(){
+
+    const lang =
+        getTranslations();
+
+
+    const helperName =
+        document.getElementById(
+            "helperName"
+        );
+
+
+    const serviceName =
+        document.getElementById(
+            "serviceName"
+        );
+
+
+    if(!helper){
+
+        helperName.textContent =
+            lang.noHelper;
+
+        serviceName.textContent =
+            service || "-";
+
+
+        showMessage(
+            lang.noHelper,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    helperName.textContent =
+        helper;
+
+
+    serviceName.textContent =
+        service || "-";
+
+
+    if(
+        selectedHelperData &&
+        typeof selectedHelperData === "object"
+    ){
+
+        document.getElementById(
+            "helperExperience"
+        ).textContent =
+            selectedHelperData.experience ||
+            "-";
+
+
+        document.getElementById(
+            "helperCharges"
+        ).textContent =
+            cleanPrice(
+                selectedHelperData.charges
+            );
+
+
+        document.getElementById(
+            "helperRating"
+        ).textContent =
+            selectedHelperData.rating !==
+            undefined &&
+            selectedHelperData.rating !==
+            null
+                ? "⭐ " +
+                  selectedHelperData.rating
+                : "-";
+
+
+        document.getElementById(
+            "helperAvailability"
+        ).textContent =
+            selectedHelperData.availability ||
+            "Available";
+
+    }
+
+}
+
+
+// =========================================
+// MINIMUM DATE
+// =========================================
+
+function setMinimumDate(){
+
+    const dateInput =
+        document.getElementById(
+            "bookingDate"
+        );
+
+
+    const today =
+        new Date();
+
+
+    const year =
+        today.getFullYear();
+
+
+    const month =
+        String(
+            today.getMonth()+1
+        ).padStart(2,"0");
+
+
+    const day =
+        String(
+            today.getDate()
+        ).padStart(2,"0");
+
+
+    dateInput.min =
+        year +
+        "-" +
+        month +
+        "-" +
+        day;
+
+}
+
+
+// =========================================
+// DATE / TIME
+// =========================================
+
+function updateSelectedDateTime(){
+
+    const date =
+        document.getElementById(
+            "bookingDate"
+        ).value;
+
+
+    const time =
+        document.getElementById(
+            "bookingTime"
+        ).value;
+
+
+    const display =
+        document.getElementById(
+            "selectedDateTime"
+        );
+
+
+    if(date && time){
+
+        const lang =
+            getTranslations();
+
+
+        display.textContent =
+            lang.selectDateTime +
+            " " +
+            date +
+            " • " +
+            time;
+
+
+        display.style.display =
+            "block";
+
+    }else{
+
+        display.style.display =
+            "none";
+
+    }
+
+}
+
+
+// =========================================
+// URGENT MODE
+// =========================================
+
+function toggleUrgentMode(){
+
+    const checkbox =
+        document.getElementById(
+            "urgentMode"
+        );
+
+
+    const section =
+        document.getElementById(
+            "dateTimeSection"
+        );
+
+
+    if(checkbox.checked){
+
+        section.style.display =
+            "none";
+
+    }else{
+
+        section.style.display =
+            "block";
+
+        updateSelectedDateTime();
+
+    }
+
+}
+
+
+// =========================================
+// MESSAGE
+// =========================================
+
+function showMessage(message,type){
+
+    const box =
+        document.getElementById(
+            "message"
+        );
+
+
+    box.textContent =
+        message;
+
+
+    box.className =
+        "message " + type;
+
+
+    box.style.display =
+        "block";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+// =========================================
+// CONFIRM BOOKING
+// =========================================
+
+async function confirmBooking(){
+
+    const lang =
+        getTranslations();
+
+
+    if(!currentUser){
+
+        showMessage(
+            lang.loginRequired,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(!helper || !service){
+
+        showMessage(
+            lang.noHelper,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const urgent =
+        document.getElementById(
+            "urgentMode"
+        ).checked;
+
+
+    const address =
+        document.getElementById(
+            "address"
+        ).value.trim();
+
+
+    const phone =
+        document.getElementById(
+            "phone"
+        ).value.trim();
+
+
+    const problem =
+        document.getElementById(
+            "problem"
+        ).value.trim();
+
+
+    const bookingDate =
+        document.getElementById(
+            "bookingDate"
+        ).value;
+
+
+    const bookingTime =
+        document.getElementById(
+            "bookingTime"
+        ).value;
+
+
+    if(!address || !phone || !problem){
+
+        showMessage(
+            lang.fillDetails,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !urgent &&
+        (!bookingDate || !bookingTime)
+    ){
+
+        showMessage(
+            lang.fillDetails,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const button =
+        document.getElementById(
+            "confirmButton"
+        );
+
+
+    button.disabled =
+        true;
+
+
+    button.textContent =
+        "Booking...";
+
+
+    const bookingData = {
+
+        user_id:
+            currentUser.id,
+
+        helper:
+            helper,
+
+        service:
+            service,
+
+        date:
+            urgent
+                ? "Urgent"
+                : bookingDate,
+
+        time:
+            urgent
+                ? "Now"
+                : bookingTime,
+
+        urgency:
+            urgent
+                ? "Urgent"
+                : "Normal",
+
+        address:
+            address,
+
+        phone:
+            phone,
+
+        problem:
+            problem
+
+    };
+
+
+    console.log(
+        "QuickFix booking data:",
+        bookingData
+    );
+
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL +
+                "/api/bookings",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(
+                            bookingData
+                        )
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if(!response.ok){
+
+            throw new Error(
+                result.error ||
+                result.message ||
+                lang.bookingError
+            );
+
+        }
+
+
+        let bookings =
+            JSON.parse(
+                localStorage.getItem(
+                    "quickfixBookings"
+                ) || "[]"
+            );
+
+
+        bookings.push({
+
+            id:
+                result.booking_id ||
+                result.id ||
+                Date.now(),
+
+            user_id:
+                currentUser.id,
+
+            helper:
+                helper,
+
+            service:
+                service,
+
+            date:
+                bookingData.date,
+
+            time:
+                bookingData.time,
+
+            address:
+                address,
+
+            phone:
+                phone,
+
+            problem:
+                problem,
+
+            status:
+                "Request Sent"
+
+        });
+
+
+        localStorage.setItem(
+            "quickfixBookings",
+            JSON.stringify(bookings)
+        );
+
+
+        showMessage(
+            lang.bookingSuccess,
+            "success"
+        );
+
+
+        setTimeout(function(){
+
+            window.location.href =
+                "my-fixes.html";
+
+        },1200);
+
+
+    }catch(error){
+
+        console.error(
+            "Booking error:",
+            error
+        );
+
+
+        showMessage(
+            error.message ||
+            lang.backendError,
+            "error"
+        );
+
+
+        button.disabled =
+            false;
+
+
+        button.textContent =
+            lang.confirmButton;
+
+    }
+
+}
+
+
+// =========================================
+// LOGOUT
+// =========================================
+
+function logout(){
+
+    localStorage.removeItem(
+        "currentUser"
+    );
+
+    localStorage.removeItem(
+        "quickfixCurrentUser"
+    );
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+// =========================================
+// PAGE LOAD
+// =========================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        applyLanguage();
+
+        setMinimumDate();
+
+        displayHelperInformation();
+
+        updateSelectedDateTime();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
+```

@@ -1,0 +1,2167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QuickFix | Home</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #061a14;
+    color: #f7f4eb;
+    overflow-x: hidden;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    width: 100%;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(6, 26, 20, 0.96);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(15px);
+}
+
+.logo {
+    font-size: 29px;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    color: #f7f4eb;
+}
+
+.logo span {
+    color: #e49a2f;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+nav a {
+    color: #d9e0db;
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+nav a:hover {
+    color: #e49a2f;
+}
+
+.nav-special {
+    color: #ffffff !important;
+}
+
+.nav-helper {
+    color: #e49a2f !important;
+    font-weight: 900;
+}
+
+.nav-helper:hover {
+    color: #f5b64e !important;
+}
+
+.nav-give {
+    color: #e49a2f !important;
+    font-weight: 900;
+}
+
+.nav-logout {
+    background: #e49a2f;
+    color: #10291f !important;
+    padding: 11px 18px;
+    border-radius: 25px;
+    font-weight: 900;
+}
+
+.nav-logout:hover {
+    background: #f3b34f;
+    color: #10291f !important;
+}
+
+/* =========================
+   LANGUAGE
+========================= */
+
+.language-box {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.language-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: #0b281e;
+    color: #f7f4eb;
+    border: 1px solid rgba(228,154,47,0.45);
+    padding: 10px 34px 10px 13px;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s;
+}
+
+.language-select:hover,
+.language-select:focus {
+    border-color: #e49a2f;
+    box-shadow: 0 0 0 3px rgba(228,154,47,0.08);
+}
+
+.language-arrow {
+    position: absolute;
+    right: 13px;
+    pointer-events: none;
+    color: #e49a2f;
+    font-size: 11px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 720px;
+    padding: 85px 7% 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(228,154,47,0.12),
+            transparent 35%
+        ),
+        #061a14;
+}
+
+.hero-small {
+    display: inline-block;
+    padding: 9px 17px;
+    border-radius: 30px;
+    background: rgba(228,154,47,0.12);
+    border: 1px solid rgba(228,154,47,0.35);
+    color: #e49a2f;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 27px;
+}
+
+.hero h1 {
+    font-size: clamp(60px, 8vw, 105px);
+    line-height: 0.85;
+    letter-spacing: -7px;
+    font-weight: 950;
+    margin-bottom: 30px;
+    color: #f7f4eb;
+}
+
+.hero h1 span {
+    display: block;
+    color: #e49a2f;
+}
+
+.hero p {
+    max-width: 570px;
+    color: #aebdb5;
+    font-size: 18px;
+    line-height: 1.75;
+    margin-bottom: 34px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.primary-btn {
+    border: none;
+    background: #e49a2f;
+    color: #10291f;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 900;
+    transition: 0.3s;
+}
+
+.primary-btn:hover {
+    background: #f5b64e;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(228,154,47,0.25);
+}
+
+.secondary-btn {
+    border: 1px solid rgba(255,255,255,0.3);
+    background: transparent;
+    color: #f7f4eb;
+    padding: 14px 24px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 800;
+    transition: 0.3s;
+}
+
+.secondary-btn:hover {
+    background: #f7f4eb;
+    color: #10291f;
+}
+
+/* =========================
+   HERO VISUAL
+========================= */
+
+.hero-visual {
+    min-height: 500px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-match-card {
+    width: 410px;
+    background: linear-gradient(145deg, #0c3a2b, #062118);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 36px;
+    border-radius: 34px;
+    position: relative;
+    z-index: 2;
+
+    box-shadow:
+        25px 28px 0 #e49a2f,
+        0 30px 70px rgba(0,0,0,0.35);
+}
+
+.match-label {
+    color: #e49a2f;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+}
+
+.problem {
+    font-size: 31px;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 32px;
+}
+
+.professional {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 19px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.professional strong {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.professional small {
+    color: #aebdb5;
+}
+
+.rating {
+    color: #f5b64e;
+    font-weight: 900;
+}
+
+.floating-tag {
+    position: absolute;
+    background: #f7f4eb;
+    color: #10291f;
+    padding: 13px 18px;
+    border-radius: 30px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    font-size: 12px;
+    font-weight: 900;
+    z-index: 5;
+}
+
+.tag-one {
+    top: 35px;
+    right: 0;
+}
+
+.tag-two {
+    bottom: 55px;
+    left: 0;
+}
+
+.tag-three {
+    bottom: 5px;
+    right: 20px;
+    background: #e49a2f;
+    color: #10291f;
+}
+
+/* =========================
+   SERVICES
+========================= */
+
+.service-strip {
+    padding: 24px 7%;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: #09251c;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.service-pill {
+    padding: 12px 19px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    color: #dce5df;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.service-pill:hover {
+    background: #e49a2f;
+    color: #10291f;
+    border-color: #e49a2f;
+    transform: translateY(-3px);
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+    padding: 120px 7% 80px;
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 80px;
+    background: #061a14;
+}
+
+.intro-label {
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #e49a2f;
+}
+
+.intro h2 {
+    font-size: clamp(42px, 5vw, 70px);
+    line-height: 0.95;
+    letter-spacing: -4px;
+    margin-top: 15px;
+}
+
+.intro-content h3 {
+    font-size: 32px;
+    margin-bottom: 18px;
+}
+
+.intro-content p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #aebdb5;
+    max-width: 650px;
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.feature-section {
+    padding: 40px 7% 115px;
+    background: #061a14;
+}
+
+.feature-heading {
+    margin-bottom: 38px;
+}
+
+.feature-heading small {
+    color: #e49a2f;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.feature-heading h2 {
+    font-size: 48px;
+    letter-spacing: -3px;
+    margin-top: 8px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.feature-card {
+    min-height: 270px;
+    padding: 28px;
+    border-radius: 28px;
+    background: #0b281e;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(228,154,47,0.6);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.feature-card.dark {
+    background: linear-gradient(145deg, #104534, #09271d);
+}
+
+.feature-card.gold {
+    background: linear-gradient(145deg, #e49a2f, #bc7116);
+    color: #10291f;
+    border: none;
+}
+
+.feature-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255,255,255,0.08);
+    font-size: 22px;
+    margin-bottom: 38px;
+}
+
+.feature-card.gold .feature-icon {
+    background: rgba(0,0,0,0.1);
+}
+
+.feature-card h3 {
+    font-size: 23px;
+    margin-bottom: 11px;
+}
+
+.feature-card p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #aebdb5;
+}
+
+.feature-card.gold p {
+    color: rgba(16,41,31,0.78);
+}
+
+.feature-arrow {
+    position: absolute;
+    right: 25px;
+    bottom: 22px;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+/* =========================
+   HELPER
+========================= */
+
+.helper-highlight {
+    padding: 0 7% 110px;
+    background: #061a14;
+}
+
+.helper-banner {
+    background: linear-gradient(135deg, #0d3628, #09231a);
+    border: 1px solid rgba(228,154,47,0.28);
+    border-radius: 36px;
+    padding: 55px 60px;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.helper-banner::after {
+    content: "🤝";
+    position: absolute;
+    right: 45px;
+    top: 20px;
+    font-size: 150px;
+    opacity: 0.07;
+    pointer-events: none;
+}
+
+.helper-label {
+    color: #e49a2f;
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+}
+
+.helper-banner h2 {
+    font-size: clamp(35px, 4vw, 58px);
+    line-height: 0.98;
+    letter-spacing: -3px;
+    margin-bottom: 18px;
+}
+
+.helper-banner p {
+    color: #aebdb5;
+    line-height: 1.7;
+    max-width: 650px;
+    margin-bottom: 25px;
+}
+
+.helper-points {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.helper-point {
+    padding: 9px 14px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #dce5df;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.helper-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.helper-action-card {
+    width: 240px;
+    height: 240px;
+    border-radius: 35px;
+    background: linear-gradient(145deg, #e49a2f, #bc7116);
+    color: #10291f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 15px 15px 0 rgba(255,255,255,0.05);
+    transform: rotate(3deg);
+    transition: 0.3s;
+}
+
+.helper-action-card:hover {
+    transform: rotate(0deg) translateY(-5px);
+}
+
+.helper-action-card .big-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.helper-action-card h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.helper-action-card button {
+    border: none;
+    background: #10291f;
+    color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 25px;
+    font-weight: 900;
+}
+
+/* =========================
+   JOURNEY
+========================= */
+
+.journey {
+    padding: 110px 7%;
+    background: #0b2d21;
+    color: white;
+}
+
+.journey-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 60px;
+    align-items: end;
+}
+
+.journey-top h2 {
+    font-size: clamp(40px, 5vw, 68px);
+    letter-spacing: -4px;
+    line-height: 0.95;
+}
+
+.journey-top p {
+    max-width: 430px;
+    line-height: 1.7;
+    color: #aebdb5;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+}
+
+.step {
+    padding: 25px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.step:last-child {
+    border-right: none;
+}
+
+.step-number {
+    color: #e49a2f;
+    font-size: 14px;
+    font-weight: 900;
+    margin-bottom: 40px;
+}
+
+.step h3 {
+    font-size: 23px;
+    margin-bottom: 12px;
+}
+
+.step p {
+    color: #aebdb5;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* =========================
+   COMMUNITY
+========================= */
+
+.community {
+    padding: 110px 7%;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+    background: #061a14;
+}
+
+.community h2 {
+    font-size: clamp(45px, 5vw, 75px);
+    letter-spacing: -4px;
+    line-height: 0.95;
+    margin-bottom: 25px;
+}
+
+.community p {
+    color: #aebdb5;
+    font-size: 17px;
+    line-height: 1.8;
+    max-width: 650px;
+    margin-bottom: 30px;
+}
+
+.community-card {
+    background: linear-gradient(145deg, #e49a2f, #bc7116);
+    color: #10291f;
+    padding: 45px;
+    border-radius: 35px;
+    transform: rotate(2deg);
+    box-shadow: 20px 20px 0 rgba(255,255,255,0.05);
+}
+
+.community-card h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.community-card p {
+    color: rgba(16,41,31,0.8);
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+.community-card button {
+    background: #10291f;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 30px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+/* =========================
+   FINAL CTA
+========================= */
+
+.final-cta {
+    margin: 20px 7% 90px;
+    padding: 80px 8%;
+    background: linear-gradient(135deg, #0d3628, #09231a);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 40px;
+    text-align: center;
+}
+
+.final-cta h2 {
+    font-size: clamp(45px, 6vw, 82px);
+    letter-spacing: -5px;
+    line-height: 0.95;
+    margin-bottom: 22px;
+}
+
+.final-cta h2 span {
+    color: #e49a2f;
+}
+
+.final-cta p {
+    color: #aebdb5;
+    margin-bottom: 28px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #03110d;
+    color: #899990;
+    padding: 35px 7%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+footer strong {
+    color: #e49a2f;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 1200px) {
+
+    nav {
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 11px;
+    }
+
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 900px) {
+
+    .hero,
+    .intro,
+    .community,
+    .helper-banner {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding-top: 60px;
+    }
+
+    .steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .step {
+        border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .helper-action {
+        justify-content: flex-start;
+    }
+}
+
+@media(max-width: 700px) {
+
+    header {
+        padding: 17px 5%;
+    }
+
+    nav {
+        gap: 8px;
+    }
+
+    nav a:not(.nav-logout) {
+        display: none;
+    }
+
+    .language-box {
+        display: inline-flex;
+    }
+
+    .language-select {
+        padding: 9px 30px 9px 11px;
+        font-size: 11px;
+    }
+
+    .hero {
+        padding: 60px 5%;
+    }
+
+    .hero h1 {
+        letter-spacing: -4px;
+    }
+
+    .hero-visual {
+        min-height: 410px;
+    }
+
+    .main-match-card {
+        width: 100%;
+        box-shadow: 12px 15px 0 #e49a2f;
+    }
+
+    .feature-grid,
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .intro,
+    .feature-section,
+    .community,
+    .journey,
+    .helper-highlight {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .helper-banner {
+        padding: 40px 25px;
+    }
+
+    .helper-action-card {
+        width: 200px;
+        height: 200px;
+    }
+
+    .journey-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .service-strip {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .final-cta {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    footer {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Quick<span>Fix</span>
+    </div>
+
+    <nav>
+
+        <a href="home.html" data-i18n="navHome">Home</a>
+
+        <a href="quick-match.html"
+           class="nav-special"
+           data-i18n="navQuickMatch">
+            Quick Match
+        </a>
+
+        <a href="my-fixes.html"
+           class="nav-special"
+           data-i18n="navMyFixes">
+            My Fixes
+        </a>
+
+        <a href="helper-dashboard.html"
+           class="nav-special"
+           data-i18n="navHelperDashboard">
+            Helper Dashboard
+        </a>
+
+        <a href="snap-fix.html"
+           data-i18n="navSnapFix">
+            Snap & Fix
+        </a>
+
+        <a href="services.html"
+           data-i18n="navServices">
+            Services
+        </a>
+
+        <a href="become-helper.html"
+           class="nav-helper"
+           data-i18n="navBecomeHelper">
+            Become a Helper
+        </a>
+
+        <a href="give-grow.html"
+           class="nav-give"
+           data-i18n="navGiveGrow">
+            Give & Grow
+        </a>
+
+        <div class="language-box">
+
+            <select
+                id="languageSelect"
+                class="language-select"
+                onchange="changeLanguage(this.value)"
+                aria-label="Select Language"
+            >
+
+                <option value="en">🌐 English</option>
+                <option value="hi">🌐 हिंदी</option>
+                <option value="mr">🌐 मराठी</option>
+
+            </select>
+
+            <span class="language-arrow">▼</span>
+
+        </div>
+
+        <a
+            href="index.html"
+            class="nav-logout"
+            onclick="logout()"
+            data-i18n="navLogout"
+        >
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+<section class="hero">
+
+    <div>
+
+        <div class="hero-small" data-i18n="heroSmall">
+            Your local help, reimagined
+        </div>
+
+        <h1>
+            <span data-i18n="heroFix">Fix it.</span>
+            <span data-i18n="heroFind">Find it.</span>
+            <span data-i18n="heroDone">Done.</span>
+        </h1>
+
+        <p data-i18n="heroDescription">
+            From a leaking tap to moving day, QuickFix helps you
+            discover the right local professional without the usual
+            searching and confusion.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button
+                class="primary-btn"
+                onclick="goTo('services.html')"
+                data-i18n="findProfessional"
+            >
+                Find Your Professional →
+            </button>
+
+            <button
+                class="secondary-btn"
+                onclick="goTo('quick-match.html')"
+                data-i18n="tryQuickMatch"
+            >
+                Try Quick Match
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="hero-visual">
+
+        <div class="floating-tag tag-one" data-i18n="fastMatching">
+            ⚡ Fast Matching
+        </div>
+
+        <div class="floating-tag tag-two" data-i18n="localProfessionals">
+            📍 Local Professionals
+        </div>
+
+        <div class="floating-tag tag-three" data-i18n="simpleBooking">
+            ✓ Simple Booking
+        </div>
+
+        <div class="main-match-card">
+
+            <div class="match-label">
+                QUICKFIX MATCH
+            </div>
+
+            <div class="problem" data-i18n="problemText">
+                "My tap is leaking."
+            </div>
+
+            <div class="professional">
+
+                <div>
+
+                    <strong data-i18n="plumber">
+                        Plumber
+                    </strong>
+
+                    <small data-i18n="availableNearby">
+                        Available nearby
+                    </small>
+
+                </div>
+
+                <div class="rating">
+                    ★ 4.9
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="service-strip">
+
+    <div class="service-pill"
+         onclick="openService('Electrician')">
+        ⚡ Electrician
+    </div>
+
+    <div class="service-pill"
+         onclick="openService('Plumber')">
+        🔧 Plumber
+    </div>
+
+    <div class="service-pill"
+         onclick="openService('Tutor')">
+        📚 Tutor
+    </div>
+
+    <div class="service-pill"
+         onclick="openService('Carpenter')">
+        🪚 Carpenter
+    </div>
+
+    <div class="service-pill"
+         onclick="openService('Cleaner')">
+        🧹 Cleaner
+    </div>
+
+    <div class="service-pill"
+         onclick="openService('Moving Help')">
+        📦 Moving Help
+    </div>
+
+</section>
+
+<section class="intro">
+
+    <div>
+
+        <div class="intro-label" data-i18n="ideaLabel">
+            The QuickFix idea
+        </div>
+
+        <h2 data-i18n="introTitle">
+            Less searching.
+            More solving.
+        </h2>
+
+    </div>
+
+    <div class="intro-content">
+
+        <h3 data-i18n="introHeading">
+            Start with your problem, not a category.
+        </h3>
+
+        <p data-i18n="introText">
+            QuickFix makes finding local help easier. Describe
+            your problem, match with a professional, browse
+            services, upload a problem through Snap & Fix,
+            or manage your bookings through My Fixes.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="feature-section">
+
+    <div class="feature-heading">
+
+        <small data-i18n="featuresSmall">
+            Everything you need
+        </small>
+
+        <h2 data-i18n="featuresTitle">
+            One place. Every fix.
+        </h2>
+
+    </div>
+
+    <div class="feature-grid">
+
+        <div class="feature-card dark"
+             onclick="goTo('quick-match.html')">
+
+            <div class="feature-icon">⚡</div>
+
+            <h3 data-i18n="quickMatchTitle">
+                Quick Match
+            </h3>
+
+            <p data-i18n="quickMatchText">
+                Tell QuickFix what is wrong and discover
+                the right type of professional.
+            </p>
+
+            <div class="feature-arrow">→</div>
+
+        </div>
+
+        <div class="feature-card"
+             onclick="goTo('my-fixes.html')">
+
+            <div class="feature-icon">📋</div>
+
+            <h3 data-i18n="myFixesTitle">
+                My Fixes
+            </h3>
+
+            <p data-i18n="myFixesText">
+                Track bookings, check appointment status,
+                view completed fixes and submit reviews.
+            </p>
+
+            <div class="feature-arrow">→</div>
+
+        </div>
+
+        <div class="feature-card gold"
+             onclick="goTo('helper-dashboard.html')">
+
+            <div class="feature-icon">🛠️</div>
+
+            <h3 data-i18n="helperDashboardTitle">
+                Helper Dashboard
+            </h3>
+
+            <p data-i18n="helperDashboardText">
+                Professionals can check customer requests,
+                appointments and manage their work.
+            </p>
+
+            <div class="feature-arrow">→</div>
+
+        </div>
+
+        <div class="feature-card"
+             onclick="goTo('snap-fix.html')">
+
+            <div class="feature-icon">📸</div>
+
+            <h3 data-i18n="snapFixTitle">
+                Snap & Fix
+            </h3>
+
+            <p data-i18n="snapFixText">
+                Capture or upload a problem and make it
+                easier to explain what needs fixing.
+            </p>
+
+            <div class="feature-arrow">→</div>
+
+        </div>
+
+        <div class="feature-card dark"
+             onclick="goTo('become-helper.html')">
+
+            <div class="feature-icon">🤝</div>
+
+            <h3 data-i18n="becomeHelperTitle">
+                Become a Helper
+            </h3>
+
+            <p data-i18n="becomeHelperText">
+                Have a skill? Join QuickFix as a local
+                professional and connect with people
+                who need your services.
+            </p>
+
+            <div class="feature-arrow">→</div>
+
+        </div>
+
+        <div class="feature-card gold"
+             onclick="goTo('give-grow.html')">
+
+            <div class="feature-icon">🌱</div>
+
+            <h3 data-i18n="giveGrowTitle">
+                Give & Grow
+            </h3>
+
+            <p data-i18n="giveGrowText">
+                Support essential repairs, share useful
+                items and help create a stronger community.
+            </p>
+
+            <div class="feature-arrow">→</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="helper-highlight">
+
+    <div class="helper-banner">
+
+        <div>
+
+            <div class="helper-label" data-i18n="communityLabel">
+                Join the QuickFix community
+            </div>
+
+            <h2 data-i18n="helperHeading">
+                Turn your skill
+                into an opportunity.
+            </h2>
+
+            <p data-i18n="helperDescription">
+                Are you an electrician, plumber, tutor, carpenter,
+                cleaner, mover or another skilled professional?
+                Become a QuickFix Helper and connect with people
+                who are looking for local services.
+            </p>
+
+            <div class="helper-points">
+
+                <div class="helper-point" data-i18n="helperPoint1">
+                    ✓ Create your profile
+                </div>
+
+                <div class="helper-point" data-i18n="helperPoint2">
+                    ✓ Showcase your skills
+                </div>
+
+                <div class="helper-point" data-i18n="helperPoint3">
+                    ✓ Receive customer requests
+                </div>
+
+                <div class="helper-point" data-i18n="helperPoint4">
+                    ✓ Manage your bookings
+                </div>
+
+            </div>
+
+            <button
+                class="primary-btn"
+                onclick="goTo('become-helper.html')"
+                data-i18n="becomeHelperButton"
+            >
+                Become a QuickFix Helper →
+            </button>
+
+        </div>
+
+        <div class="helper-action">
+
+            <div class="helper-action-card">
+
+                <div class="big-icon">🛠️</div>
+
+                <h3 data-i18n="readyToHelp">
+                    Ready to Help?
+                </h3>
+
+                <button
+                    onclick="goTo('become-helper.html')"
+                    data-i18n="joinQuickFix"
+                >
+                    Join QuickFix
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="journey">
+
+    <div class="journey-top">
+
+        <h2 data-i18n="journeyTitle">
+            The QuickFix journey.
+        </h2>
+
+        <p data-i18n="journeyText">
+            From the first problem to the final fix,
+            everything is designed to keep the process
+            simple and understandable.
+        </p>
+
+    </div>
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="step-number">01</div>
+
+            <h3 data-i18n="step1Title">
+                Tell us
+            </h3>
+
+            <p data-i18n="step1Text">
+                Describe what you need help with using
+                Quick Match or Snap & Fix.
+            </p>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">02</div>
+
+            <h3 data-i18n="step2Title">
+                Discover
+            </h3>
+
+            <p data-i18n="step2Text">
+                Browse professionals and compare their
+                service, experience and ratings.
+            </p>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">03</div>
+
+            <h3 data-i18n="step3Title">
+                Book
+            </h3>
+
+            <p data-i18n="step3Text">
+                Select your professional and send your
+                booking request.
+            </p>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">04</div>
+
+            <h3 data-i18n="step4Title">
+                Get it fixed
+            </h3>
+
+            <p data-i18n="step4Text">
+                Track your request through My Fixes and
+                review the completed service.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="community">
+
+    <div>
+
+        <div class="intro-label" data-i18n="giveGrowLabel">
+            Give & Grow
+        </div>
+
+        <h2 data-i18n="communityHeading">
+            Help should
+            go further.
+        </h2>
+
+        <p data-i18n="communityText">
+            QuickFix also supports a community initiative where
+            people, NGOs and local supporters can contribute
+            towards helping individuals who need essential
+            assistance.
+        </p>
+
+        <button
+            class="primary-btn"
+            onclick="openGiveGrow()"
+            data-i18n="exploreGiveGrow"
+        >
+            Explore Give & Grow →
+        </button>
+
+    </div>
+
+    <div class="community-card">
+
+        <h3 data-i18n="communitySupportTitle">
+            Community Support
+        </h3>
+
+        <p data-i18n="communitySupportText">
+            Support an essential repair, donate or exchange
+            useful items, connect with NGO needs and see the
+            impact created by the QuickFix community.
+        </p>
+
+        <button
+            onclick="openGiveGrow()"
+            data-i18n="giveGrowButton"
+        >
+            Give & Grow →
+        </button>
+
+    </div>
+
+</section>
+
+<section class="final-cta">
+
+    <h2>
+        <span data-i18n="ctaFix">Fix it.</span>
+        <span data-i18n="ctaFind">Find it.</span>
+        <span data-i18n="ctaDone">Done.</span>
+    </h2>
+
+    <p data-i18n="ctaText">
+        Your next solution could be just one QuickFix away.
+    </p>
+
+    <button
+        class="primary-btn"
+        onclick="goTo('services.html')"
+        data-i18n="findHelpNow"
+    >
+        Find Help Now →
+    </button>
+
+</section>
+
+<footer>
+
+    <div>
+        © 2026 QuickFix |
+        <strong>
+            Pranali Bhoyar and Mrunmayi Jadhav
+        </strong>
+    </div>
+
+    <div data-i18n="footerText">
+        Local help, made easier.
+    </div>
+
+</footer>
+
+<script>
+
+/* =========================
+   PAGE NAVIGATION
+========================= */
+
+function goTo(page) {
+    window.location.href = page;
+}
+
+
+/* =========================
+   SERVICE NAVIGATION
+========================= */
+
+function openService(service) {
+
+    localStorage.setItem(
+        "selectedService",
+        service
+    );
+
+    window.location.href = "services.html";
+}
+
+
+/* =========================
+   GIVE & GROW
+========================= */
+
+function openGiveGrow() {
+    window.location.href = "give-grow.html";
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout() {
+
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("quickfixCurrentUser");
+
+    window.location.href = "index.html";
+}
+
+
+/* =========================
+   LANGUAGE SYSTEM
+========================= */
+
+const translations = {
+
+    en: {
+
+        navHome: "Home",
+        navQuickMatch: "Quick Match",
+        navMyFixes: "My Fixes",
+        navHelperDashboard: "Helper Dashboard",
+        navSnapFix: "Snap & Fix",
+        navServices: "Services",
+        navBecomeHelper: "Become a Helper",
+        navGiveGrow: "Give & Grow",
+        navLogout: "Logout",
+
+        heroSmall: "Your local help, reimagined",
+        heroFix: "Fix it.",
+        heroFind: "Find it.",
+        heroDone: "Done.",
+
+        heroDescription:
+            "From a leaking tap to moving day, QuickFix helps you discover the right local professional without the usual searching and confusion.",
+
+        findProfessional: "Find Your Professional →",
+        tryQuickMatch: "Try Quick Match",
+
+        fastMatching: "⚡ Fast Matching",
+        localProfessionals: "📍 Local Professionals",
+        simpleBooking: "✓ Simple Booking",
+
+        problemText: '"My tap is leaking."',
+        plumber: "Plumber",
+        availableNearby: "Available nearby",
+
+        ideaLabel: "The QuickFix idea",
+
+        introTitle:
+            "Less searching. More solving.",
+
+        introHeading:
+            "Start with your problem, not a category.",
+
+        introText:
+            "QuickFix makes finding local help easier. Describe your problem, match with a professional, browse services, upload a problem through Snap & Fix, or manage your bookings through My Fixes.",
+
+        featuresSmall: "Everything you need",
+        featuresTitle: "One place. Every fix.",
+
+        quickMatchTitle: "Quick Match",
+        quickMatchText:
+            "Tell QuickFix what is wrong and discover the right type of professional.",
+
+        myFixesTitle: "My Fixes",
+        myFixesText:
+            "Track bookings, check appointment status, view completed fixes and submit reviews.",
+
+        helperDashboardTitle: "Helper Dashboard",
+        helperDashboardText:
+            "Professionals can check customer requests, appointments and manage their work.",
+
+        snapFixTitle: "Snap & Fix",
+        snapFixText:
+            "Capture or upload a problem and make it easier to explain what needs fixing.",
+
+        becomeHelperTitle: "Become a Helper",
+        becomeHelperText:
+            "Have a skill? Join QuickFix as a local professional and connect with people who need your services.",
+
+        giveGrowTitle: "Give & Grow",
+        giveGrowText:
+            "Support essential repairs, share useful items and help create a stronger community.",
+
+        communityLabel: "Join the QuickFix community",
+
+        helperHeading:
+            "Turn your skill into an opportunity.",
+
+        helperDescription:
+            "Are you an electrician, plumber, tutor, carpenter, cleaner, mover or another skilled professional? Become a QuickFix Helper and connect with people who are looking for local services.",
+
+        helperPoint1: "✓ Create your profile",
+        helperPoint2: "✓ Showcase your skills",
+        helperPoint3: "✓ Receive customer requests",
+        helperPoint4: "✓ Manage your bookings",
+
+        becomeHelperButton:
+            "Become a QuickFix Helper →",
+
+        readyToHelp: "Ready to Help?",
+        joinQuickFix: "Join QuickFix",
+
+        journeyTitle:
+            "The QuickFix journey.",
+
+        journeyText:
+            "From the first problem to the final fix, everything is designed to keep the process simple and understandable.",
+
+        step1Title: "Tell us",
+        step1Text:
+            "Describe what you need help with using Quick Match or Snap & Fix.",
+
+        step2Title: "Discover",
+        step2Text:
+            "Browse professionals and compare their service, experience and ratings.",
+
+        step3Title: "Book",
+        step3Text:
+            "Select your professional and send your booking request.",
+
+        step4Title: "Get it fixed",
+        step4Text:
+            "Track your request through My Fixes and review the completed service.",
+
+        giveGrowLabel: "Give & Grow",
+
+        communityHeading:
+            "Help should go further.",
+
+        communityText:
+            "QuickFix also supports a community initiative where people, NGOs and local supporters can contribute towards helping individuals who need essential assistance.",
+
+        exploreGiveGrow:
+            "Explore Give & Grow →",
+
+        communitySupportTitle:
+            "Community Support",
+
+        communitySupportText:
+            "Support an essential repair, donate or exchange useful items, connect with NGO needs and see the impact created by the QuickFix community.",
+
+        giveGrowButton:
+            "Give & Grow →",
+
+        ctaFix: "Fix it.",
+        ctaFind: "Find it.",
+        ctaDone: "Done.",
+
+        ctaText:
+            "Your next solution could be just one QuickFix away.",
+
+        findHelpNow:
+            "Find Help Now →",
+
+        footerText:
+            "Local help, made easier."
+    },
+
+    hi: {
+
+        navHome: "होम",
+        navQuickMatch: "क्विक मैच",
+        navMyFixes: "मेरे फिक्स",
+        navHelperDashboard: "हेल्पर डैशबोर्ड",
+        navSnapFix: "स्नैप और फिक्स",
+        navServices: "सेवाएँ",
+        navBecomeHelper: "हेल्पर बनें",
+        navGiveGrow: "गिव एंड ग्रो",
+        navLogout: "लॉगआउट",
+
+        heroSmall: "आपकी स्थानीय मदद, नए अंदाज़ में",
+        heroFix: "ठीक करें।",
+        heroFind: "ढूँढें।",
+        heroDone: "पूरा करें।",
+
+        heroDescription:
+            "लीक हो रहे नल से लेकर घर बदलने तक, QuickFix आपको बिना परेशानी सही स्थानीय प्रोफेशनल खोजने में मदद करता है।",
+
+        findProfessional: "अपना प्रोफेशनल खोजें →",
+        tryQuickMatch: "क्विक मैच आज़माएँ",
+
+        fastMatching: "⚡ तेज़ मैचिंग",
+        localProfessionals: "📍 स्थानीय प्रोफेशनल",
+        simpleBooking: "✓ आसान बुकिंग",
+
+        problemText: '"मेरा नल लीक हो रहा है।"',
+        plumber: "प्लंबर",
+        availableNearby: "पास में उपलब्ध",
+
+        ideaLabel: "QuickFix का विचार",
+
+        introTitle:
+            "कम खोजें। ज़्यादा समाधान पाएँ।",
+
+        introHeading:
+            "कैटेगरी से नहीं, अपनी समस्या से शुरुआत करें।",
+
+        introText:
+            "QuickFix स्थानीय मदद ढूँढना आसान बनाता है। अपनी समस्या बताएं, प्रोफेशनल से मैच करें, सेवाएँ देखें, Snap & Fix के माध्यम से समस्या अपलोड करें या My Fixes में अपनी बुकिंग देखें।",
+
+        featuresSmall: "आपको जो चाहिए, सब कुछ",
+        featuresTitle: "एक जगह। हर समाधान।",
+
+        quickMatchTitle: "क्विक मैच",
+        quickMatchText:
+            "QuickFix को अपनी समस्या बताएं और सही प्रोफेशनल खोजें।",
+
+        myFixesTitle: "मेरे फिक्स",
+        myFixesText:
+            "बुकिंग और अपॉइंटमेंट की स्थिति देखें और पूरी हुई सेवाओं की समीक्षा करें।",
+
+        helperDashboardTitle: "हेल्पर डैशबोर्ड",
+        helperDashboardText:
+            "प्रोफेशनल ग्राहक अनुरोध और अपॉइंटमेंट देख सकते हैं।",
+
+        snapFixTitle: "स्नैप और फिक्स",
+        snapFixText:
+            "समस्या की फोटो लें या अपलोड करें ताकि उसे आसानी से समझाया जा सके।",
+
+        becomeHelperTitle: "हेल्पर बनें",
+        becomeHelperText:
+            "कोई कौशल है? QuickFix से स्थानीय प्रोफेशनल के रूप में जुड़ें।",
+
+        giveGrowTitle: "गिव एंड ग्रो",
+        giveGrowText:
+            "ज़रूरी मरम्मत में सहायता करें, उपयोगी वस्तुएँ साझा करें और समुदाय को मजबूत बनाएं।",
+
+        communityLabel: "QuickFix समुदाय से जुड़ें",
+
+        helperHeading:
+            "अपने कौशल को अवसर में बदलें।",
+
+        helperDescription:
+            "क्या आप इलेक्ट्रिशियन, प्लंबर, ट्यूटर, कारपेंटर, क्लीनर, मूवर या कोई अन्य कुशल प्रोफेशनल हैं? QuickFix हेल्पर बनें और स्थानीय ग्राहकों से जुड़ें।",
+
+        helperPoint1: "✓ अपनी प्रोफ़ाइल बनाएं",
+        helperPoint2: "✓ अपने कौशल दिखाएं",
+        helperPoint3: "✓ ग्राहक अनुरोध प्राप्त करें",
+        helperPoint4: "✓ अपनी बुकिंग संभालें",
+
+        becomeHelperButton:
+            "QuickFix हेल्पर बनें →",
+
+        readyToHelp: "मदद के लिए तैयार?",
+        joinQuickFix: "QuickFix से जुड़ें",
+
+        journeyTitle:
+            "QuickFix का सफर।",
+
+        journeyText:
+            "पहली समस्या से लेकर अंतिम समाधान तक, पूरी प्रक्रिया को आसान और समझने योग्य बनाया गया है।",
+
+        step1Title: "हमें बताएं",
+        step1Text:
+            "Quick Match या Snap & Fix का उपयोग करके अपनी समस्या बताएं।",
+
+        step2Title: "खोजें",
+        step2Text:
+            "प्रोफेशनल देखें और उनकी सेवा, अनुभव और रेटिंग की तुलना करें।",
+
+        step3Title: "बुक करें",
+        step3Text:
+            "अपना प्रोफेशनल चुनें और बुकिंग अनुरोध भेजें।",
+
+        step4Title: "समस्या हल करें",
+        step4Text:
+            "My Fixes में अपना अनुरोध ट्रैक करें और पूरी हुई सेवा की समीक्षा करें।",
+
+        giveGrowLabel: "गिव एंड ग्रो",
+
+        communityHeading:
+            "मदद को और आगे बढ़ाएँ।",
+
+        communityText:
+            "QuickFix एक सामुदायिक पहल का भी समर्थन करता है, जहाँ लोग, NGO और स्थानीय समर्थक ज़रूरतमंद लोगों की आवश्यक सहायता में योगदान कर सकते हैं।",
+
+        exploreGiveGrow:
+            "गिव एंड ग्रो देखें →",
+
+        communitySupportTitle:
+            "सामुदायिक सहायता",
+
+        communitySupportText:
+            "ज़रूरी मरम्मत में सहायता करें, उपयोगी वस्तुएँ दान या एक्सचेंज करें और QuickFix समुदाय के प्रभाव को देखें।",
+
+        giveGrowButton:
+            "गिव एंड ग्रो →",
+
+        ctaFix: "ठीक करें।",
+        ctaFind: "ढूँढें।",
+        ctaDone: "पूरा करें।",
+
+        ctaText:
+            "आपका अगला समाधान सिर्फ एक QuickFix दूर हो सकता है।",
+
+        findHelpNow:
+            "अभी मदद खोजें →",
+
+        footerText:
+            "स्थानीय मदद, अब और आसान।"
+    },
+
+    mr: {
+
+        navHome: "होम",
+        navQuickMatch: "क्विक मॅच",
+        navMyFixes: "माझे फिक्स",
+        navHelperDashboard: "हेल्पर डॅशबोर्ड",
+        navSnapFix: "स्नॅप आणि फिक्स",
+        navServices: "सेवा",
+        navBecomeHelper: "हेल्पर बना",
+        navGiveGrow: "गिव्ह अँड ग्रो",
+        navLogout: "लॉगआउट",
+
+        heroSmall: "तुमची स्थानिक मदत, नव्या पद्धतीने",
+        heroFix: "दुरुस्त करा.",
+        heroFind: "शोधा.",
+        heroDone: "पूर्ण करा.",
+
+        heroDescription:
+            "गळणाऱ्या नळापासून ते घर बदलण्यापर्यंत, QuickFix तुम्हाला योग्य स्थानिक प्रोफेशनल सहज शोधण्यात मदत करते.",
+
+        findProfessional:
+            "तुमचा प्रोफेशनल शोधा →",
+
+        tryQuickMatch:
+            "क्विक मॅच वापरा",
+
+        fastMatching:
+            "⚡ जलद मॅचिंग",
+
+        localProfessionals:
+            "📍 स्थानिक प्रोफेशनल",
+
+        simpleBooking:
+            "✓ सोपी बुकिंग",
+
+        problemText:
+            '"माझा नळ गळत आहे."',
+
+        plumber:
+            "प्लंबर",
+
+        availableNearby:
+            "जवळ उपलब्ध",
+
+        ideaLabel:
+            "QuickFix ची कल्पना",
+
+        introTitle:
+            "कमी शोधा. जास्त सोडवा.",
+
+        introHeading:
+            "कॅटेगरीपासून नाही, तुमच्या समस्येपासून सुरुवात करा.",
+
+        introText:
+            "QuickFix स्थानिक मदत शोधणे सोपे करते. तुमची समस्या सांगा, प्रोफेशनलशी मॅच करा, सेवा ब्राउझ करा, Snap & Fix द्वारे समस्या अपलोड करा किंवा My Fixes मधून तुमच्या बुकिंग व्यवस्थापित करा.",
+
+        featuresSmall:
+            "तुम्हाला आवश्यक सर्व काही",
+
+        featuresTitle:
+            "एकच जागा. प्रत्येक उपाय.",
+
+        quickMatchTitle:
+            "क्विक मॅच",
+
+        quickMatchText:
+            "QuickFix ला तुमची समस्या सांगा आणि योग्य प्रकारचा प्रोफेशनल शोधा.",
+
+        myFixesTitle:
+            "माझे फिक्स",
+
+        myFixesText:
+            "बुकिंग आणि अपॉइंटमेंटची स्थिती तपासा, पूर्ण झालेल्या सेवांचा आढावा घ्या आणि रिव्ह्यू द्या.",
+
+        helperDashboardTitle:
+            "हेल्पर डॅशबोर्ड",
+
+        helperDashboardText:
+            "प्रोफेशनल ग्राहकांच्या विनंत्या आणि अपॉइंटमेंट पाहू शकतात.",
+
+        snapFixTitle:
+            "स्नॅप आणि फिक्स",
+
+        snapFixText:
+            "समस्येचा फोटो घ्या किंवा अपलोड करा आणि काय दुरुस्त करायचे आहे ते सहज समजावून सांगा.",
+
+        becomeHelperTitle:
+            "हेल्पर बना",
+
+        becomeHelperText:
+            "तुमच्याकडे कौशल्य आहे? QuickFix सोबत स्थानिक प्रोफेशनल म्हणून सहभागी व्हा.",
+
+        giveGrowTitle:
+            "गिव्ह अँड ग्रो",
+
+        giveGrowText:
+            "आवश्यक दुरुस्तीसाठी मदत करा, उपयोगी वस्तू शेअर करा आणि समुदाय मजबूत बनवा.",
+
+        communityLabel:
+            "QuickFix समुदायाचा भाग बना",
+
+        helperHeading:
+            "तुमच्या कौशल्याला संधीमध्ये बदला.",
+
+        helperDescription:
+            "तुम्ही इलेक्ट्रिशियन, प्लंबर, ट्यूटर, कारपेंटर, क्लीनर, मूव्हर किंवा इतर कुशल प्रोफेशनल आहात का? QuickFix हेल्पर बना आणि स्थानिक ग्राहकांशी जोडा.",
+
+        helperPoint1:
+            "✓ तुमचे प्रोफाइल तयार करा",
+
+        helperPoint2:
+            "✓ तुमची कौशल्ये दाखवा",
+
+        helperPoint3:
+            "✓ ग्राहकांच्या विनंत्या मिळवा",
+
+        helperPoint4:
+            "✓ तुमच्या बुकिंग व्यवस्थापित करा",
+
+        becomeHelperButton:
+            "QuickFix हेल्पर बना →",
+
+        readyToHelp:
+            "मदतीसाठी तयार?",
+
+        joinQuickFix:
+            "QuickFix मध्ये सामील व्हा",
+
+        journeyTitle:
+            "QuickFix चा प्रवास.",
+
+        journeyText:
+            "पहिल्या समस्येपासून अंतिम उपायापर्यंत, संपूर्ण प्रक्रिया सोपी आणि समजण्यासारखी ठेवण्यात आली आहे.",
+
+        step1Title:
+            "आम्हाला सांगा",
+
+        step1Text:
+            "Quick Match किंवा Snap & Fix वापरून तुम्हाला कोणती मदत हवी आहे ते सांगा.",
+
+        step2Title:
+            "शोधा",
+
+        step2Text:
+            "प्रोफेशनल्स पहा आणि त्यांची सेवा, अनुभव आणि रेटिंगची तुलना करा.",
+
+        step3Title:
+            "बुक करा",
+
+        step3Text:
+            "तुमचा प्रोफेशनल निवडा आणि बुकिंग विनंती पाठवा.",
+
+        step4Title:
+            "दुरुस्ती पूर्ण करा",
+
+        step4Text:
+            "My Fixes मधून तुमची विनंती ट्रॅक करा आणि पूर्ण झालेल्या सेवेचे रिव्ह्यू द्या.",
+
+        giveGrowLabel:
+            "गिव्ह अँड ग्रो",
+
+        communityHeading:
+            "मदत आणखी पुढे जावी.",
+
+        communityText:
+            "QuickFix अशा समुदाय उपक्रमालाही समर्थन देते जिथे लोक, NGO आणि स्थानिक समर्थक गरजू व्यक्तींना आवश्यक मदत देण्यासाठी योगदान देऊ शकतात.",
+
+        exploreGiveGrow:
+            "गिव्ह अँड ग्रो पहा →",
+
+        communitySupportTitle:
+            "समुदाय सहाय्य",
+
+        communitySupportText:
+            "आवश्यक दुरुस्तीसाठी मदत करा, उपयोगी वस्तू दान किंवा एक्सचेंज करा आणि QuickFix समुदायाचा परिणाम पहा.",
+
+        giveGrowButton:
+            "गिव्ह अँड ग्रो →",
+
+        ctaFix:
+            "दुरुस्त करा.",
+
+        ctaFind:
+            "शोधा.",
+
+        ctaDone:
+            "पूर्ण करा.",
+
+        ctaText:
+            "तुमचा पुढचा उपाय फक्त एका QuickFix अंतरावर असू शकतो.",
+
+        findHelpNow:
+            "आत्ताच मदत शोधा →",
+
+        footerText:
+            "स्थानिक मदत, आता आणखी सोपी."
+    }
+
+};
+
+
+/* =========================
+   CHANGE LANGUAGE
+========================= */
+
+function changeLanguage(language) {
+
+    const selectedLanguage =
+        translations[language] ? language : "en";
+
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach(element => {
+
+            const key = element.getAttribute("data-i18n");
+
+            if (
+                translations[selectedLanguage] &&
+                translations[selectedLanguage][key]
+            ) {
+
+                element.textContent =
+                    translations[selectedLanguage][key];
+
+            }
+
+        });
+
+    localStorage.setItem(
+        "quickfixLanguage",
+        selectedLanguage
+    );
+
+    document.documentElement.lang =
+        selectedLanguage === "hi"
+            ? "hi"
+            : selectedLanguage === "mr"
+                ? "mr"
+                : "en";
+}
+
+
+/* =========================
+   LOAD SAVED LANGUAGE
+========================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const savedLanguage =
+            localStorage.getItem("quickfixLanguage") || "en";
+
+        const languageSelect =
+            document.getElementById("languageSelect");
+
+        if (languageSelect) {
+            languageSelect.value = savedLanguage;
+        }
+
+        changeLanguage(savedLanguage);
+
+    }
+);
+
+</script>
+
+</body>
+</html>

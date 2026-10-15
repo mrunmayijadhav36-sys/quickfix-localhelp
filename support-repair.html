@@ -1,0 +1,2653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QuickFix - Support a Repair</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: #061b16;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+nav {
+    background: #022c22;
+    padding: 18px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: #f5a623;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: #ffffff;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #d2e2dd;
+    padding: 9px 11px;
+    border-radius: 8px;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background: rgba(245,166,35,0.10);
+    color: #ffffff;
+}
+
+.nav-links .active {
+    background: rgba(245,166,35,0.13);
+    color: #f5a623;
+}
+
+.language-select {
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: #061b16;
+    color: #ffffff;
+    border: 1px solid rgba(245,166,35,0.35);
+    outline: none;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.language-select:focus {
+    border-color: #f5a623;
+}
+
+.language-select option {
+    background: #061b16;
+    color: #ffffff;
+}
+
+.hero {
+    padding: 75px 8% 65px;
+    background:
+        radial-gradient(circle at 85% 20%, rgba(245,166,35,0.14), transparent 30%),
+        radial-gradient(circle at 10% 80%, rgba(16,185,129,0.08), transparent 28%),
+        #061b16;
+}
+
+.hero-content {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 28px;
+    color: #f5a623;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: rgba(245,166,35,0.10);
+    border: 1px solid rgba(245,166,35,0.30);
+    color: #f5a623;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 6vw, 65px);
+    line-height: 1.08;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #f5a623;
+}
+
+.hero p {
+    max-width: 760px;
+    color: #afc4bd;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.main-section {
+    padding: 70px 8% 90px;
+    background: #022c22;
+}
+
+.container {
+    max-width: 1150px;
+    margin: auto;
+}
+
+.section-title {
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: #9db5ad;
+    line-height: 1.7;
+}
+
+.form-card {
+    background: #0a261f;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 22px;
+    padding: 35px;
+    margin-bottom: 80px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+label {
+    margin-bottom: 8px;
+    color: #dce8e4;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 14px 15px;
+    background: #061b16;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    color: #ffffff;
+    outline: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #f5a623;
+    box-shadow: 0 0 0 3px rgba(245,166,35,0.08);
+}
+
+select option {
+    background: #061b16;
+    color: white;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.submit-btn {
+    margin-top: 25px;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 10px;
+    background: #f5a623;
+    color: #17210e;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(245,166,35,0.20);
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.success-message,
+.error-message {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.success-message {
+    background: rgba(16,185,129,0.10);
+    border: 1px solid rgba(16,185,129,0.30);
+    color: #b7f7dc;
+}
+
+.error-message {
+    background: rgba(239,68,68,0.10);
+    border: 1px solid rgba(239,68,68,0.30);
+    color: #fecaca;
+}
+
+.requests-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.request-card {
+    background: #0a261f;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 28px;
+    transition: 0.3s;
+}
+
+.request-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(245,166,35,0.40);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+}
+
+.request-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 15px;
+    background: rgba(245,166,35,0.11);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    margin-bottom: 20px;
+}
+
+.request-card h3 {
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.request-card p {
+    color: #a9beb7;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.request-info {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+.request-info div {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 9px;
+    font-size: 13px;
+}
+
+.request-info span:first-child {
+    color: #819b93;
+}
+
+.request-info span:last-child {
+    color: #e4efeb;
+    font-weight: 600;
+    text-align: right;
+}
+
+.cost {
+    color: #f5a623 !important;
+    font-size: 17px;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+}
+
+.status-open {
+    background: rgba(16,185,129,0.12);
+    color: #6ee7b7 !important;
+}
+
+.status-sponsored {
+    background: rgba(245,166,35,0.12);
+    color: #f5a623 !important;
+}
+
+.sponsor-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 13px;
+    border-radius: 10px;
+    border: 1px solid rgba(245,166,35,0.40);
+    background: transparent;
+    color: #f5a623;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sponsor-btn:hover {
+    background: #f5a623;
+    color: #17210e;
+}
+
+.sponsor-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px 20px;
+    color: #9db5ad;
+    border: 1px dashed rgba(255,255,255,0.12);
+    border-radius: 18px;
+}
+
+.how-section {
+    padding: 70px 8%;
+    background: #061b16;
+    text-align: center;
+}
+
+.steps {
+    max-width: 1000px;
+    margin: 40px auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.step {
+    padding: 28px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.07);
+}
+
+.step-number {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: #f5a623;
+    color: #17210e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 18px;
+}
+
+.step h3 {
+    margin-bottom: 10px;
+}
+
+.step p {
+    color: #91aaa2;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+footer {
+    background: #011c16;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+    padding: 28px 15px;
+    color: #829b94;
+    font-size: 13px;
+}
+
+footer strong {
+    color: #f5a623;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-box {
+    width: 100%;
+    max-width: 450px;
+    background: #0a261f;
+    border: 1px solid rgba(245,166,35,0.25);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+}
+
+.modal-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.modal-box h2 {
+    margin-bottom: 12px;
+}
+
+.modal-box p {
+    color: #a9beb7;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.modal-input {
+    margin-top: 18px;
+    text-align: left;
+}
+
+.modal-input label {
+    display: block;
+}
+
+.close-modal,
+.confirm-sponsor {
+    margin-top: 22px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 9px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.confirm-sponsor {
+    background: #f5a623;
+    color: #17210e;
+}
+
+.close-modal {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #ffffff;
+    margin-left: 8px;
+}
+
+@media (max-width: 1100px) {
+
+    .nav-right {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 950px) {
+
+    nav {
+        flex-direction: column;
+    }
+
+    .nav-right {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        justify-content: center;
+    }
+
+    .requests-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+    .form-card {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .hero {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    .main-section,
+    .how-section {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        Quick<span>Fix</span>
+    </div>
+
+    <div class="nav-right">
+
+        <div class="nav-links">
+
+            <a href="home.html" data-i18n="home">Home</a>
+
+            <a href="quick-match.html" data-i18n="quickMatch">
+                Quick Match
+            </a>
+
+            <a href="my-fixes.html" data-i18n="myFixes">
+                My Fixes
+            </a>
+
+            <a href="helper-dashboard.html" data-i18n="helperDashboard">
+                Helper Dashboard
+            </a>
+
+            <a href="snap-fix.html" data-i18n="snapFix">
+                Snap & Fix
+            </a>
+
+            <a href="services.html" data-i18n="services">
+                Services
+            </a>
+
+            <a href="give-grow.html" class="active" data-i18n="giveGrow">
+                Give & Grow
+            </a>
+
+            <a href="index.html" data-i18n="logout">
+                Logout
+            </a>
+
+        </div>
+
+        <select
+            id="languageSelect"
+            class="language-select"
+            onchange="changeLanguage(this.value)"
+        >
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+            <option value="mr">मराठी</option>
+        </select>
+
+    </div>
+
+</nav>
+
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <a
+            href="give-grow.html"
+            class="back-link"
+            data-i18n="backGiveGrow"
+        >
+            ← Back to Give & Grow
+        </a>
+
+        <div class="hero-badge" data-i18n="communitySupport">
+            💛 COMMUNITY SUPPORT
+        </div>
+
+        <h1 data-i18n="heroTitle">
+            Support a
+            <span>Repair.</span>
+        </h1>
+
+        <p data-i18n="heroDescription">
+            Some household repairs are essential,
+            but not everyone can afford them.
+            QuickFix brings together people, helpers
+            and community organizations so that
+            important repairs can receive the support
+            they need.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="main-section">
+
+<div class="container">
+
+    <div class="section-title">
+
+        <h2 data-i18n="requestSupport">
+            Request Support
+        </h2>
+
+        <p data-i18n="requestSupportDescription">
+            Need help with an essential repair?
+            Tell the QuickFix community what you need.
+        </p>
+
+    </div>
+
+
+    <div class="form-card">
+
+        <form id="supportForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label data-i18n="yourName">
+                        Your Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="requestName"
+                        data-i18n-placeholder="enterName"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label data-i18n="serviceNeeded">
+                        Service Needed
+                    </label>
+
+                    <select
+                        id="serviceNeeded"
+                        required
+                    >
+
+                        <option
+                            value=""
+                            data-i18n="selectService"
+                        >
+                            Select a service
+                        </option>
+
+                        <option value="Electrician" data-service="Electrician">
+                            Electrician
+                        </option>
+
+                        <option value="Plumber" data-service="Plumber">
+                            Plumber
+                        </option>
+
+                        <option value="Carpenter" data-service="Carpenter">
+                            Carpenter
+                        </option>
+
+                        <option value="Cleaner" data-service="Cleaner">
+                            Cleaner
+                        </option>
+
+                        <option value="Moving Help" data-service="Moving Help">
+                            Moving Help
+                        </option>
+
+                        <option value="Tutor" data-service="Tutor">
+                            Tutor
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label data-i18n="repairNeeded">
+                        What repair do you need?
+                    </label>
+
+                    <textarea
+                        id="repairDescription"
+                        data-i18n-placeholder="repairPlaceholder"
+                        placeholder="Describe the repair problem..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label data-i18n="whySupport">
+                        Why do you need support?
+                    </label>
+
+                    <textarea
+                        id="supportReason"
+                        data-i18n-placeholder="supportReasonPlaceholder"
+                        placeholder="Tell us briefly why you need community support..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label data-i18n="location">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="repairLocation"
+                        data-i18n-placeholder="enterArea"
+                        placeholder="Enter your area"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label data-i18n="estimatedCost">
+                        Estimated Repair Cost (₹)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="repairCost"
+                        data-i18n-placeholder="costPlaceholder"
+                        placeholder="Example: 800"
+                        min="1"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label data-i18n="contactNumber">
+                        Contact Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="contactNumber"
+                        data-i18n-placeholder="contactPlaceholder"
+                        placeholder="Enter your contact number"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-btn"
+                id="submitBtn"
+                data-i18n="submitRequest"
+            >
+                Submit Support Request →
+            </button>
+
+
+            <div
+                class="success-message"
+                id="successMessage"
+            ></div>
+
+
+            <div
+                class="error-message"
+                id="errorMessage"
+            ></div>
+
+        </form>
+
+    </div>
+
+
+    <div class="section-title">
+
+        <h2 data-i18n="communityRequests">
+            Community Repair Requests
+        </h2>
+
+        <p data-i18n="communityRequestsDescription">
+            Live requests from the QuickFix community
+            that are currently available for support.
+        </p>
+
+    </div>
+
+
+    <div
+        class="requests-grid"
+        id="requestsGrid"
+    >
+
+        <div class="empty-state" data-i18n="loadingRequests">
+            Loading community repair requests...
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<section class="how-section">
+
+    <div class="section-title">
+
+        <h2 data-i18n="howWorks">
+            How Support a Repair Works
+        </h2>
+
+        <p data-i18n="howWorksDescription">
+            A simple way to turn community support
+            into real household help.
+        </p>
+
+    </div>
+
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="step-number">1</div>
+
+            <h3 data-i18n="request">
+                Request
+            </h3>
+
+            <p data-i18n="requestStep">
+                A person submits an essential
+                household repair request.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">2</div>
+
+            <h3 data-i18n="support">
+                Support
+            </h3>
+
+            <p data-i18n="supportStep">
+                A community supporter or NGO
+                chooses a repair they want to help.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">3</div>
+
+            <h3 data-i18n="repair">
+                Repair
+            </h3>
+
+            <p data-i18n="repairStep">
+                QuickFix connects the request
+                with an appropriate helper.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<div
+    class="modal"
+    id="sponsorModal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-icon">
+            💛
+        </div>
+
+        <h2 data-i18n="supportThisRepair">
+            Support This Repair
+        </h2>
+
+        <p id="modalText"></p>
+
+
+        <div class="modal-input">
+
+            <label data-i18n="yourName">
+                Your Name
+            </label>
+
+            <input
+                type="text"
+                id="sponsorName"
+                data-i18n-placeholder="enterName"
+                placeholder="Enter your name"
+            >
+
+        </div>
+
+
+        <button
+            class="confirm-sponsor"
+            id="confirmSponsorBtn"
+            onclick="confirmSponsorship()"
+            data-i18n="confirmSupport"
+        >
+            Confirm Support
+        </button>
+
+
+        <button
+            class="close-modal"
+            onclick="closeModal()"
+            data-i18n="cancel"
+        >
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © 2026 QuickFix |
+    <strong>
+        Pranali Bhoyar and Mrunmayi Jadhav
+    </strong>
+
+</footer>
+
+
+<script>
+
+const API_BASE = "https://quickfix.pythonanywhere.com";
+
+let selectedRepairId = null;
+let selectedRepairName = "";
+let selectedRepairAmount = 0;
+
+let currentLanguage =
+    localStorage.getItem("quickfixLanguage") || "en";
+
+
+/* =========================================================
+   TRANSLATIONS
+========================================================= */
+
+const translations = {
+
+    en: {
+
+        home: "Home",
+        quickMatch: "Quick Match",
+        myFixes: "My Fixes",
+        helperDashboard: "Helper Dashboard",
+        snapFix: "Snap & Fix",
+        services: "Services",
+        giveGrow: "Give & Grow",
+        logout: "Logout",
+
+        backGiveGrow: "← Back to Give & Grow",
+
+        communitySupport: "💛 COMMUNITY SUPPORT",
+
+        heroTitle: 'Support a <span>Repair.</span>',
+
+        heroDescription:
+            "Some household repairs are essential, but not everyone can afford them. QuickFix brings together people, helpers and community organizations so that important repairs can receive the support they need.",
+
+        requestSupport: "Request Support",
+
+        requestSupportDescription:
+            "Need help with an essential repair? Tell the QuickFix community what you need.",
+
+        yourName: "Your Name",
+
+        enterName: "Enter your name",
+
+        serviceNeeded: "Service Needed",
+
+        selectService: "Select a service",
+
+        repairNeeded: "What repair do you need?",
+
+        repairPlaceholder:
+            "Describe the repair problem...",
+
+        whySupport: "Why do you need support?",
+
+        supportReasonPlaceholder:
+            "Tell us briefly why you need community support...",
+
+        location: "Location",
+
+        enterArea: "Enter your area",
+
+        estimatedCost: "Estimated Repair Cost (₹)",
+
+        costPlaceholder: "Example: 800",
+
+        contactNumber: "Contact Number",
+
+        contactPlaceholder:
+            "Enter your contact number",
+
+        submitRequest:
+            "Submit Support Request →",
+
+        communityRequests:
+            "Community Repair Requests",
+
+        communityRequestsDescription:
+            "Live requests from the QuickFix community that are currently available for support.",
+
+        loadingRequests:
+            "Loading community repair requests...",
+
+        howWorks:
+            "How Support a Repair Works",
+
+        howWorksDescription:
+            "A simple way to turn community support into real household help.",
+
+        request: "Request",
+
+        support: "Support",
+
+        repair: "Repair",
+
+        requestStep:
+            "A person submits an essential household repair request.",
+
+        supportStep:
+            "A community supporter or NGO chooses a repair they want to help.",
+
+        repairStep:
+            "QuickFix connects the request with an appropriate helper.",
+
+        supportThisRepair:
+            "Support This Repair",
+
+        confirmSupport:
+            "Confirm Support",
+
+        cancel:
+            "Cancel",
+
+        submitting:
+            "Submitting...",
+
+        processing:
+            "Processing...",
+
+        sponsorThisRepair:
+            "Sponsor This Repair",
+
+        repairSponsored:
+            "✓ Repair Sponsored",
+
+        service:
+            "Service",
+
+        requestedBy:
+            "Requested By",
+
+        status:
+            "Status",
+
+        open:
+            "Open",
+
+        sponsored:
+            "Sponsored",
+
+        estimatedCostLabel:
+            "Estimated Cost",
+
+        noRequests:
+            "No repair requests yet",
+
+        firstRequest:
+            "Be the first person to request community support for an essential repair.",
+
+        unableLoad:
+            "Unable to load requests",
+
+        backendMessage:
+            "Make sure the QuickFix Flask backend is running at http://127.0.0.1:5000",
+
+        tryAgain:
+            "Try Again"
+
+    },
+
+
+    hi: {
+
+        home: "होम",
+        quickMatch: "क्विक मैच",
+        myFixes: "मेरे फिक्स",
+        helperDashboard: "हेल्पर डैशबोर्ड",
+        snapFix: "स्नैप & फिक्स",
+        services: "सेवाएँ",
+        giveGrow: "गिव & ग्रो",
+        logout: "लॉगआउट",
+
+        backGiveGrow: "← गिव & ग्रो पर वापस जाएँ",
+
+        communitySupport: "💛 सामुदायिक सहायता",
+
+        heroTitle: 'एक <span>मरम्मत</span> में सहायता करें।',
+
+        heroDescription:
+            "कुछ घरेलू मरम्मत बहुत जरूरी होती हैं, लेकिन हर कोई उसका खर्च नहीं उठा सकता। QuickFix लोगों, हेल्पर्स और सामुदायिक संगठनों को जोड़कर जरूरी मरम्मत के लिए सहायता उपलब्ध कराता है।",
+
+        requestSupport: "सहायता का अनुरोध करें",
+
+        requestSupportDescription:
+            "क्या आपको किसी जरूरी मरम्मत के लिए सहायता चाहिए? QuickFix समुदाय को अपनी जरूरत बताएं।",
+
+        yourName: "आपका नाम",
+
+        enterName: "अपना नाम दर्ज करें",
+
+        serviceNeeded: "आवश्यक सेवा",
+
+        selectService: "सेवा चुनें",
+
+        repairNeeded: "आपको कौन सी मरम्मत चाहिए?",
+
+        repairPlaceholder:
+            "मरम्मत की समस्या बताएं...",
+
+        whySupport: "आपको सहायता की आवश्यकता क्यों है?",
+
+        supportReasonPlaceholder:
+            "संक्षेप में बताएं कि आपको सामुदायिक सहायता क्यों चाहिए...",
+
+        location: "स्थान",
+
+        enterArea: "अपना क्षेत्र दर्ज करें",
+
+        estimatedCost: "अनुमानित मरम्मत लागत (₹)",
+
+        costPlaceholder: "उदाहरण: 800",
+
+        contactNumber: "संपर्क नंबर",
+
+        contactPlaceholder:
+            "अपना संपर्क नंबर दर्ज करें",
+
+        submitRequest:
+            "सहायता अनुरोध भेजें →",
+
+        communityRequests:
+            "सामुदायिक मरम्मत अनुरोध",
+
+        communityRequestsDescription:
+            "QuickFix समुदाय के लाइव अनुरोध जो वर्तमान में सहायता के लिए उपलब्ध हैं।",
+
+        loadingRequests:
+            "सामुदायिक मरम्मत अनुरोध लोड हो रहे हैं...",
+
+        howWorks:
+            "सहायता कैसे काम करती है",
+
+        howWorksDescription:
+            "सामुदायिक सहायता को वास्तविक घरेलू मदद में बदलने का सरल तरीका।",
+
+        request: "अनुरोध",
+
+        support: "सहायता",
+
+        repair: "मरम्मत",
+
+        requestStep:
+            "एक व्यक्ति जरूरी घरेलू मरम्मत के लिए अनुरोध भेजता है।",
+
+        supportStep:
+            "कोई सामुदायिक समर्थक या NGO उस मरम्मत को चुनता है जिसमें वह सहायता करना चाहता है।",
+
+        repairStep:
+            "QuickFix अनुरोध को उचित हेल्पर से जोड़ता है।",
+
+        supportThisRepair:
+            "इस मरम्मत में सहायता करें",
+
+        confirmSupport:
+            "सहायता की पुष्टि करें",
+
+        cancel:
+            "रद्द करें",
+
+        submitting:
+            "भेजा जा रहा है...",
+
+        processing:
+            "प्रक्रिया जारी है...",
+
+        sponsorThisRepair:
+            "इस मरम्मत को स्पॉन्सर करें",
+
+        repairSponsored:
+            "✓ मरम्मत स्पॉन्सर की गई",
+
+        service:
+            "सेवा",
+
+        requestedBy:
+            "अनुरोधकर्ता",
+
+        status:
+            "स्थिति",
+
+        open:
+            "खुला",
+
+        sponsored:
+            "स्पॉन्सर्ड",
+
+        estimatedCostLabel:
+            "अनुमानित लागत",
+
+        noRequests:
+            "अभी कोई मरम्मत अनुरोध नहीं है",
+
+        firstRequest:
+            "जरूरी मरम्मत के लिए सामुदायिक सहायता का अनुरोध करने वाले पहले व्यक्ति बनें।",
+
+        unableLoad:
+            "अनुरोध लोड नहीं हो सके",
+
+        backendMessage:
+            "सुनिश्चित करें कि QuickFix Flask backend http://127.0.0.1:5000 पर चल रहा है।",
+
+        tryAgain:
+            "फिर कोशिश करें"
+
+    },
+
+
+    mr: {
+
+        home: "होम",
+        quickMatch: "क्विक मॅच",
+        myFixes: "माझे फिक्स",
+        helperDashboard: "हेल्पर डॅशबोर्ड",
+        snapFix: "स्नॅप & फिक्स",
+        services: "सेवा",
+        giveGrow: "गिव्ह & ग्रो",
+        logout: "लॉगआउट",
+
+        backGiveGrow: "← गिव्ह & ग्रो वर परत जा",
+
+        communitySupport: "💛 समुदाय सहाय्य",
+
+        heroTitle: 'एका <span>दुरुस्तीला</span> मदत करा.',
+
+        heroDescription:
+            "काही घरगुती दुरुस्ती अत्यावश्यक असतात, परंतु प्रत्येकाला त्याचा खर्च परवडत नाही. QuickFix लोक, हेल्पर्स आणि समुदाय संस्थांना जोडून आवश्यक दुरुस्तीसाठी मदत उपलब्ध करून देतो.",
+
+        requestSupport: "सहाय्यासाठी विनंती करा",
+
+        requestSupportDescription:
+            "तुम्हाला आवश्यक दुरुस्तीसाठी मदत हवी आहे का? QuickFix समुदायाला तुमची गरज सांगा.",
+
+        yourName: "तुमचे नाव",
+
+        enterName: "तुमचे नाव लिहा",
+
+        serviceNeeded: "आवश्यक सेवा",
+
+        selectService: "सेवा निवडा",
+
+        repairNeeded: "तुम्हाला कोणती दुरुस्ती हवी आहे?",
+
+        repairPlaceholder:
+            "दुरुस्तीची समस्या लिहा...",
+
+        whySupport: "तुम्हाला सहाय्याची गरज का आहे?",
+
+        supportReasonPlaceholder:
+            "तुम्हाला समुदायाच्या सहाय्याची गरज का आहे ते थोडक्यात सांगा...",
+
+        location: "स्थान",
+
+        enterArea: "तुमचा परिसर लिहा",
+
+        estimatedCost: "अंदाजे दुरुस्ती खर्च (₹)",
+
+        costPlaceholder: "उदाहरण: 800",
+
+        contactNumber: "संपर्क क्रमांक",
+
+        contactPlaceholder:
+            "तुमचा संपर्क क्रमांक लिहा",
+
+        submitRequest:
+            "सहाय्य विनंती पाठवा →",
+
+        communityRequests:
+            "समुदायातील दुरुस्ती विनंत्या",
+
+        communityRequestsDescription:
+            "QuickFix समुदायातील सध्या सहाय्यासाठी उपलब्ध असलेल्या लाइव्ह विनंत्या.",
+
+        loadingRequests:
+            "समुदायातील दुरुस्ती विनंत्या लोड होत आहेत...",
+
+        howWorks:
+            "दुरुस्ती सहाय्य कसे कार्य करते",
+
+        howWorksDescription:
+            "समुदायाच्या सहाय्याला प्रत्यक्ष घरगुती मदतीमध्ये बदलण्याचा सोपा मार्ग.",
+
+        request: "विनंती",
+
+        support: "सहाय्य",
+
+        repair: "दुरुस्ती",
+
+        requestStep:
+            "एक व्यक्ती आवश्यक घरगुती दुरुस्तीसाठी विनंती पाठवते.",
+
+        supportStep:
+            "समुदायातील समर्थक किंवा NGO ज्या दुरुस्तीला मदत करायची आहे ती निवडतो.",
+
+        repairStep:
+            "QuickFix विनंतीला योग्य हेल्परशी जोडते.",
+
+        supportThisRepair:
+            "या दुरुस्तीला मदत करा",
+
+        confirmSupport:
+            "सहाय्याची पुष्टी करा",
+
+        cancel:
+            "रद्द करा",
+
+        submitting:
+            "पाठवत आहे...",
+
+        processing:
+            "प्रक्रिया सुरू आहे...",
+
+        sponsorThisRepair:
+            "या दुरुस्तीला स्पॉन्सर करा",
+
+        repairSponsored:
+            "✓ दुरुस्ती स्पॉन्सर केली आहे",
+
+        service:
+            "सेवा",
+
+        requestedBy:
+            "विनंती करणारे",
+
+        status:
+            "स्थिती",
+
+        open:
+            "उघडे",
+
+        sponsored:
+            "स्पॉन्सर केलेले",
+
+        estimatedCostLabel:
+            "अंदाजे खर्च",
+
+        noRequests:
+            "अजून कोणत्याही दुरुस्ती विनंत्या नाहीत",
+
+        firstRequest:
+            "आवश्यक दुरुस्तीसाठी समुदायाच्या सहाय्याची विनंती करणारे पहिले व्यक्ती बना.",
+
+        unableLoad:
+            "विनंत्या लोड करता आल्या नाहीत",
+
+        backendMessage:
+            "QuickFix Flask backend http://127.0.0.1:5000 वर चालू आहे याची खात्री करा.",
+
+        tryAgain:
+            "पुन्हा प्रयत्न करा"
+
+    }
+
+};
+
+
+/* =========================================================
+   SERVICE TRANSLATIONS
+========================================================= */
+
+const serviceTranslations = {
+
+    en: {
+        "Electrician": "Electrician",
+        "Plumber": "Plumber",
+        "Carpenter": "Carpenter",
+        "Cleaner": "Cleaner",
+        "Moving Help": "Moving Help",
+        "Tutor": "Tutor"
+    },
+
+    hi: {
+        "Electrician": "इलेक्ट्रीशियन",
+        "Plumber": "प्लंबर",
+        "Carpenter": "बढ़ई",
+        "Cleaner": "क्लीनर",
+        "Moving Help": "मूविंग हेल्प",
+        "Tutor": "ट्यूटर"
+    },
+
+    mr: {
+        "Electrician": "इलेक्ट्रिशियन",
+        "Plumber": "प्लंबर",
+        "Carpenter": "सुतार",
+        "Cleaner": "क्लीनर",
+        "Moving Help": "मूव्हिंग हेल्प",
+        "Tutor": "ट्यूटर"
+    }
+
+};
+
+
+/* =========================================================
+   CHANGE LANGUAGE
+========================================================= */
+
+function changeLanguage(language) {
+
+    currentLanguage = language;
+
+    localStorage.setItem(
+        "quickfixLanguage",
+        language
+    );
+
+    applyLanguage();
+
+    loadRepairRequests();
+}
+
+
+/* =========================================================
+   APPLY LANGUAGE
+========================================================= */
+
+function applyLanguage() {
+
+    const t =
+        translations[currentLanguage] ||
+        translations.en;
+
+
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach(element => {
+
+            const key =
+                element.getAttribute(
+                    "data-i18n"
+                );
+
+            if (t[key] !== undefined) {
+
+                element.innerHTML =
+                    t[key];
+
+            }
+
+        });
+
+
+    document
+        .querySelectorAll("[data-i18n-placeholder]")
+        .forEach(element => {
+
+            const key =
+                element.getAttribute(
+                    "data-i18n-placeholder"
+                );
+
+            if (t[key] !== undefined) {
+
+                element.placeholder =
+                    t[key];
+
+            }
+
+        });
+
+
+    const languageSelect =
+        document.getElementById(
+            "languageSelect"
+        );
+
+    if (languageSelect) {
+
+        languageSelect.value =
+            currentLanguage;
+
+    }
+
+
+    translateServiceOptions();
+
+}
+
+
+/* =========================================================
+   TRANSLATE SERVICE OPTIONS
+========================================================= */
+
+function translateServiceOptions() {
+
+    const serviceMap =
+        serviceTranslations[currentLanguage] ||
+        serviceTranslations.en;
+
+
+    document
+        .querySelectorAll(
+            "#serviceNeeded option[data-service]"
+        )
+        .forEach(option => {
+
+            const service =
+                option.getAttribute(
+                    "data-service"
+                );
+
+            option.textContent =
+                serviceMap[service] ||
+                service;
+
+        });
+
+}
+
+
+/* =========================================================
+   TRANSLATE SERVICE NAME
+========================================================= */
+
+function translateService(service) {
+
+    const serviceMap =
+        serviceTranslations[currentLanguage] ||
+        serviceTranslations.en;
+
+    return (
+        serviceMap[service] ||
+        service ||
+        "-"
+    );
+
+}
+
+
+/* =========================================================
+   LOAD COMMUNITY REPAIR REQUESTS
+========================================================= */
+
+async function loadRepairRequests() {
+
+    const grid =
+        document.getElementById(
+            "requestsGrid"
+        );
+
+    const t =
+        translations[currentLanguage] ||
+        translations.en;
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE +
+                "/api/give-grow/support-repairs"
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load requests."
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        const requests =
+            result.repairs || [];
+
+
+        grid.innerHTML = "";
+
+
+        if (
+            !Array.isArray(requests) ||
+            requests.length === 0
+        ) {
+
+            grid.innerHTML = `
+
+                <div class="empty-state">
+
+                    <div
+                        style="
+                        font-size:40px;
+                        margin-bottom:15px;
+                        "
+                    >
+                        💛
+                    </div>
+
+                    <h3
+                        style="
+                        margin-bottom:10px;
+                        color:#ffffff;
+                        "
+                    >
+                        ${escapeHtml(
+                            t.noRequests
+                        )}
+                    </h3>
+
+                    <p>
+                        ${escapeHtml(
+                            t.firstRequest
+                        )}
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        requests.forEach(request => {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+            card.className =
+                "request-card";
+
+
+            const icon =
+                getServiceIcon(
+                    request.service
+                );
+
+
+            const statusClass =
+                request.status === "Sponsored"
+                    ? "status-sponsored"
+                    : "status-open";
+
+
+            const statusText =
+                request.status === "Sponsored"
+                    ? t.sponsored
+                    : t.open;
+
+
+            let buttonHTML = "";
+
+
+            if (
+                request.status === "Open"
+            ) {
+
+                buttonHTML = `
+
+                    <button
+                        class="sponsor-btn"
+                        onclick="sponsorRepair(
+                            ${Number(request.id)},
+                            '${escapeJs(request.name)}',
+                            ${Number(request.estimated_cost) || 0}
+                        )"
+                    >
+                        ${escapeHtml(
+                            t.sponsorThisRepair
+                        )}
+                    </button>
+
+                `;
+
+            } else {
+
+                buttonHTML = `
+
+                    <button
+                        class="sponsor-btn"
+                        disabled
+                    >
+                        ${escapeHtml(
+                            t.repairSponsored
+                        )}
+                    </button>
+
+                `;
+
+            }
+
+
+            card.innerHTML = `
+
+                <div class="request-icon">
+                    ${icon}
+                </div>
+
+
+                <h3>
+                    ${escapeHtml(
+                        translateService(
+                            request.service ||
+                            "Repair Request"
+                        )
+                    )}
+                </h3>
+
+
+                <p>
+                    ${escapeHtml(
+                        request.description ||
+                        "Essential household repair support requested."
+                    )}
+                </p>
+
+
+                <div class="request-info">
+
+                    <div>
+
+                        <span>
+                            ${escapeHtml(
+                                t.service
+                            )}
+                        </span>
+
+                        <span>
+                            ${escapeHtml(
+                                translateService(
+                                    request.service
+                                )
+                            )}
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            ${escapeHtml(
+                                t.requestedBy
+                            )}
+                        </span>
+
+                        <span>
+                            ${escapeHtml(
+                                request.name || "-"
+                            )}
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            ${escapeHtml(
+                                t.location
+                            )}
+                        </span>
+
+                        <span>
+                            ${escapeHtml(
+                                request.location || "-"
+                            )}
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            ${escapeHtml(
+                                t.estimatedCostLabel
+                            )}
+                        </span>
+
+                        <span class="cost">
+                            ₹${formatNumber(
+                                request.estimated_cost
+                            )}
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            ${escapeHtml(
+                                t.status
+                            )}
+                        </span>
+
+                        <span
+                            class="status ${statusClass}"
+                        >
+                            ${escapeHtml(
+                                statusText
+                            )}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                ${buttonHTML}
+
+            `;
+
+
+            grid.appendChild(card);
+
+        });
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        grid.innerHTML = `
+
+            <div class="empty-state">
+
+                <div
+                    style="
+                    font-size:40px;
+                    margin-bottom:15px;
+                    "
+                >
+                    ⚠️
+                </div>
+
+                <h3
+                    style="
+                    margin-bottom:10px;
+                    color:#ffffff;
+                    "
+                >
+                    ${escapeHtml(
+                        t.unableLoad
+                    )}
+                </h3>
+
+                <p>
+                    ${escapeHtml(
+                        t.backendMessage
+                    )}
+                </p>
+
+                <button
+                    class="sponsor-btn"
+                    style="
+                    max-width:220px;
+                    margin-top:20px;
+                    "
+                    onclick="loadRepairRequests()"
+                >
+                    ${escapeHtml(
+                        t.tryAgain
+                    )}
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   SUBMIT SUPPORT REQUEST
+========================================================= */
+
+document
+    .getElementById("supportForm")
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const submitBtn =
+                document.getElementById(
+                    "submitBtn"
+                );
+
+            const successMessage =
+                document.getElementById(
+                    "successMessage"
+                );
+
+            const errorMessage =
+                document.getElementById(
+                    "errorMessage"
+                );
+
+
+            const t =
+                translations[currentLanguage] ||
+                translations.en;
+
+
+            successMessage.style.display =
+                "none";
+
+            errorMessage.style.display =
+                "none";
+
+
+            const requestData = {
+
+                name:
+                    document
+                        .getElementById(
+                            "requestName"
+                        )
+                        .value
+                        .trim(),
+
+                service:
+                    document
+                        .getElementById(
+                            "serviceNeeded"
+                        )
+                        .value,
+
+                description:
+                    document
+                        .getElementById(
+                            "repairDescription"
+                        )
+                        .value
+                        .trim(),
+
+                reason:
+                    document
+                        .getElementById(
+                            "supportReason"
+                        )
+                        .value
+                        .trim(),
+
+                location:
+                    document
+                        .getElementById(
+                            "repairLocation"
+                        )
+                        .value
+                        .trim(),
+
+                estimated_cost:
+                    Number(
+                        document
+                            .getElementById(
+                                "repairCost"
+                            )
+                            .value
+                    ),
+
+                contact:
+                    document
+                        .getElementById(
+                            "contactNumber"
+                        )
+                        .value
+                        .trim()
+
+            };
+
+
+            submitBtn.disabled =
+                true;
+
+            submitBtn.textContent =
+                t.submitting;
+
+
+            try {
+
+                const response =
+                    await fetch(
+
+                        API_BASE +
+                        "/api/give-grow/support-repairs",
+
+                        {
+
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    requestData
+                                )
+
+                        }
+
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+
+                        result.error ||
+                        "Unable to submit support request."
+
+                    );
+
+                }
+
+
+                const newRepairId =
+                    result.repair &&
+                    result.repair.id
+                        ? result.repair.id
+                        : "Created";
+
+
+                successMessage.innerHTML = `
+
+                    ✅ ${escapeHtml(
+                        currentLanguage === "hi"
+                            ? "आपका मरम्मत सहायता अनुरोध सफलतापूर्वक भेज दिया गया है।"
+                            : currentLanguage === "mr"
+                                ? "तुमची दुरुस्ती सहाय्य विनंती यशस्वीरित्या पाठवली आहे."
+                                : "Your repair support request has been submitted successfully."
+                    )}
+
+                    <br><br>
+
+                    <strong>
+                        ${escapeHtml(
+                            currentLanguage === "hi"
+                                ? "अनुरोध ID"
+                                : currentLanguage === "mr"
+                                    ? "विनंती ID"
+                                    : "Request ID"
+                        )}: #${escapeHtml(
+                            newRepairId
+                        )}
+                    </strong>
+
+                    <br><br>
+
+                    ${escapeHtml(
+                        currentLanguage === "hi"
+                            ? "QuickFix समुदाय अब आपका अनुरोध देख और सहायता कर सकता है।"
+                            : currentLanguage === "mr"
+                                ? "QuickFix समुदाय आता तुमची विनंती पाहून मदत करू शकतो."
+                                : "The QuickFix community can now view and support your request."
+                    )}
+
+                `;
+
+
+                successMessage.style.display =
+                    "block";
+
+
+                document
+                    .getElementById(
+                        "supportForm"
+                    )
+                    .reset();
+
+
+                await loadRepairRequests();
+
+
+                setTimeout(() => {
+
+                    document
+                        .getElementById(
+                            "requestsGrid"
+                        )
+                        .scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+
+                }, 300);
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                errorMessage.innerHTML =
+                    "❌ " +
+                    escapeHtml(
+                        error.message
+                    );
+
+
+                errorMessage.style.display =
+                    "block";
+
+            } finally {
+
+                submitBtn.disabled =
+                    false;
+
+                submitBtn.textContent =
+                    t.submitRequest;
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   OPEN SPONSOR MODAL
+========================================================= */
+
+function sponsorRepair(
+    repairId,
+    repairName,
+    amount
+) {
+
+    selectedRepairId =
+        repairId;
+
+    selectedRepairName =
+        repairName;
+
+    selectedRepairAmount =
+        amount;
+
+
+    const t =
+        translations[currentLanguage] ||
+        translations.en;
+
+
+    const amountText =
+        "₹" +
+        formatNumber(amount);
+
+
+    const message =
+        currentLanguage === "hi"
+            ? `आपने <strong>${escapeHtml(repairName)}</strong> को चुना है जिसकी अनुमानित सहायता राशि <strong>${amountText}</strong> है।<br><br>अपना नाम दर्ज करें ताकि आपकी सामुदायिक सहायता रिकॉर्ड की जा सके।`
+            : currentLanguage === "mr"
+                ? `तुम्ही <strong>${escapeHtml(repairName)}</strong> निवडले आहे ज्याची अंदाजे सहाय्य रक्कम <strong>${amountText}</strong> आहे.<br><br>तुमचे नाव लिहा जेणेकरून तुमचे समुदाय सहाय्य नोंदवता येईल.`
+                : `You selected <strong>${escapeHtml(repairName)}</strong> with an estimated support amount of <strong>${amountText}</strong>.<br><br>Enter your name to record your community support.`;
+
+
+    document.getElementById(
+        "modalText"
+    ).innerHTML =
+        message;
+
+
+    document.getElementById(
+        "sponsorName"
+    ).value = "";
+
+
+    document.getElementById(
+        "sponsorModal"
+    ).style.display =
+        "flex";
+
+}
+
+
+/* =========================================================
+   CONFIRM SPONSORSHIP
+========================================================= */
+
+async function confirmSponsorship() {
+
+    const sponsorName =
+        document
+            .getElementById(
+                "sponsorName"
+            )
+            .value
+            .trim();
+
+
+    const t =
+        translations[currentLanguage] ||
+        translations.en;
+
+
+    if (!sponsorName) {
+
+        alert(
+            currentLanguage === "hi"
+                ? "कृपया अपना नाम दर्ज करें।"
+                : currentLanguage === "mr"
+                    ? "कृपया तुमचे नाव लिहा."
+                    : "Please enter your name."
+        );
+
+        return;
+
+    }
+
+
+    if (!selectedRepairId) {
+
+        alert(
+            currentLanguage === "hi"
+                ? "मरम्मत की जानकारी उपलब्ध नहीं है।"
+                : currentLanguage === "mr"
+                    ? "दुरुस्तीची माहिती उपलब्ध नाही."
+                    : "Repair information is missing."
+        );
+
+        return;
+
+    }
+
+
+    const button =
+        document.getElementById(
+            "confirmSponsorBtn"
+        );
+
+
+    button.disabled =
+        true;
+
+    button.textContent =
+        t.processing;
+
+
+    try {
+
+        const response =
+            await fetch(
+
+                API_BASE +
+                "/api/give-grow/support-repairs/" +
+                selectedRepairId +
+                "/sponsor",
+
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            sponsor_name:
+                                sponsorName
+
+                        })
+
+                }
+
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+
+                result.error ||
+                "Unable to sponsor this repair."
+
+            );
+
+        }
+
+
+        closeModal();
+
+
+        alert(
+
+            currentLanguage === "hi"
+                ? `💛 धन्यवाद ${sponsorName}! आपकी सहायता सफलतापूर्वक रिकॉर्ड की गई है।`
+                : currentLanguage === "mr"
+                    ? `💛 धन्यवाद ${sponsorName}! तुमचे सहाय्य यशस्वीरित्या नोंदवले गेले आहे.`
+                    : `💛 Thank you, ${sponsorName}! Your support has been recorded successfully.`
+
+        );
+
+
+        await loadRepairRequests();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        alert(
+            "❌ " +
+            error.message
+        );
+
+    } finally {
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            t.confirmSupport;
+
+    }
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
+
+function closeModal() {
+
+    document.getElementById(
+        "sponsorModal"
+    ).style.display =
+        "none";
+
+
+    selectedRepairId =
+        null;
+
+    selectedRepairName =
+        "";
+
+    selectedRepairAmount =
+        0;
+
+}
+
+
+/* =========================================================
+   SERVICE ICONS
+========================================================= */
+
+function getServiceIcon(service) {
+
+    const icons = {
+
+        "Plumber": "🚰",
+
+        "Electrician": "⚡",
+
+        "Carpenter": "🪚",
+
+        "Cleaner": "🧹",
+
+        "Moving Help": "📦",
+
+        "Tutor": "📚"
+
+    };
+
+
+    return (
+        icons[service] ||
+        "🔧"
+    );
+
+}
+
+
+/* =========================================================
+   NUMBER FORMAT
+========================================================= */
+
+function formatNumber(value) {
+
+    const number =
+        Number(value) || 0;
+
+
+    return number.toLocaleString(
+        "en-IN"
+    );
+
+}
+
+
+/* =========================================================
+   HTML SAFETY
+========================================================= */
+
+function escapeHtml(value) {
+
+    return String(
+        value ?? ""
+    )
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================================
+   JAVASCRIPT STRING SAFETY
+========================================================= */
+
+function escapeJs(value) {
+
+    return String(
+        value ?? ""
+    )
+    .replace(/\\/g, "\\\\")
+    .replace(/'/g, "\\'")
+    .replace(/\r/g, "\\r")
+    .replace(/\n/g, "\\n");
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL OUTSIDE CLICK
+========================================================= */
+
+window.addEventListener(
+    "click",
+    function(event) {
+
+        const modal =
+            document.getElementById(
+                "sponsorModal"
+            );
+
+
+        if (
+            event.target === modal
+        ) {
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        currentLanguage =
+            localStorage.getItem(
+                "quickfixLanguage"
+            ) || "en";
+
+        applyLanguage();
+
+        loadRepairRequests();
+
+    }
+);
+
+</script>
+
+</body>
+</html>

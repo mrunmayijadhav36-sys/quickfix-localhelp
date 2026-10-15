@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fix Me - Notifications</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        body {
+            background: linear-gradient(
+                135deg,
+                #022c22,
+                #064e3b,
+                #065f46
+            );
+
+            color: #222;
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: #022c22;
+
+            color: white;
+
+            padding: 18px 35px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.25);
+        }
+
+
+        header h1 {
+            font-size: 28px;
+
+            letter-spacing: 1px;
+        }
+
+
+        nav {
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+            justify-content: flex-end;
+        }
+
+
+        nav button {
+            background: #dcfce7;
+
+            color: #166534;
+
+            border: none;
+
+            padding: 9px 13px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+
+        nav button:hover {
+            background: #bbf7d0;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+            width: 90%;
+
+            max-width: 800px;
+
+            margin: 45px auto;
+
+            min-height: 400px;
+        }
+
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        .title-section {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .title-section h2 {
+            color: white;
+
+            margin-bottom: 10px;
+
+            font-size: 36px;
+        }
+
+
+        .title-section p {
+            color: #d1fae5;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           NOTIFICATION CARD
+        ========================= */
+
+        .notification-card {
+            background: white;
+
+            padding: 20px;
+
+            margin-bottom: 16px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.18);
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 15px;
+
+            border-left: 5px solid #16a34a;
+
+            transition: 0.3s;
+        }
+
+
+        .notification-card:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 14px 30px rgba(0, 0, 0, 0.23);
+        }
+
+
+        .notification-icon {
+            font-size: 30px;
+
+            min-width: 45px;
+
+            text-align: center;
+        }
+
+
+        .notification-content {
+            flex: 1;
+        }
+
+
+        .notification-content h3 {
+            color: #166534;
+
+            margin-bottom: 7px;
+
+            font-size: 19px;
+        }
+
+
+        .notification-content p {
+            color: #475569;
+
+            line-height: 1.5;
+        }
+
+
+        .notification-time {
+            color: #64748b;
+
+            font-size: 13px;
+
+            margin-top: 9px;
+        }
+
+
+        /* =========================
+           EMPTY MESSAGE
+        ========================= */
+
+        .empty-message {
+            background: white;
+
+            padding: 45px 30px;
+
+            text-align: center;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.18);
+        }
+
+
+        .empty-message .icon {
+            font-size: 48px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .empty-message h3 {
+            color: #166534;
+
+            margin-bottom: 10px;
+
+            font-size: 23px;
+        }
+
+
+        .empty-message p {
+            color: #64748b;
+        }
+
+
+        /* =========================
+           CLEAR BUTTON
+        ========================= */
+
+        .clear-btn {
+            display: block;
+
+            margin: 25px auto 0;
+
+            background: #ef4444;
+
+            color: white;
+
+            border: none;
+
+            padding: 11px 20px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .clear-btn:hover {
+            background: #dc2626;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+
+            margin-top: 30px;
+
+            padding: 20px;
+
+            background: #022c22;
+
+            color: #d1fae5;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 18px 20px;
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+
+            nav {
+                justify-content: center;
+            }
+
+
+            .container {
+                width: calc(100% - 30px);
+
+                margin: 35px auto;
+            }
+
+
+            .title-section h2 {
+                font-size: 30px;
+            }
+
+
+            .notification-card {
+                padding: 16px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <h1>
+            FIX ME
+        </h1>
+
+
+        <nav>
+
+            <button onclick="goHome()">
+                Home
+            </button>
+
+            <button onclick="goServices()">
+                Services
+            </button>
+
+            <button onclick="goQuickMatch()">
+                Quick Match
+            </button>
+
+            <button onclick="goMyFixes()">
+                My Fixes
+            </button>
+
+            <button onclick="goNotifications()">
+                🔔 Notifications
+            </button>
+
+            <button onclick="goSnapFix()">
+                Snap & Fix
+            </button>
+
+            <button onclick="logout()">
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <div class="container">
+
+
+        <div class="title-section">
+
+            <h2>
+                🔔 Notifications
+            </h2>
+
+            <p>
+                Stay updated about your Fix Me service requests.
+            </p>
+
+        </div>
+
+
+        <div id="notificationsContainer"></div>
+
+
+        <button
+            id="clearButton"
+            class="clear-btn"
+            onclick="clearNotifications()"
+            style="display: none;"
+        >
+            Clear Notifications
+        </button>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <p>
+            © 2026 Fix Me | Pranali Bhoyar & Mrunmayi Jadhav
+        </p>
+
+    </footer>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        /* =========================
+           GET NOTIFICATIONS
+        ========================= */
+
+        function getNotifications() {
+
+            const bookings =
+                JSON.parse(
+                    localStorage.getItem("fixMeBookings")
+                ) || [];
+
+
+            const savedStatuses =
+                JSON.parse(
+                    localStorage.getItem(
+                        "fixMeRequestStatuses"
+                    )
+                ) || [];
+
+
+            const notifications = [];
+
+
+            bookings.forEach(function(booking) {
+
+                const bookingId =
+                    booking.id;
+
+
+                const currentStatus =
+                    savedStatuses[bookingId] ||
+                    "Request Sent";
+
+
+                const helper =
+                    booking.helper ||
+                    "Your helper";
+
+
+                const service =
+                    booking.service ||
+                    "your service";
+
+
+                const date =
+                    booking.date ||
+                    "";
+
+
+                const time =
+                    booking.time ||
+                    "";
+
+
+                if (currentStatus === "Request Sent") {
+
+                    notifications.push({
+
+                        icon: "📨",
+
+                        title: "Request Sent",
+
+                        message:
+                            "Your " +
+                            service +
+                            " request has been sent to " +
+                            helper +
+                            ".",
+
+                        time:
+                            date +
+                            (time
+                                ? " • " + time
+                                : "")
+
+                    });
+
+                }
+
+
+                if (currentStatus === "Helper Accepted") {
+
+                    notifications.push({
+
+                        icon: "✅",
+
+                        title: "Helper Accepted",
+
+                        message:
+                            helper +
+                            " has accepted your " +
+                            service +
+                            " request.",
+
+                        time:
+                            date +
+                            (time
+                                ? " • " + time
+                                : "")
+
+                    });
+
+                }
+
+
+                if (currentStatus === "On the Way") {
+
+                    notifications.push({
+
+                        icon: "🚗",
+
+                        title: "Helper On the Way",
+
+                        message:
+                            helper +
+                            " is on the way for your " +
+                            service +
+                            " request.",
+
+                        time:
+                            date +
+                            (time
+                                ? " • " + time
+                                : "")
+
+                    });
+
+                }
+
+
+                if (currentStatus === "Completed") {
+
+                    notifications.push({
+
+                        icon: "🎉",
+
+                        title: "Service Completed",
+
+                        message:
+                            "Your " +
+                            service +
+                            " service with " +
+                            helper +
+                            " has been completed.",
+
+                        time:
+                            date +
+                            (time
+                                ? " • " + time
+                                : "")
+
+                    });
+
+                }
+
+            });
+
+
+            return notifications;
+
+        }
+
+
+
+        /* =========================
+           DISPLAY NOTIFICATIONS
+        ========================= */
+
+        function displayNotifications() {
+
+            const container =
+                document.getElementById(
+                    "notificationsContainer"
+                );
+
+
+            const clearButton =
+                document.getElementById(
+                    "clearButton"
+                );
+
+
+            const notifications =
+                getNotifications();
+
+
+            container.innerHTML = "";
+
+
+            if (notifications.length === 0) {
+
+                container.innerHTML = `
+
+                    <div class="empty-message">
+
+                        <div class="icon">
+                            🔕
+                        </div>
+
+                        <h3>
+                            No Notifications
+                        </h3>
+
+                        <p>
+                            You don't have any service
+                            notifications yet.
+                        </p>
+
+                    </div>
+
+                `;
+
+
+                clearButton.style.display =
+                    "none";
+
+
+                return;
+
+            }
+
+
+            notifications.forEach(
+                function(notification) {
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "notification-card";
+
+
+                    card.innerHTML = `
+
+                        <div class="notification-icon">
+                            ${notification.icon}
+                        </div>
+
+                        <div class="notification-content">
+
+                            <h3>
+                                ${notification.title}
+                            </h3>
+
+                            <p>
+                                ${notification.message}
+                            </p>
+
+                            <div class="notification-time">
+                                📅 ${notification.time}
+                            </div>
+
+                        </div>
+
+                    `;
+
+
+                    container.appendChild(card);
+
+                }
+            );
+
+
+            clearButton.style.display =
+                "block";
+
+        }
+
+
+
+        /* =========================
+           CLEAR NOTIFICATIONS
+        ========================= */
+
+        function clearNotifications() {
+
+            localStorage.removeItem(
+                "fixMeBookings"
+            );
+
+
+            localStorage.removeItem(
+                "fixMeRequestStatuses"
+            );
+
+
+            displayNotifications();
+
+
+            alert(
+                "Notifications cleared successfully."
+            );
+
+        }
+
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        function goHome() {
+
+            window.location.href =
+                "home.html";
+
+        }
+
+
+        function goServices() {
+
+            window.location.href =
+                "services.html";
+
+        }
+
+
+        function goQuickMatch() {
+
+            window.location.href =
+                "quick-match.html";
+
+        }
+
+
+        function goMyFixes() {
+
+            window.location.href =
+                "my-fixes.html";
+
+        }
+
+
+        function goNotifications() {
+
+            window.location.href =
+                "notifications.html";
+
+        }
+
+
+        function goSnapFix() {
+
+            window.location.href =
+                "snap-fix.html";
+
+        }
+
+
+        function logout() {
+
+            window.location.href =
+                "index.html";
+
+        }
+
+
+
+        /* =========================
+           START PAGE
+        ========================= */
+
+        displayNotifications();
+
+
+    </script>
+
+
+</body>
+
+</html>

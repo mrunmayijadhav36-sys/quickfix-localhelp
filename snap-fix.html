@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Snap & Fix - QuickFix</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(228, 154, 47, 0.08),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at bottom left,
+                    rgba(228, 154, 47, 0.05),
+                    transparent 28%
+                ),
+                #061a14;
+
+            min-height: 100vh;
+            color: #f7f4eb;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            background: rgba(3, 17, 13, 0.97);
+            color: #f7f4eb;
+            padding: 18px 35px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            flex-wrap: wrap;
+            gap: 18px;
+
+            box-shadow:
+                0 8px 30px rgba(0, 0, 0, 0.3);
+
+            border-bottom:
+                1px solid rgba(228, 154, 47, 0.18);
+        }
+
+        .logo {
+            font-size: 29px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #f7f4eb;
+        }
+
+        .logo span {
+            color: #e49a2f;
+        }
+
+        .tagline {
+            font-size: 13px;
+            color: #aebdb5;
+            margin-top: 5px;
+        }
+
+        /* ================= NAVIGATION ================= */
+
+        .navigation {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navigation button {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 10px 15px;
+            border-radius: 22px;
+            background: #0b2d21;
+            color: #f7f4eb;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.25s ease;
+        }
+
+        .navigation button:hover {
+            background: #e49a2f;
+            color: #10291f;
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 7px 18px rgba(228, 154, 47, 0.22);
+        }
+
+        /* ================= LANGUAGE ================= */
+
+        .language-select {
+            padding: 9px 13px;
+            border-radius: 20px;
+
+            border: 1px solid rgba(228, 154, 47, 0.35);
+
+            background: #0b2d21;
+            color: #f7f4eb;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            cursor: pointer;
+            outline: none;
+        }
+
+        .language-select:focus {
+            border-color: #e49a2f;
+        }
+
+        .language-select option {
+            background: #09231a;
+            color: #f7f4eb;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            max-width: 900px;
+            margin: 45px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background:
+                linear-gradient(
+                    145deg,
+                    #0c3a2b,
+                    #09231a
+                );
+
+            padding: 38px;
+            border-radius: 28px;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            box-shadow:
+                0 20px 55px rgba(0, 0, 0, 0.35);
+        }
+
+        /* ================= BADGE ================= */
+
+        .top-badge {
+            width: fit-content;
+            margin: 0 auto 15px;
+
+            padding: 8px 15px;
+            border-radius: 30px;
+
+            background:
+                rgba(228, 154, 47, 0.10);
+
+            color: #f5b64e;
+
+            border:
+                1px solid rgba(228, 154, 47, 0.25);
+
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f7f4eb;
+            margin-bottom: 10px;
+            font-size: 38px;
+        }
+
+        h1 span {
+            color: #e49a2f;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aebdb5;
+            margin-bottom: 32px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* ================= PHOTO OPTIONS ================= */
+
+        .photo-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .photo-button {
+            border:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #104534,
+                    #0b2d21
+                );
+
+            border-radius: 20px;
+            padding: 30px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .photo-button:hover {
+            background: #0d3628;
+
+            border-color:
+                rgba(228, 154, 47, 0.5);
+
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 12px 28px rgba(0, 0, 0, 0.25);
+        }
+
+        .photo-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .photo-title {
+            font-size: 19px;
+            font-weight: bold;
+            color: #f7f4eb;
+        }
+
+        .photo-small {
+            margin-top: 8px;
+            color: #aebdb5;
+            font-size: 14px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        /* ================= PREVIEW ================= */
+
+        #preview {
+            width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+
+            margin-top: 22px;
+
+            border-radius: 18px;
+
+            border:
+                2px solid rgba(228, 154, 47, 0.4);
+
+            background: #061a14;
+
+            display: none;
+            padding: 5px;
+        }
+
+        .preview-label {
+            display: none;
+            margin-top: 14px;
+            color: #f5b64e;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* ================= FORM ================= */
+
+        .form-group {
+            margin-top: 28px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 9px;
+            font-weight: bold;
+            color: #f7f4eb;
+        }
+
+        select,
+        textarea {
+            width: 100%;
+
+            padding: 14px;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.12);
+
+            border-radius: 13px;
+
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+
+            background: #061a14;
+            color: #f7f4eb;
+
+            outline: none;
+            transition: 0.25s ease;
+        }
+
+        select:focus,
+        textarea:focus {
+            border-color: #e49a2f;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(228, 154, 47, 0.10);
+        }
+
+        select option {
+            background: #09231a;
+            color: #f7f4eb;
+        }
+
+        textarea {
+            height: 125px;
+            resize: vertical;
+        }
+
+        textarea::placeholder {
+            color: #71877e;
+        }
+
+        /* ================= FIND BUTTON ================= */
+
+        .find-button {
+            width: 100%;
+            margin-top: 27px;
+            padding: 16px;
+
+            border: none;
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e49a2f,
+                    #c9821d
+                );
+
+            color: #10291f;
+
+            font-size: 17px;
+            font-weight: 900;
+
+            cursor: pointer;
+            transition: 0.25s ease;
+
+            box-shadow:
+                0 8px 22px
+                rgba(228, 154, 47, 0.15);
+        }
+
+        .find-button:hover {
+            background:
+                linear-gradient(
+                    135deg,
+                    #f5b64e,
+                    #e49a2f
+                );
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 28px
+                rgba(228, 154, 47, 0.25);
+        }
+
+        /* ================= RESULT ================= */
+
+        .result {
+            display: none;
+
+            margin-top: 30px;
+            padding: 26px;
+
+            background:
+                rgba(228, 154, 47, 0.07);
+
+            border:
+                1px solid rgba(228, 154, 47, 0.3);
+
+            border-radius: 18px;
+            text-align: center;
+        }
+
+        .result h2 {
+            color: #f5b64e;
+            margin-bottom: 10px;
+        }
+
+        .result p {
+            color: #b8c7c0;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        .view-button {
+            background: #e49a2f;
+            color: #10291f;
+
+            border: none;
+
+            padding: 12px 24px;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+            font-weight: 900;
+
+            transition: 0.25s ease;
+        }
+
+        .view-button:hover {
+            background: #f5b64e;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(228, 154, 47, 0.22);
+        }
+
+        /* ================= TIPS ================= */
+
+        .tips {
+            margin-top: 25px;
+            padding: 18px;
+
+            border-radius: 15px;
+
+            background: #061a14;
+
+            border:
+                1px solid rgba(228, 154, 47, 0.15);
+        }
+
+        .tips-title {
+            color: #f5b64e;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .tips p {
+            color: #aebdb5;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+
+            padding: 28px 15px;
+
+            color: #aebdb5;
+
+            font-size: 14px;
+
+            background: #03110d;
+
+            margin-top: 50px;
+
+            border-top:
+                1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        footer .authors {
+            color: #e49a2f;
+            font-weight: bold;
+            margin: 7px 0;
+        }
+
+        .footer-tagline {
+            color: #71877e;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 15px;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .navigation {
+                width: 100%;
+            }
+
+            .navigation button {
+                padding: 8px 11px;
+                font-size: 12px;
+            }
+
+            .language-select {
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+
+            .container {
+                margin: 20px auto;
+                padding: 12px;
+            }
+
+            .card {
+                padding: 25px 18px;
+            }
+
+            .photo-options {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div>
+
+            <div class="logo">
+                QUICK<span>FIX</span>
+            </div>
+
+            <div class="tagline" id="tagline">
+                Your Local Help, Anytime
+            </div>
+
+        </div>
+
+        <div class="navigation">
+
+            <button onclick="goHome()" id="navHome">
+                Home
+            </button>
+
+            <button onclick="openQuickMatch()" id="navQuickMatch">
+                Quick Match
+            </button>
+
+            <button onclick="openServices()" id="navServices">
+                Services
+            </button>
+
+            <button onclick="openSnapFix()" id="navSnapFix">
+                Snap & Fix
+            </button>
+
+            <button onclick="logout()" id="navLogout">
+                Logout
+            </button>
+
+            <select
+                id="languageSelect"
+                class="language-select"
+                onchange="changeLanguage(this.value)"
+                aria-label="Language">
+
+                <option value="en">
+                    English
+                </option>
+
+                <option value="hi">
+                    हिंदी
+                </option>
+
+                <option value="mr">
+                    मराठी
+                </option>
+
+            </select>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <div class="container">
+
+        <div class="card">
+
+            <div class="top-badge" id="badge">
+                📸 SMART PHOTO HELP
+            </div>
+
+            <h1 id="pageTitle">
+                Snap <span>&</span> Fix
+            </h1>
+
+            <p class="subtitle" id="subtitle">
+                Show us the problem and we'll help you find the right local expert.
+            </p>
+
+
+            <!-- ================= PHOTO OPTIONS ================= -->
+
+            <div class="photo-options">
+
+                <label
+                    class="photo-button"
+                    for="cameraInput">
+
+                    <div class="photo-icon">
+                        📷
+                    </div>
+
+                    <div
+                        class="photo-title"
+                        id="takePhotoTitle">
+
+                        Take a Photo
+
+                    </div>
+
+                    <div
+                        class="photo-small"
+                        id="takePhotoSmall">
+
+                        Use your camera
+
+                    </div>
+
+                </label>
+
+
+                <label
+                    class="photo-button"
+                    for="imageInput">
+
+                    <div class="photo-icon">
+                        🖼️
+                    </div>
+
+                    <div
+                        class="photo-title"
+                        id="uploadPhotoTitle">
+
+                        Upload Photo
+
+                    </div>
+
+                    <div
+                        class="photo-small"
+                        id="uploadPhotoSmall">
+
+                        Choose from your device
+
+                    </div>
+
+                </label>
+
+            </div>
+
+
+            <!-- ================= CAMERA INPUT ================= -->
+
+            <input
+                type="file"
+                id="cameraInput"
+                accept="image/*"
+                capture="environment">
+
+
+            <!-- ================= IMAGE INPUT ================= -->
+
+            <input
+                type="file"
+                id="imageInput"
+                accept="image/*">
+
+
+            <!-- ================= IMAGE PREVIEW ================= -->
+
+            <img
+                id="preview"
+                alt="Selected photo preview">
+
+            <div
+                id="previewLabel"
+                class="preview-label">
+
+                ✓ Photo selected successfully
+
+            </div>
+
+
+            <!-- ================= SERVICE ================= -->
+
+            <div class="form-group">
+
+                <label
+                    for="service"
+                    id="serviceLabel">
+
+                    🛠️ What type of help do you need?
+
+                </label>
+
+                <select id="service">
+
+                    <option value="">
+                        Select a service
+                    </option>
+
+                    <option value="Electrician">
+                        ⚡ Electrician
+                    </option>
+
+                    <option value="Plumber">
+                        🔧 Plumber
+                    </option>
+
+                    <option value="Tutor">
+                        📚 Tutor
+                    </option>
+
+                    <option value="Carpenter">
+                        🪚 Carpenter
+                    </option>
+
+                    <option value="Cleaner">
+                        🧹 Cleaner
+                    </option>
+
+                    <option value="Moving Help">
+                        📦 Moving Help
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ================= PROBLEM ================= -->
+
+            <div class="form-group">
+
+                <label
+                    for="problem"
+                    id="problemLabel">
+
+                    📝 Describe the Problem
+
+                </label>
+
+                <textarea
+                    id="problem"
+                    placeholder="Example: My kitchen tap is leaking...">
+                </textarea>
+
+            </div>
+
+
+            <!-- ================= FIND HELPER ================= -->
+
+            <button
+                class="find-button"
+                id="findButton"
+                onclick="findHelper()">
+
+                🔎 Find My Helper
+
+            </button>
+
+
+            <!-- ================= RESULT ================= -->
+
+            <div
+                class="result"
+                id="result">
+
+                <h2 id="resultHeading">
+                    ✅ Helper Found!
+                </h2>
+
+                <p id="resultText"></p>
+
+                <button
+                    class="view-button"
+                    id="viewButton"
+                    onclick="viewHelpers()">
+
+                    View Helpers
+
+                </button>
+
+            </div>
+
+
+            <!-- ================= TIPS ================= -->
+
+            <div class="tips">
+
+                <div
+                    class="tips-title"
+                    id="tipsTitle">
+
+                    💡 Tip for better results
+
+                </div>
+
+                <p id="tipsText">
+
+                    Take a clear photo of the problem and describe what is happening.
+                    This helps you choose the right type of local helper.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div>
+            © 2026 QuickFix
+        </div>
+
+        <div class="authors">
+            Pranali Bhoyar and Mrunmayi Jadhav
+        </div>
+
+        <div
+            class="footer-tagline"
+            id="footerTagline">
+
+            Your Local Help, Anytime
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        /* =====================================================
+           LANGUAGE SYSTEM
+        ===================================================== */
+
+        let currentLanguage =
+            localStorage.getItem("quickfixLanguage") || "en";
+
+
+        const translations = {
+
+            en: {
+
+                home: "Home",
+                quickMatch: "Quick Match",
+                services: "Services",
+                snapFix: "Snap & Fix",
+                logout: "Logout",
+
+                tagline:
+                    "Your Local Help, Anytime",
+
+                badge:
+                    "📸 SMART PHOTO HELP",
+
+                title:
+                    "Snap & Fix",
+
+                subtitle:
+                    "Show us the problem and we'll help you find the right local expert.",
+
+                takePhoto:
+                    "Take a Photo",
+
+                useCamera:
+                    "Use your camera",
+
+                uploadPhoto:
+                    "Upload Photo",
+
+                chooseDevice:
+                    "Choose from your device",
+
+                photoSelected:
+                    "✓ Photo selected successfully",
+
+                serviceLabel:
+                    "🛠️ What type of help do you need?",
+
+                selectService:
+                    "Select a service",
+
+                problemLabel:
+                    "📝 Describe the Problem",
+
+                problemPlaceholder:
+                    "Example: My kitchen tap is leaking...",
+
+                findHelper:
+                    "🔎 Find My Helper",
+
+                helperFound:
+                    "✅ Helper Found!",
+
+                viewHelpers:
+                    "View Helpers",
+
+                tipTitle:
+                    "💡 Tip for better results",
+
+                tipText:
+                    "Take a clear photo of the problem and describe what is happening. This helps you choose the right type of local helper.",
+
+                pleaseService:
+                    "Please select a service first.",
+
+                pleaseProblem:
+                    "Please describe the problem.",
+
+                foundMessage:
+                    "We found helpers for your {service} problem!",
+
+                electric:
+                    "⚡ Electrician",
+
+                plumber:
+                    "🔧 Plumber",
+
+                tutor:
+                    "📚 Tutor",
+
+                carpenter:
+                    "🪚 Carpenter",
+
+                cleaner:
+                    "🧹 Cleaner",
+
+                moving:
+                    "📦 Moving Help"
+            },
+
+
+            hi: {
+
+                home:
+                    "होम",
+
+                quickMatch:
+                    "क्विक मैच",
+
+                services:
+                    "सेवाएँ",
+
+                snapFix:
+                    "स्नैप एंड फिक्स",
+
+                logout:
+                    "लॉगआउट",
+
+                tagline:
+                    "आपकी स्थानीय मदद, कभी भी",
+
+                badge:
+                    "📸 स्मार्ट फोटो सहायता",
+
+                title:
+                    "स्नैप एंड फिक्स",
+
+                subtitle:
+                    "हमें समस्या दिखाएँ और हम आपके लिए सही स्थानीय विशेषज्ञ खोजने में मदद करेंगे।",
+
+                takePhoto:
+                    "फोटो लें",
+
+                useCamera:
+                    "अपने कैमरे का उपयोग करें",
+
+                uploadPhoto:
+                    "फोटो अपलोड करें",
+
+                chooseDevice:
+                    "अपने डिवाइस से चुनें",
+
+                photoSelected:
+                    "✓ फोटो सफलतापूर्वक चुनी गई",
+
+                serviceLabel:
+                    "🛠️ आपको किस प्रकार की मदद चाहिए?",
+
+                selectService:
+                    "सेवा चुनें",
+
+                problemLabel:
+                    "📝 समस्या का वर्णन करें",
+
+                problemPlaceholder:
+                    "उदाहरण: मेरे किचन का नल लीक हो रहा है...",
+
+                findHelper:
+                    "🔎 मेरा हेल्पर खोजें",
+
+                helperFound:
+                    "✅ हेल्पर मिल गया!",
+
+                viewHelpers:
+                    "हेल्पर्स देखें",
+
+                tipTitle:
+                    "💡 बेहतर परिणाम के लिए सुझाव",
+
+                tipText:
+                    "समस्या की एक साफ फोटो लें और बताएं कि क्या हो रहा है। इससे आपको सही स्थानीय हेल्पर चुनने में मदद मिलेगी।",
+
+                pleaseService:
+                    "कृपया पहले एक सेवा चुनें।",
+
+                pleaseProblem:
+                    "कृपया समस्या का वर्णन करें।",
+
+                foundMessage:
+                    "हमें आपकी {service} समस्या के लिए हेल्पर्स मिल गए हैं!",
+
+                electric:
+                    "⚡ इलेक्ट्रीशियन",
+
+                plumber:
+                    "🔧 प्लंबर",
+
+                tutor:
+                    "📚 ट्यूटर",
+
+                carpenter:
+                    "🪚 बढ़ई",
+
+                cleaner:
+                    "🧹 क्लीनर",
+
+                moving:
+                    "📦 सामान स्थानांतरण सहायता"
+            },
+
+
+            mr: {
+
+                home:
+                    "होम",
+
+                quickMatch:
+                    "क्विक मॅच",
+
+                services:
+                    "सेवा",
+
+                snapFix:
+                    "स्नॅप अँड फिक्स",
+
+                logout:
+                    "लॉगआउट",
+
+                tagline:
+                    "तुमची स्थानिक मदत, कधीही",
+
+                badge:
+                    "📸 स्मार्ट फोटो मदत",
+
+                title:
+                    "स्नॅप अँड फिक्स",
+
+                subtitle:
+                    "आम्हाला समस्या दाखवा आणि योग्य स्थानिक तज्ज्ञ शोधण्यात आम्ही तुम्हाला मदत करू.",
+
+                takePhoto:
+                    "फोटो काढा",
+
+                useCamera:
+                    "तुमचा कॅमेरा वापरा",
+
+                uploadPhoto:
+                    "फोटो अपलोड करा",
+
+                chooseDevice:
+                    "तुमच्या डिव्हाइसमधून निवडा",
+
+                photoSelected:
+                    "✓ फोटो यशस्वीरित्या निवडला",
+
+                serviceLabel:
+                    "🛠️ तुम्हाला कोणत्या प्रकारची मदत हवी आहे?",
+
+                selectService:
+                    "सेवा निवडा",
+
+                problemLabel:
+                    "📝 समस्येचे वर्णन करा",
+
+                problemPlaceholder:
+                    "उदाहरण: माझ्या किचनचा नळ गळत आहे...",
+
+                findHelper:
+                    "🔎 माझा हेल्पर शोधा",
+
+                helperFound:
+                    "✅ हेल्पर सापडला!",
+
+                viewHelpers:
+                    "हेल्पर्स पहा",
+
+                tipTitle:
+                    "💡 चांगल्या परिणामांसाठी टिप",
+
+                tipText:
+                    "समस्येचा स्पष्ट फोटो काढा आणि काय होत आहे ते सांगा. यामुळे योग्य स्थानिक हेल्पर निवडण्यास मदत होईल.",
+
+                pleaseService:
+                    "कृपया आधी एक सेवा निवडा.",
+
+                pleaseProblem:
+                    "कृपया समस्येचे वर्णन करा.",
+
+                foundMessage:
+                    "तुमच्या {service} समस्येसाठी आम्हाला हेल्पर्स सापडले!",
+
+                electric:
+                    "⚡ इलेक्ट्रिशियन",
+
+                plumber:
+                    "🔧 प्लंबर",
+
+                tutor:
+                    "📚 ट्यूटर",
+
+                carpenter:
+                    "🪚 सुतार",
+
+                cleaner:
+                    "🧹 क्लीनर",
+
+                moving:
+                    "📦 सामान हलवण्याची मदत"
+            }
+
+        };
+
+
+        if (!translations[currentLanguage]) {
+            currentLanguage = "en";
+        }
+
+
+        /* =====================================================
+           CHANGE LANGUAGE
+        ===================================================== */
+
+        function changeLanguage(language) {
+
+            if (!translations[language]) {
+                language = "en";
+            }
+
+            currentLanguage = language;
+
+            localStorage.setItem(
+                "quickfixLanguage",
+                currentLanguage
+            );
+
+            applyLanguage();
+        }
+
+
+        /* =====================================================
+           APPLY LANGUAGE
+        ===================================================== */
+
+        function applyLanguage() {
+
+            const lang =
+                translations[currentLanguage];
+
+            document.documentElement.lang =
+                currentLanguage;
+
+            /* Navigation */
+
+            document.getElementById(
+                "navHome"
+            ).textContent =
+                lang.home;
+
+            document.getElementById(
+                "navQuickMatch"
+            ).textContent =
+                lang.quickMatch;
+
+            document.getElementById(
+                "navServices"
+            ).textContent =
+                lang.services;
+
+            document.getElementById(
+                "navSnapFix"
+            ).textContent =
+                lang.snapFix;
+
+            document.getElementById(
+                "navLogout"
+            ).textContent =
+                lang.logout;
+
+
+            /* Language selector */
+
+            document.getElementById(
+                "languageSelect"
+            ).value =
+                currentLanguage;
+
+
+            /* Header */
+
+            document.getElementById(
+                "tagline"
+            ).textContent =
+                lang.tagline;
+
+
+            /* Hero */
+
+            document.getElementById(
+                "badge"
+            ).textContent =
+                lang.badge;
+
+
+            document.getElementById(
+                "pageTitle"
+            ).innerHTML =
+                lang.title.replace(
+                    "&",
+                    "<span>&</span>"
+                );
+
+
+            document.getElementById(
+                "subtitle"
+            ).textContent =
+                lang.subtitle;
+
+
+            /* Photo */
+
+            document.getElementById(
+                "takePhotoTitle"
+            ).textContent =
+                lang.takePhoto;
+
+            document.getElementById(
+                "takePhotoSmall"
+            ).textContent =
+                lang.useCamera;
+
+            document.getElementById(
+                "uploadPhotoTitle"
+            ).textContent =
+                lang.uploadPhoto;
+
+            document.getElementById(
+                "uploadPhotoSmall"
+            ).textContent =
+                lang.chooseDevice;
+
+
+            /* Preview */
+
+            document.getElementById(
+                "previewLabel"
+            ).textContent =
+                lang.photoSelected;
+
+
+            /* Service */
+
+            document.getElementById(
+                "serviceLabel"
+            ).textContent =
+                lang.serviceLabel;
+
+
+            const serviceSelect =
+                document.getElementById(
+                    "service"
+                );
+
+
+            if (serviceSelect) {
+
+                serviceSelect.options[0].textContent =
+                    lang.selectService;
+
+                serviceSelect.options[1].textContent =
+                    lang.electric;
+
+                serviceSelect.options[2].textContent =
+                    lang.plumber;
+
+                serviceSelect.options[3].textContent =
+                    lang.tutor;
+
+                serviceSelect.options[4].textContent =
+                    lang.carpenter;
+
+                serviceSelect.options[5].textContent =
+                    lang.cleaner;
+
+                serviceSelect.options[6].textContent =
+                    lang.moving;
+            }
+
+
+            /* Problem */
+
+            document.getElementById(
+                "problemLabel"
+            ).textContent =
+                lang.problemLabel;
+
+            document.getElementById(
+                "problem"
+            ).placeholder =
+                lang.problemPlaceholder;
+
+
+            /* Find */
+
+            document.getElementById(
+                "findButton"
+            ).textContent =
+                lang.findHelper;
+
+
+            /* Result */
+
+            document.getElementById(
+                "resultHeading"
+            ).textContent =
+                lang.helperFound;
+
+            document.getElementById(
+                "viewButton"
+            ).textContent =
+                lang.viewHelpers;
+
+
+            /* Tips */
+
+            document.getElementById(
+                "tipsTitle"
+            ).textContent =
+                lang.tipTitle;
+
+            document.getElementById(
+                "tipsText"
+            ).textContent =
+                lang.tipText;
+
+
+            /* Footer */
+
+            document.getElementById(
+                "footerTagline"
+            ).textContent =
+                lang.tagline;
+
+
+            /*
+                If the result is already visible,
+                update its translated message too.
+            */
+
+            const service =
+                document.getElementById(
+                    "service"
+                ).value;
+
+            if (
+                service &&
+                document.getElementById(
+                    "result"
+                ).style.display !== "none"
+            ) {
+
+                document.getElementById(
+                    "resultText"
+                ).textContent =
+                    lang.foundMessage.replace(
+                        "{service}",
+                        getTranslatedService(service)
+                    );
+            }
+        }
+
+
+        /* =====================================================
+           TRANSLATE SERVICE NAME
+        ===================================================== */
+
+        function getTranslatedService(service) {
+
+            const lang =
+                translations[currentLanguage];
+
+            const serviceMap = {
+
+                "Electrician":
+                    lang.electric,
+
+                "Plumber":
+                    lang.plumber,
+
+                "Tutor":
+                    lang.tutor,
+
+                "Carpenter":
+                    lang.carpenter,
+
+                "Cleaner":
+                    lang.cleaner,
+
+                "Moving Help":
+                    lang.moving
+            };
+
+            return (
+                serviceMap[service] ||
+                service
+            );
+        }
+
+
+        /* =====================================================
+           SELECTED SERVICE
+        ===================================================== */
+
+        let selectedService = "";
+
+
+        /* =====================================================
+           SHOW IMAGE
+        ===================================================== */
+
+        function showImage(file) {
+
+            if (!file) {
+                return;
+            }
+
+            const preview =
+                document.getElementById(
+                    "preview"
+                );
+
+            const previewLabel =
+                document.getElementById(
+                    "previewLabel"
+                );
+
+
+            /*
+                Same photo-preview behavior
+                as the original Snap & Fix.
+            */
+
+            preview.src =
+                URL.createObjectURL(file);
+
+            preview.style.display =
+                "block";
+
+            previewLabel.style.display =
+                "block";
+        }
+
+
+        /* =====================================================
+           CAMERA PHOTO
+        ===================================================== */
+
+        document
+            .getElementById("cameraInput")
+            .addEventListener(
+                "change",
+                function () {
+
+                    const file =
+                        this.files[0];
+
+                    showImage(file);
+                }
+            );
+
+
+        /* =====================================================
+           UPLOADED PHOTO
+        ===================================================== */
+
+        document
+            .getElementById("imageInput")
+            .addEventListener(
+                "change",
+                function () {
+
+                    const file =
+                        this.files[0];
+
+                    showImage(file);
+                }
+            );
+
+
+        /* =====================================================
+           FIND HELPER
+        ===================================================== */
+
+        function findHelper() {
+
+            const lang =
+                translations[currentLanguage];
+
+
+            const service =
+                document
+                    .getElementById(
+                        "service"
+                    )
+                    .value;
+
+
+            const problem =
+                document
+                    .getElementById(
+                        "problem"
+                    )
+                    .value
+                    .trim();
+
+
+            if (!service) {
+
+                alert(
+                    lang.pleaseService
+                );
+
+                return;
+            }
+
+
+            if (!problem) {
+
+                alert(
+                    lang.pleaseProblem
+                );
+
+                return;
+            }
+
+
+            selectedService =
+                service;
+
+
+            /*
+                IMPORTANT:
+                Keep the original English
+                service value in storage so
+                the backend and Service Profiles
+                continue working correctly.
+            */
+
+            localStorage.setItem(
+                "quickFixSelectedService",
+                service
+            );
+
+            localStorage.setItem(
+                "selectedService",
+                service
+            );
+
+
+            document.getElementById(
+                "result"
+            ).style.display =
+                "block";
+
+
+            document.getElementById(
+                "resultText"
+            ).textContent =
+                lang.foundMessage.replace(
+                    "{service}",
+                    getTranslatedService(service)
+                );
+        }
+
+
+        /* =====================================================
+           VIEW HELPERS
+        ===================================================== */
+
+        function viewHelpers() {
+
+            if (!selectedService) {
+                return;
+            }
+
+
+            /*
+                Keep English service value
+                for backend compatibility.
+            */
+
+            localStorage.setItem(
+                "quickFixSelectedService",
+                selectedService
+            );
+
+            localStorage.setItem(
+                "selectedService",
+                selectedService
+            );
+
+
+            window.location.href =
+                "service-profiles.html";
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        function goHome() {
+
+            window.location.href =
+                "home.html";
+        }
+
+
+        function openQuickMatch() {
+
+            window.location.href =
+                "quick-match.html";
+        }
+
+
+        function openServices() {
+
+            window.location.href =
+                "services.html";
+        }
+
+
+        function openSnapFix() {
+
+            window.location.href =
+                "snap-fix.html";
+        }
+
+
+        /* =====================================================
+           LOGOUT
+        ===================================================== */
+
+        function logout() {
+
+            localStorage.removeItem(
+                "currentUser"
+            );
+
+            localStorage.removeItem(
+                "quickfixCurrentUser"
+            );
+
+            window.location.replace(
+                "index.html"
+            );
+        }
+
+
+        /* =====================================================
+           START
+        ===================================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                /*
+                    Make sure the page uses the
+                    same language selected on
+                    the other QuickFix pages.
+                */
+
+                if (
+                    !translations[currentLanguage]
+                ) {
+
+                    currentLanguage = "en";
+                }
+
+
+                applyLanguage();
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

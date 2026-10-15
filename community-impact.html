@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QuickFix - Community Impact</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: #061b16;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+/* ================= NAVBAR ================= */
+
+nav {
+    background: #022c22;
+    padding: 18px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: #f5a623;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: #ffffff;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #d2e2dd;
+    padding: 9px 11px;
+    border-radius: 8px;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background: rgba(245,166,35,0.10);
+    color: #ffffff;
+}
+
+.nav-links .active {
+    background: rgba(245,166,35,0.13);
+    color: #f5a623;
+}
+
+/* ================= LANGUAGE ================= */
+
+.language-select {
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(245,166,35,0.30);
+    background: #0a261f;
+    color: #ffffff;
+    font-size: 12px;
+    cursor: pointer;
+    outline: none;
+}
+
+.language-select:focus {
+    border-color: #f5a623;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    padding: 80px 7% 70px;
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(245,166,35,0.13),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(16,185,129,0.08),
+            transparent 30%
+        ),
+        #061b16;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 17px;
+    border-radius: 30px;
+    background: rgba(245,166,35,0.10);
+    border: 1px solid rgba(245,166,35,0.30);
+    color: #f5a623;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.08;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #f5a623;
+}
+
+.hero p {
+    max-width: 750px;
+    margin: auto;
+    color: #afc4bd;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard {
+    padding: 65px 7% 80px;
+    background: #022c22;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-heading h2 {
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.section-heading p {
+    color: #9db5ad;
+    max-width: 650px;
+    margin: auto;
+    line-height: 1.7;
+}
+
+/* ================= STAT CARDS ================= */
+
+.stats-grid {
+    max-width: 1200px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.stat-card {
+    background: #0a261f;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 30px 22px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(245,166,35,0.40);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+}
+
+.stat-icon {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+    background: rgba(245,166,35,0.10);
+
+    font-size: 27px;
+}
+
+.stat-number {
+    font-size: 34px;
+    font-weight: 800;
+    color: #f5a623;
+    margin-bottom: 7px;
+}
+
+.stat-label {
+    color: #a9beb7;
+    font-size: 14px;
+}
+
+/* ================= IMPACT BREAKDOWN ================= */
+
+.impact-section {
+    padding: 70px 7%;
+    background: #061b16;
+}
+
+.impact-grid {
+    max-width: 1150px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.impact-card {
+    background: #0a261f;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 22px;
+    padding: 30px;
+}
+
+.impact-card h3 {
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress-item {
+    margin-bottom: 22px;
+}
+
+.progress-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.progress-top span:first-child {
+    color: #dce8e4;
+}
+
+.progress-top span:last-child {
+    color: #f5a623;
+    font-weight: 700;
+}
+
+.progress-bar {
+    height: 9px;
+    background: #16372e;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #f5a623;
+    border-radius: 20px;
+    transition: width 0.7s ease;
+}
+
+.empty-message {
+    color: #819991;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 10px 0;
+}
+
+/* ================= COMMUNITY NUMBERS ================= */
+
+.mini-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.mini-stat {
+    padding: 22px;
+    border-radius: 15px;
+
+    background: rgba(245,166,35,0.06);
+    border: 1px solid rgba(245,166,35,0.12);
+}
+
+.mini-stat strong {
+    display: block;
+    color: #f5a623;
+    font-size: 27px;
+    margin-bottom: 5px;
+}
+
+.mini-stat span {
+    color: #9fb7af;
+    font-size: 13px;
+}
+
+/* ================= IMPACT STORIES ================= */
+
+.stories-section {
+    padding: 70px 7% 80px;
+    background: #022c22;
+}
+
+.stories-grid {
+    max-width: 1150px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.story-card {
+    background: #0a261f;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 28px;
+    transition: 0.3s;
+}
+
+.story-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(245,166,35,0.35);
+}
+
+.story-icon {
+    font-size: 30px;
+    margin-bottom: 18px;
+}
+
+.story-card h3 {
+    font-size: 19px;
+    margin-bottom: 12px;
+}
+
+.story-card p {
+    color: #a9beb7;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.story-tag {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 6px 10px;
+
+    border-radius: 20px;
+    background: rgba(245,166,35,0.10);
+
+    color: #f5a623;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* ================= CTA ================= */
+
+.cta-section {
+    padding: 70px 7%;
+    background: #061b16;
+    text-align: center;
+}
+
+.cta-box {
+    max-width: 850px;
+    margin: auto;
+
+    padding: 45px 30px;
+    border-radius: 25px;
+
+    border: 1px solid rgba(245,166,35,0.18);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(245,166,35,0.07),
+            rgba(16,185,129,0.04)
+        );
+}
+
+.cta-box h2 {
+    font-size: 30px;
+    margin-bottom: 14px;
+}
+
+.cta-box h2 span {
+    color: #f5a623;
+}
+
+.cta-box p {
+    max-width: 650px;
+    margin: auto;
+
+    color: #a9beb7;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.cta-btn {
+    margin-top: 25px;
+    padding: 13px 25px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #f5a623;
+    color: #17210e;
+
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(245,166,35,0.20);
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #011c16;
+
+    border-top: 1px solid rgba(255,255,255,0.06);
+
+    text-align: center;
+
+    padding: 28px 15px;
+
+    color: #829b94;
+
+    font-size: 13px;
+}
+
+footer strong {
+    color: #f5a623;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1000px) {
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stories-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 750px) {
+
+    nav {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        justify-content: center;
+    }
+
+    .impact-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 550px) {
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mini-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    .dashboard,
+    .impact-section,
+    .stories-section,
+    .cta-section {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav>
+
+    <div class="logo">
+        Quick<span>Fix</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="home.html" data-i18n="home">Home</a>
+
+        <a href="quick-match.html" data-i18n="quickMatch">
+            Quick Match
+        </a>
+
+        <a href="my-fixes.html" data-i18n="myFixes">
+            My Fixes
+        </a>
+
+        <a href="helper-dashboard.html" data-i18n="helperDashboard">
+            Helper Dashboard
+        </a>
+
+        <a href="snap-fix.html" data-i18n="snapFix">
+            Snap & Fix
+        </a>
+
+        <a href="services.html" data-i18n="services">
+            Services
+        </a>
+
+        <a href="give-grow.html"
+           class="active"
+           data-i18n="giveGrow">
+            Give & Grow
+        </a>
+
+        <a href="index.html" data-i18n="logout">
+            Logout
+        </a>
+
+        <select
+            id="languageSelector"
+            class="language-select"
+            onchange="changeLanguage(this.value)">
+
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+            <option value="mr">मराठी</option>
+
+        </select>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="badge" data-i18n="badge">
+        📊 QUICKFIX COMMUNITY IMPACT
+    </div>
+
+    <h1>
+        <span data-i18n="heroFirst">
+            Together,
+        </span>
+
+        <span data-i18n="heroSecond">
+            We Make a Difference.
+        </span>
+    </h1>
+
+    <p data-i18n="heroDescription">
+        The Community Impact Dashboard shows how
+        QuickFix users, helpers, NGOs and supporters
+        are coming together to help people, share
+        resources and support essential repairs.
+    </p>
+
+</section>
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<section class="dashboard">
+
+    <div class="section-heading">
+
+        <h2 data-i18n="communityGlance">
+            Community at a Glance
+        </h2>
+
+        <p data-i18n="liveSnapshot">
+            A live snapshot of the positive impact created
+            through the QuickFix community.
+        </p>
+
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🛠️
+            </div>
+
+            <div
+                class="stat-number"
+                id="repairsSponsored">
+                0
+            </div>
+
+            <div
+                class="stat-label"
+                data-i18n="repairsSponsored">
+                Repairs Sponsored
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                💚
+            </div>
+
+            <div
+                class="stat-number"
+                id="peopleHelped">
+                0
+            </div>
+
+            <div
+                class="stat-label"
+                data-i18n="peopleHelped">
+                People Helped
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎁
+            </div>
+
+            <div
+                class="stat-number"
+                id="itemsShared">
+                0
+            </div>
+
+            <div
+                class="stat-label"
+                data-i18n="itemsShared">
+                Items Shared / Donated
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🤝
+            </div>
+
+            <div
+                class="stat-number"
+                id="ngosParticipating">
+                0
+            </div>
+
+            <div
+                class="stat-label"
+                data-i18n="ngosParticipating">
+                NGOs Participating
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= IMPACT BREAKDOWN ================= -->
+
+<section class="impact-section">
+
+    <div class="section-heading">
+
+        <h2 data-i18n="whereImpact">
+            Where the Impact Happens
+        </h2>
+
+        <p data-i18n="impactDescription">
+            Live data from the QuickFix community shows
+            the types of repairs and resources being supported.
+        </p>
+
+    </div>
+
+
+    <div class="impact-grid">
+
+
+        <div class="impact-card">
+
+            <h3 data-i18n="supportedRepairs">
+                🔧 Supported Repairs
+            </h3>
+
+            <div id="serviceBreakdown">
+
+                <div
+                    class="empty-message"
+                    data-i18n="loadingRepairImpact">
+                    Loading repair impact...
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="impact-card">
+
+            <h3 data-i18n="communityContributions">
+                🌱 Community Contributions
+            </h3>
+
+
+            <div class="mini-stats">
+
+                <div class="mini-stat">
+
+                    <strong id="ngoMini">
+                        0
+                    </strong>
+
+                    <span data-i18n="ngoPartners">
+                        NGO / Community Partners
+                    </span>
+
+                </div>
+
+
+                <div class="mini-stat">
+
+                    <strong id="donatedItems">
+                        0
+                    </strong>
+
+                    <span data-i18n="itemsDonated">
+                        Items Donated
+                    </span>
+
+                </div>
+
+
+                <div class="mini-stat">
+
+                    <strong id="exchangedItems">
+                        0
+                    </strong>
+
+                    <span data-i18n="itemsExchanged">
+                        Items Exchanged
+                    </span>
+
+                </div>
+
+
+                <div class="mini-stat">
+
+                    <strong id="givenItems">
+                        0
+                    </strong>
+
+                    <span data-i18n="itemsGiven">
+                        Items Given
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= IMPACT STORIES ================= -->
+
+<section class="stories-section">
+
+    <div class="section-heading">
+
+        <h2 data-i18n="storiesNumbers">
+            Stories Behind the Numbers
+        </h2>
+
+        <p data-i18n="storiesDescription">
+            Every number represents a person, a home
+            or a community member who received support.
+        </p>
+
+    </div>
+
+
+    <div class="stories-grid">
+
+
+        <div class="story-card">
+
+            <div class="story-icon">
+                🏠
+            </div>
+
+            <h3 data-i18n="essentialRepair">
+                Essential Repair Support
+            </h3>
+
+            <p data-i18n="essentialRepairText">
+                Community-supported repairs can help
+                people handle essential household problems
+                when paying the full repair cost is difficult.
+            </p>
+
+            <span class="story-tag" data-i18n="supportRepair">
+                SUPPORT A REPAIR
+            </span>
+
+        </div>
+
+
+        <div class="story-card">
+
+            <div class="story-icon">
+                📚
+            </div>
+
+            <h3 data-i18n="newHomes">
+                Useful Items Find New Homes
+            </h3>
+
+            <p data-i18n="newHomesText">
+                Items that are no longer needed can be
+                given, exchanged or donated to someone
+                in the QuickFix community.
+            </p>
+
+            <span class="story-tag" data-i18n="communitySharing">
+                COMMUNITY SHARING
+            </span>
+
+        </div>
+
+
+        <div class="story-card">
+
+            <div class="story-icon">
+                🤝
+            </div>
+
+            <h3 data-i18n="communitySupport">
+                Community Support
+            </h3>
+
+            <p data-i18n="communitySupportText">
+                Supporters and community organisations
+                can come together to make essential
+                services and resources more accessible.
+            </p>
+
+            <span class="story-tag" data-i18n="communityImpact">
+                COMMUNITY IMPACT
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta-section">
+
+    <div class="cta-box">
+
+        <h2 data-i18n="wantImpact">
+            Want to be part of the
+            <span>impact?</span>
+        </h2>
+
+        <p data-i18n="impactCTA">
+            Support an essential repair, donate a
+            useful item, exchange something with your
+            community or help QuickFix grow its network
+            of community supporters.
+        </p>
+
+        <button
+            class="cta-btn"
+            onclick="goToGiveGrow()"
+            data-i18n="giveGrowButton">
+            Give & Grow →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <span data-i18n="footer">
+        © 2026 QuickFix |
+    </span>
+
+    <strong>
+        Pranali Bhoyar & Mrunmayi Jadhav
+    </strong>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   QUICKFIX COMMUNITY IMPACT
+   MULTILINGUAL SYSTEM
+   ===================================================== */
+
+
+const API_BASE = "https://quickfix.pythonanywhere.com";
+
+/* ================= TRANSLATIONS ================= */
+
+const translations = {
+
+    en: {
+
+        home: "Home",
+        quickMatch: "Quick Match",
+        myFixes: "My Fixes",
+        helperDashboard: "Helper Dashboard",
+        snapFix: "Snap & Fix",
+        services: "Services",
+        giveGrow: "Give & Grow",
+        logout: "Logout",
+
+        badge: "📊 QUICKFIX COMMUNITY IMPACT",
+
+        heroFirst: "Together,",
+        heroSecond: "We Make a Difference.",
+
+        heroDescription:
+            "The Community Impact Dashboard shows how QuickFix users, helpers, NGOs and supporters are coming together to help people, share resources and support essential repairs.",
+
+        communityGlance:
+            "Community at a Glance",
+
+        liveSnapshot:
+            "A live snapshot of the positive impact created through the QuickFix community.",
+
+        repairsSponsored:
+            "Repairs Sponsored",
+
+        peopleHelped:
+            "People Helped",
+
+        itemsShared:
+            "Items Shared / Donated",
+
+        ngosParticipating:
+            "NGOs Participating",
+
+        whereImpact:
+            "Where the Impact Happens",
+
+        impactDescription:
+            "Live data from the QuickFix community shows the types of repairs and resources being supported.",
+
+        supportedRepairs:
+            "🔧 Supported Repairs",
+
+        loadingRepairImpact:
+            "Loading repair impact...",
+
+        communityContributions:
+            "🌱 Community Contributions",
+
+        ngoPartners:
+            "NGO / Community Partners",
+
+        itemsDonated:
+            "Items Donated",
+
+        itemsExchanged:
+            "Items Exchanged",
+
+        itemsGiven:
+            "Items Given",
+
+        storiesNumbers:
+            "Stories Behind the Numbers",
+
+        storiesDescription:
+            "Every number represents a person, a home or a community member who received support.",
+
+        essentialRepair:
+            "Essential Repair Support",
+
+        essentialRepairText:
+            "Community-supported repairs can help people handle essential household problems when paying the full repair cost is difficult.",
+
+        supportRepair:
+            "SUPPORT A REPAIR",
+
+        newHomes:
+            "Useful Items Find New Homes",
+
+        newHomesText:
+            "Items that are no longer needed can be given, exchanged or donated to someone in the QuickFix community.",
+
+        communitySharing:
+            "COMMUNITY SHARING",
+
+        communitySupport:
+            "Community Support",
+
+        communitySupportText:
+            "Supporters and community organisations can come together to make essential services and resources more accessible.",
+
+        communityImpact:
+            "COMMUNITY IMPACT",
+
+        wantImpact:
+            "Want to be part of the impact?",
+
+        impactCTA:
+            "Support an essential repair, donate a useful item, exchange something with your community or help QuickFix grow its network of community supporters.",
+
+        giveGrowButton:
+            "Give & Grow →",
+
+        footer:
+            "© 2026 QuickFix |",
+
+        loadingLive:
+            "Loading live community data...",
+
+        noRepairs:
+            "No sponsored repairs have been recorded yet. Once a repair is sponsored, its service category will appear here automatically.",
+
+        backendError:
+            "⚠️ Unable to load live community data. Please make sure the QuickFix backend is running."
+
+    },
+
+
+    hi: {
+
+        home: "होम",
+        quickMatch: "क्विक मैच",
+        myFixes: "मेरे फिक्स",
+        helperDashboard: "हेल्पर डैशबोर्ड",
+        snapFix: "स्नैप एंड फिक्स",
+        services: "सेवाएँ",
+        giveGrow: "गिव एंड ग्रो",
+        logout: "लॉगआउट",
+
+        badge: "📊 क्विकफिक्स कम्युनिटी इम्पैक्ट",
+
+        heroFirst: "साथ मिलकर,",
+        heroSecond: "हम बदलाव लाते हैं।",
+
+        heroDescription:
+            "कम्युनिटी इम्पैक्ट डैशबोर्ड दिखाता है कि QuickFix के यूज़र्स, हेल्पर्स, NGOs और सपोर्टर्स लोगों की मदद करने, संसाधन साझा करने और ज़रूरी मरम्मत में सहयोग करने के लिए साथ आ रहे हैं।",
+
+        communityGlance:
+            "कम्युनिटी की एक झलक",
+
+        liveSnapshot:
+            "QuickFix कम्युनिटी द्वारा बनाए गए सकारात्मक प्रभाव की लाइव झलक।",
+
+        repairsSponsored:
+            "प्रायोजित मरम्मत",
+
+        peopleHelped:
+            "मदद किए गए लोग",
+
+        itemsShared:
+            "साझा / दान की गई वस्तुएँ",
+
+        ngosParticipating:
+            "भाग लेने वाले NGOs",
+
+        whereImpact:
+            "प्रभाव कहाँ होता है",
+
+        impactDescription:
+            "QuickFix कम्युनिटी का लाइव डेटा दिखाता है कि किस प्रकार की मरम्मत और संसाधनों को समर्थन मिल रहा है।",
+
+        supportedRepairs:
+            "🔧 समर्थित मरम्मत",
+
+        loadingRepairImpact:
+            "मरम्मत का प्रभाव लोड हो रहा है...",
+
+        communityContributions:
+            "🌱 कम्युनिटी का योगदान",
+
+        ngoPartners:
+            "NGO / कम्युनिटी पार्टनर्स",
+
+        itemsDonated:
+            "दान की गई वस्तुएँ",
+
+        itemsExchanged:
+            "बदली गई वस्तुएँ",
+
+        itemsGiven:
+            "दी गई वस्तुएँ",
+
+        storiesNumbers:
+            "आँकड़ों के पीछे की कहानियाँ",
+
+        storiesDescription:
+            "हर संख्या एक व्यक्ति, घर या कम्युनिटी सदस्य को दर्शाती है जिसे सहायता मिली।",
+
+        essentialRepair:
+            "ज़रूरी मरम्मत में सहायता",
+
+        essentialRepairText:
+            "कम्युनिटी द्वारा समर्थित मरम्मत लोगों को ज़रूरी घरेलू समस्याओं को संभालने में मदद कर सकती है, खासकर जब पूरी मरम्मत की लागत देना कठिन हो।",
+
+        supportRepair:
+            "मरम्मत में सहायता करें",
+
+        newHomes:
+            "उपयोगी वस्तुओं को नया घर मिलता है",
+
+        newHomesText:
+            "जिन वस्तुओं की अब आवश्यकता नहीं है, उन्हें QuickFix कम्युनिटी में किसी को दिया, बदला या दान किया जा सकता है।",
+
+        communitySharing:
+            "कम्युनिटी शेयरिंग",
+
+        communitySupport:
+            "कम्युनिटी सहायता",
+
+        communitySupportText:
+            "सपोर्टर्स और कम्युनिटी संगठन साथ मिलकर ज़रूरी सेवाओं और संसाधनों को अधिक सुलभ बना सकते हैं।",
+
+        communityImpact:
+            "कम्युनिटी प्रभाव",
+
+        wantImpact:
+            "क्या आप इस प्रभाव का हिस्सा बनना चाहते हैं?",
+
+        impactCTA:
+            "ज़रूरी मरम्मत में सहायता करें, उपयोगी वस्तु दान करें, अपनी कम्युनिटी के साथ वस्तु बदलें या QuickFix के कम्युनिटी सपोर्ट नेटवर्क को बढ़ाने में मदद करें।",
+
+        giveGrowButton:
+            "गिव एंड ग्रो →",
+
+        footer:
+            "© 2026 QuickFix |",
+
+        loadingLive:
+            "लाइव कम्युनिटी डेटा लोड हो रहा है...",
+
+        noRepairs:
+            "अभी तक कोई प्रायोजित मरम्मत दर्ज नहीं की गई है। जब कोई मरम्मत प्रायोजित होगी, तो उसकी सेवा श्रेणी यहाँ अपने आप दिखाई देगी।",
+
+        backendError:
+            "⚠️ लाइव कम्युनिटी डेटा लोड नहीं हो सका। कृपया सुनिश्चित करें कि QuickFix बैकएंड चल रहा है।"
+
+    },
+
+
+    mr: {
+
+        home: "होम",
+        quickMatch: "क्विक मॅच",
+        myFixes: "माझे फिक्स",
+        helperDashboard: "हेल्पर डॅशबोर्ड",
+        snapFix: "स्नॅप अँड फिक्स",
+        services: "सेवा",
+        giveGrow: "गिव अँड ग्रो",
+        logout: "लॉगआउट",
+
+        badge: "📊 क्विकफिक्स कम्युनिटी इम्पॅक्ट",
+
+        heroFirst: "एकत्र येऊन,",
+        heroSecond: "आपण बदल घडवतो.",
+
+        heroDescription:
+            "कम्युनिटी इम्पॅक्ट डॅशबोर्डद्वारे QuickFix चे यूझर्स, हेल्पर्स, NGOs आणि सपोर्टर्स लोकांना मदत करण्यासाठी, संसाधने शेअर करण्यासाठी आणि आवश्यक दुरुस्तींना मदत करण्यासाठी एकत्र कसे येतात हे दिसते.",
+
+        communityGlance:
+            "कम्युनिटीची एक झलक",
+
+        liveSnapshot:
+            "QuickFix कम्युनिटीने निर्माण केलेल्या सकारात्मक परिणामाची थेट झलक.",
+
+        repairsSponsored:
+            "प्रायोजित दुरुस्ती",
+
+        peopleHelped:
+            "मदत केलेले लोक",
+
+        itemsShared:
+            "शेअर / दान केलेल्या वस्तू",
+
+        ngosParticipating:
+            "सहभागी NGOs",
+
+        whereImpact:
+            "परिणाम कुठे दिसतो",
+
+        impactDescription:
+            "QuickFix कम्युनिटीचा लाइव्ह डेटा कोणत्या प्रकारच्या दुरुस्ती आणि संसाधनांना मदत मिळत आहे हे दाखवतो.",
+
+        supportedRepairs:
+            "🔧 समर्थित दुरुस्ती",
+
+        loadingRepairImpact:
+            "दुरुस्तीचा परिणाम लोड होत आहे...",
+
+        communityContributions:
+            "🌱 कम्युनिटीचे योगदान",
+
+        ngoPartners:
+            "NGO / कम्युनिटी पार्टनर्स",
+
+        itemsDonated:
+            "दान केलेल्या वस्तू",
+
+        itemsExchanged:
+            "विनिमय केलेल्या वस्तू",
+
+        itemsGiven:
+            "दिलेल्या वस्तू",
+
+        storiesNumbers:
+            "आकड्यांमागच्या कथा",
+
+        storiesDescription:
+            "प्रत्येक संख्या म्हणजे मदत मिळालेली व्यक्ती, घर किंवा कम्युनिटी सदस्य दर्शवते.",
+
+        essentialRepair:
+            "आवश्यक दुरुस्तीची मदत",
+
+        essentialRepairText:
+            "कम्युनिटीच्या मदतीने केलेल्या दुरुस्तीमुळे लोकांना घरातील आवश्यक समस्या सोडवण्यास मदत होते, विशेषतः जेव्हा संपूर्ण दुरुस्तीचा खर्च देणे कठीण असते.",
+
+        supportRepair:
+            "दुरुस्तीला मदत करा",
+
+        newHomes:
+            "उपयोगी वस्तूंना नवीन घर मिळते",
+
+        newHomesText:
+            "ज्या वस्तूंची आता गरज नाही त्या QuickFix कम्युनिटीमधील इतर व्यक्तीला देता, बदलता किंवा दान करता येतात.",
+
+        communitySharing:
+            "कम्युनिटी शेअरिंग",
+
+        communitySupport:
+            "कम्युनिटी सपोर्ट",
+
+        communitySupportText:
+            "सपोर्टर्स आणि कम्युनिटी संस्था एकत्र येऊन आवश्यक सेवा आणि संसाधने अधिक सुलभ बनवू शकतात.",
+
+        communityImpact:
+            "कम्युनिटी इम्पॅक्ट",
+
+        wantImpact:
+            "तुम्हाला या परिणामाचा भाग व्हायचे आहे का?",
+
+        impactCTA:
+            "आवश्यक दुरुस्तीला मदत करा, उपयोगी वस्तू दान करा, कम्युनिटीसोबत वस्तूंची देवाणघेवाण करा किंवा QuickFix च्या कम्युनिटी सपोर्ट नेटवर्कला वाढविण्यात मदत करा.",
+
+        giveGrowButton:
+            "गिव अँड ग्रो →",
+
+        footer:
+            "© 2026 QuickFix |",
+
+        loadingLive:
+            "लाइव्ह कम्युनिटी डेटा लोड होत आहे...",
+
+        noRepairs:
+            "अजून कोणतीही प्रायोजित दुरुस्ती नोंदवली गेलेली नाही. दुरुस्ती प्रायोजित झाल्यावर तिची सेवा श्रेणी येथे आपोआप दिसेल.",
+
+        backendError:
+            "⚠️ लाइव्ह कम्युनिटी डेटा लोड करता आला नाही. कृपया QuickFix बॅकएंड सुरू आहे याची खात्री करा."
+
+    }
+
+};
+
+
+/* ================= LANGUAGE ================= */
+
+let currentLanguage =
+    localStorage.getItem("quickfixLanguage") || "en";
+
+
+function changeLanguage(language) {
+
+    currentLanguage = language;
+
+    localStorage.setItem(
+        "quickfixLanguage",
+        language
+    );
+
+    applyLanguage();
+
+    /*
+       Re-render dynamic service breakdown
+       so service names can also update.
+    */
+    loadCommunityImpact();
+
+}
+
+
+function applyLanguage() {
+
+    const language =
+        translations[currentLanguage] ||
+        translations.en;
+
+
+    document.querySelectorAll(
+        "[data-i18n]"
+    ).forEach(element => {
+
+        const key =
+            element.getAttribute(
+                "data-i18n"
+            );
+
+        if (
+            language[key] !== undefined
+        ) {
+
+            element.textContent =
+                language[key];
+
+        }
+
+    });
+
+
+    const selector =
+        document.getElementById(
+            "languageSelector"
+        );
+
+    if (selector) {
+
+        selector.value =
+            currentLanguage;
+
+    }
+
+}
+
+
+/* ================= SERVICE TRANSLATIONS ================= */
+
+const serviceTranslations = {
+
+    Electrician: {
+        en: "Electrician",
+        hi: "इलेक्ट्रीशियन",
+        mr: "इलेक्ट्रिशियन"
+    },
+
+    Plumber: {
+        en: "Plumber",
+        hi: "प्लंबर",
+        mr: "प्लंबर"
+    },
+
+    Tutor: {
+        en: "Tutor",
+        hi: "ट्यूटर",
+        mr: "ट्यूटर"
+    },
+
+    Carpenter: {
+        en: "Carpenter",
+        hi: "बढ़ई",
+        mr: "सुतार"
+    },
+
+    Cleaner: {
+        en: "Cleaner",
+        hi: "क्लीनर",
+        mr: "साफसफाई कर्मचारी"
+    },
+
+    "Moving Help": {
+        en: "Moving Help",
+        hi: "मूविंग हेल्प",
+        mr: "मूव्हिंग हेल्प"
+    },
+
+    Cook: {
+        en: "Cook",
+        hi: "रसोइया",
+        mr: "स्वयंपाकी"
+    },
+
+    Tuition: {
+        en: "Tuition",
+        hi: "ट्यूशन",
+        mr: "ट्युशन"
+    },
+
+    Gardener: {
+        en: "Gardener",
+        hi: "माली",
+        mr: "माळी"
+    },
+
+    "House Helping": {
+        en: "House Helping",
+        hi: "घरेलू सहायता",
+        mr: "घरकाम मदत"
+    },
+
+    "Woman Help": {
+        en: "Woman Help",
+        hi: "महिला सहायता",
+        mr: "महिला मदत"
+    },
+
+    Younger: {
+        en: "Younger",
+        hi: "यंगर",
+        mr: "यंगर"
+    },
+
+    Other: {
+        en: "Other",
+        hi: "अन्य",
+        mr: "इतर"
+    }
+
+};
+
+
+function translateService(serviceName) {
+
+    const cleanName =
+        String(serviceName || "").trim();
+
+    if (
+        serviceTranslations[cleanName]
+    ) {
+
+        return (
+            serviceTranslations[cleanName][
+                currentLanguage
+            ] ||
+            serviceTranslations[cleanName].en
+        );
+
+    }
+
+    return cleanName;
+
+}
+
+
+/* ================= NAVIGATION ================= */
+
+function goToGiveGrow() {
+
+    window.location.href =
+        "give-grow.html";
+
+}
+
+
+/* ================= NUMBER FORMAT ================= */
+
+function formatNumber(value) {
+
+    const number =
+        Number(value) || 0;
+
+    return number.toLocaleString(
+        "en-IN"
+    );
+
+}
+
+
+/* ================= ESCAPE HTML ================= */
+
+function escapeHtml(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* ================= FIND BREAKDOWN VALUE ================= */
+
+function getBreakdownName(entry) {
+
+    return (
+        entry.service ||
+        entry.name ||
+        entry.category ||
+        entry.action_type ||
+        entry.type ||
+        "Other"
+    );
+
+}
+
+
+function getBreakdownCount(entry) {
+
+    return Number(
+        entry.count ??
+        entry.total ??
+        entry.value ??
+        0
+    );
+
+}
+
+
+/* ================= LOAD COMMUNITY IMPACT ================= */
+
+async function loadCommunityImpact() {
+
+    const serviceContainer =
+        document.getElementById(
+            "serviceBreakdown"
+        );
+
+    const language =
+        translations[currentLanguage] ||
+        translations.en;
+
+
+    try {
+
+        serviceContainer.innerHTML = `
+            <div class="empty-message">
+                ${escapeHtml(language.loadingLive)}
+            </div>
+        `;
+
+
+        const response =
+            await fetch(
+                `${API_BASE}/api/community/impact`
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load community impact."
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        /* ================= MAIN STATS ================= */
+
+        document.getElementById(
+            "repairsSponsored"
+        ).textContent =
+            formatNumber(
+                data.repairs_sponsored
+            );
+
+
+        document.getElementById(
+            "peopleHelped"
+        ).textContent =
+            formatNumber(
+                data.people_helped
+            );
+
+
+        document.getElementById(
+            "itemsShared"
+        ).textContent =
+            formatNumber(
+                data.items_shared
+            );
+
+
+        document.getElementById(
+            "ngosParticipating"
+        ).textContent =
+            formatNumber(
+                data.ngos_participating
+            );
+
+
+        /* ================= NGO MINI STAT ================= */
+
+        document.getElementById(
+            "ngoMini"
+        ).textContent =
+            formatNumber(
+                data.ngos_participating
+            );
+
+
+        /* ================= ITEM BREAKDOWN ================= */
+
+        const itemBreakdown =
+            Array.isArray(
+                data.item_breakdown
+            )
+                ? data.item_breakdown
+                : [];
+
+
+        let given = 0;
+        let exchanged = 0;
+        let donated = 0;
+
+
+        itemBreakdown.forEach(item => {
+
+            const name =
+                String(
+                    item.action_type ||
+                    item.type ||
+                    item.name ||
+                    ""
+                ).toLowerCase();
+
+
+            const count =
+                getBreakdownCount(item);
+
+
+            if (
+                name.includes("give") ||
+                name.includes("given")
+            ) {
+
+                given += count;
+
+            }
+
+            else if (
+                name.includes("exchange")
+            ) {
+
+                exchanged += count;
+
+            }
+
+            else if (
+                name.includes("donat")
+            ) {
+
+                donated += count;
+
+            }
+
+        });
+
+
+        document.getElementById(
+            "givenItems"
+        ).textContent =
+            formatNumber(given);
+
+
+        document.getElementById(
+            "exchangedItems"
+        ).textContent =
+            formatNumber(exchanged);
+
+
+        document.getElementById(
+            "donatedItems"
+        ).textContent =
+            formatNumber(donated);
+
+
+        /* ================= SERVICE BREAKDOWN ================= */
+
+        const serviceBreakdown =
+            Array.isArray(
+                data.service_breakdown
+            )
+                ? data.service_breakdown
+                : [];
+
+
+        if (
+            serviceBreakdown.length === 0
+        ) {
+
+            serviceContainer.innerHTML = `
+                <div class="empty-message">
+                    ${escapeHtml(language.noRepairs)}
+                </div>
+            `;
+
+        }
+
+        else {
+
+            const total =
+                serviceBreakdown.reduce(
+                    (sum, item) =>
+                        sum +
+                        getBreakdownCount(item),
+                    0
+                );
+
+
+            serviceContainer.innerHTML =
+                serviceBreakdown.map(item => {
+
+                    const originalName =
+                        getBreakdownName(item);
+
+                    const displayName =
+                        translateService(
+                            originalName
+                        );
+
+
+                    const count =
+                        getBreakdownCount(item);
+
+
+                    const percentage =
+                        total > 0
+                            ? Math.round(
+                                (count / total) * 100
+                              )
+                            : 0;
+
+
+                    return `
+
+                        <div class="progress-item">
+
+                            <div class="progress-top">
+
+                                <span>
+                                    ${escapeHtml(
+                                        displayName
+                                    )}
+                                </span>
+
+                                <span>
+                                    ${percentage}%
+                                </span>
+
+                            </div>
+
+
+                            <div class="progress-bar">
+
+                                <div
+                                    class="progress-fill"
+                                    style="width:${percentage}%;">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }).join("");
+
+        }
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Community impact error:",
+            error
+        );
+
+
+        serviceContainer.innerHTML = `
+            <div class="empty-message">
+                ${escapeHtml(language.backendError)}
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* ================= START ================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        applyLanguage();
+
+        loadCommunityImpact();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
